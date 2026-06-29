@@ -17,9 +17,9 @@
 ### Human (Vitor)
 | Task | Priority |
 |---|---|
-| P1-H001 — Create Google Ads account + campaign ($20/day) | 🔴 Alta |
-| P1-H002 — GA4 property + GTM container + Vercel env vars | 🔴 Alta |
-| P1-H003 — Verify end-to-end: ad → payment → letter | 🔴 Alta |
+| P1-H001 — Create Google Ads account + campaign ($20/day) | 🟡 Média | ⏳ Deferred → Wed Jul 1 |
+| P1-H002 — GA4 property + GTM container + Vercel env vars | 🔴 Alta | ⏳ |
+| P1-H003 — Verify end-to-end: ad → payment → letter | 🔴 Alta | ⏳ Blocks on P1-H001 |
 
 ### Claude Code
 | Task | Priority | Status |
@@ -30,7 +30,7 @@
 | P1-A005 — Letter template polish (letterhead, reference #) | 🟡 Média | ✅ Done |
 | P1-A006 — Metadata/SEO (OG tags, Twitter card) | 🟡 Média | ✅ Done |
 | P1-A007 — Favicon + web app manifest | 🟢 Baixa | ✅ Done |
-| P1-A004 — Landing page polish (social proof) | 🟡 Média | ⏳ Pending |
+| P1-A004 — Landing page polish (social proof) | 🟡 Média | ✅ Done — cf771a4 |
 
 ### Hermes (Verification)
 | Task | Priority |
