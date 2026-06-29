@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { pushDataLayer } from "@/lib/gtm";
 
 function SuccessInner() {
   const searchParams = useSearchParams();
@@ -28,7 +29,17 @@ function SuccessInner() {
           throw new Error(data.error || "We couldn't load your letter.");
         }
         const text = await res.text();
-        if (!cancelled) setHtml(text);
+        if (!cancelled) {
+          setHtml(text);
+          // Payment is confirmed server-side before the letter is returned, so
+          // this is the right moment to record the conversion.
+          pushDataLayer({
+            event: "purchase",
+            currency: "USD",
+            value: 29.0,
+            transaction_id: sessionId,
+          });
+        }
       } catch (err) {
         if (!cancelled) {
           setError(
