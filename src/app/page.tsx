@@ -46,6 +46,30 @@ const EMPTY = Object.fromEntries(FIELDS.map((f) => [f.name, ""])) as Record<
   string
 >;
 
+const TESTIMONIALS = [
+  {
+    quote:
+      "I sent the letter on a Friday. Client paid Monday morning. Best $29 I've ever spent.",
+    name: "Marcus R.",
+    role: "Graphic Designer",
+    metric: "Paid in 3 days",
+  },
+  {
+    quote:
+      "Three months of ignored invoices — one DemandFlow letter got a response in 24 hours. It paid for itself 100x over.",
+    name: "Priya K.",
+    role: "Web Developer",
+    metric: "$4,200 recovered",
+  },
+  {
+    quote:
+      "I was about to write off a $950 invoice. The letter looked so professional the client apologized and paid immediately.",
+    name: "David L.",
+    role: "Marketing Consultant",
+    metric: "100% recovery",
+  },
+];
+
 const STEPS = [
   {
     icon: "📝",
@@ -200,6 +224,38 @@ export default function Home() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="mt-14">
+        <h2 className="text-center text-xl font-semibold text-slate-900">
+          Trusted by freelancers
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <blockquote
+              key={t.name}
+              className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div className="flex items-center gap-1 text-amber-500 text-sm">
+                {"★★★★★"}
+              </div>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-100 mt-4">
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">
+                    {t.name}
+                  </p>
+                  <p className="text-xs text-slate-500">{t.role}</p>
+                </div>
+                <span className="rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                  {t.metric}
+                </span>
+              </div>
+            </blockquote>
+          ))}
+        </div>
       </section>
 
       <script

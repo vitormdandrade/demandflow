@@ -1,39 +1,45 @@
 # DemandFlow Launch Checklist — June 29, 2026
 
-## ✅ Done
+## ✅ Phase 0 — Complete (GO approved)
 - [x] MVP deployed (demandflow-one.vercel.app)
 - [x] Stripe checkout flow working ($29 one-time)
-- [x] Webhook endpoint configured (whsec_tJ787...)
+- [x] Webhook endpoint configured
 - [x] Demand letter generation (HTML template)
 - [x] GitHub repo (vitormdandrade/demandflow)
 - [x] Notion databases (Tasks + Docs)
-- [x] NEXUS project (Phase 1)
 - [x] Cron job (every 2h autonomous cycle)
 - [x] Vercel auto-deploy on push
+- [x] P0-H001 — GO/NO-GO: **APPROVED ✓**
+- [x] All P0-A001–P0-A006 planning deliverables: **DONE ✓**
 
-## 🔄 In Progress (Claude Code v2)
-- [ ] GA4/GTM tracking integration
-- [ ] Privacy Policy page
-- [ ] Terms of Service page
-- [ ] Footer component
-- [ ] Landing page polish (social proof, how-it-works)
-- [ ] Letter template polish (letterhead, reference number)
-- [ ] Metadata/SEO (OG tags, Twitter card)
-- [ ] Favicon
+## 🔄 Phase 1 — In Progress (11 tasks in Notion)
 
-## ⏳ Tomorrow (Vitor)
-- [ ] Create Google Ads account
-- [ ] Create GA4 property (Measurement ID)
-- [ ] Create GTM container (GTM ID)
-- [ ] Set NEXT_PUBLIC_GTM_ID on Vercel
-- [ ] Launch Google Ads campaign ($20/day)
-- [ ] Monitor first 24h: impressions, clicks, conversions
-- [ ] Verify Stripe webhook delivers letters
-- [ ] Test end-to-end: ad click → landing → payment → letter
+### Human (Vitor)
+| Task | Priority |
+|---|---|
+| P1-H001 — Create Google Ads account + campaign ($20/day) | 🔴 Alta |
+| P1-H002 — GA4 property + GTM container + Vercel env vars | 🔴 Alta |
+| P1-H003 — Verify end-to-end: ad → payment → letter | 🔴 Alta |
 
-## 📋 Stretch
+### Claude Code
+| Task | Priority | Status |
+|---|---|---|
+| P1-A001 — GA4/GTM tracking integration | 🔴 Alta | ✅ Done |
+| P1-A002 — Privacy Policy + Terms of Service pages | 🔴 Alta | ✅ Done |
+| P1-A003 — Footer component | 🔴 Alta | ✅ Done |
+| P1-A005 — Letter template polish (letterhead, reference #) | 🟡 Média | ✅ Done |
+| P1-A006 — Metadata/SEO (OG tags, Twitter card) | 🟡 Média | ✅ Done |
+| P1-A007 — Favicon + web app manifest | 🟢 Baixa | ✅ Done |
+| P1-A004 — Landing page polish (social proof) | 🟡 Média | ⏳ Pending |
+
+### Hermes (Verification)
+| Task | Priority |
+|---|---|
+| P1-A008 — Verify all deliverables + GO/NO-GO for Phase 2 | 🟡 Média |
+
+## 📋 Phase 2+ (Stretch)
 - [ ] Custom domain (demandflow.io or similar)
-- [ ] Email delivery of PDF (post-MVP)
-- [ ] Multiple letter templates (post-MVP)
-- [ ] User accounts + history (post-MVP)
+- [ ] Email delivery of PDF
+- [ ] Multiple letter templates
+- [ ] User accounts + history
 - [ ] Affiliate/referral program
