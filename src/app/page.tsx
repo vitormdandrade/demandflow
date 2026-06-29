@@ -201,6 +201,50 @@ export default function Home() {
           ))}
         </ol>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is a demand letter and when should I send one?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "A demand letter is a formal written notice that requests payment for work completed. You should send one when a client has not paid an invoice after reasonable follow-ups — it puts your claim in writing, signals you're serious, and is often the step before small claims court.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How quickly will my demand letter be ready?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Your professionally formatted demand letter is generated instantly after checkout — usually within 60 seconds. You can download, save as PDF, and send it right away.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do I need a lawyer to send a demand letter?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. A demand letter does not require a lawyer. DemandFlow generates a legally-formatted letter based on your details that you send directly to your client. For disputes involving very large amounts or complex contracts, consulting an attorney is always an option.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is my payment information secure?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. All payments are processed by Stripe, a PCI-DSS Level 1 certified payment provider. DemandFlow never stores your credit card details — Stripe handles everything securely.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </main>
   );
 }
