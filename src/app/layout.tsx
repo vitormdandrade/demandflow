@@ -81,6 +81,33 @@ export default function RootLayout({
 
         {children}
         <Footer />
+
+        {/* Structured data: Organization + SoftwareApplication */}
+        <Script id="ld-json-org-app" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: "DemandFlow",
+                url: "https://demandflow-one.vercel.app",
+                description:
+                  "AI-powered demand letters that help freelancers get paid for unpaid invoices — no lawyer needed.",
+              },
+              {
+                "@type": "SoftwareApplication",
+                name: "DemandFlow",
+                applicationCategory: "BusinessApplication",
+                operatingSystem: "Web",
+                offers: {
+                  "@type": "Offer",
+                  price: "29.00",
+                  priceCurrency: "USD",
+                },
+              },
+            ],
+          })}
+        </Script>
       </body>
     </html>
   );
