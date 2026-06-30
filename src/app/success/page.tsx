@@ -11,15 +11,14 @@ function SuccessInner() {
   const sessionId = searchParams.get("session_id");
 
   const [html, setHtml] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    sessionId ? null : "No checkout session was found in the URL.",
+  );
   const [templateId, setTemplateId] = useState<TemplateId>("demand-letter");
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    if (!sessionId) {
-      setError("No checkout session was found in the URL.");
-      return;
-    }
+    if (!sessionId) return;
     let cancelled = false;
     (async () => {
       try {
