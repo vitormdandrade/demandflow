@@ -78,7 +78,7 @@ export default function Home() {
     pushDataLayer({
       event: "begin_checkout",
       currency: "USD",
-      value: 29.0,
+      value: template.priceCents / 100,
       template: template.id,
     });
     try {
@@ -109,7 +109,7 @@ export default function Home() {
         </h1>
         <p className="mt-4 text-lg text-slate-600">
           {template.subheading}{" "}
-          <span className="font-semibold text-slate-900">$29.</span>
+          <span className="font-semibold text-slate-900">${(template.priceCents / 100).toFixed(0)}.</span>
         </p>
         <div className="mt-5 flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
@@ -190,7 +190,7 @@ export default function Home() {
           disabled={loading}
           className="mt-7 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {loading ? "Redirecting to checkout…" : `Send ${template.name} — $29`}
+          {loading ? "Redirecting to checkout…" : `Send ${template.name} — $${(template.priceCents / 100).toFixed(0)}`}
         </button>
 
         <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">

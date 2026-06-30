@@ -1,7 +1,7 @@
 // Multi-template definitions for DemandFlow.
 // Each template has its own fields, renderer, and product metadata.
 
-export type TemplateId = "demand-letter" | "cease-and-desist" | "contract-termination" | "late-rent-notice";
+export type TemplateId = "demand-letter" | "cease-and-desist" | "contract-termination" | "late-rent-notice" | "freelance-reminder";
 
 export interface TemplateField {
   name: string;
@@ -125,6 +125,32 @@ export const TEMPLATES: Record<TemplateId, TemplateConfig> = {
       { name: "monthsDue", label: "Months Overdue / Details", placeholder: "Rent for June 2026 was due on the 1st and remains unpaid" },
       { name: "lateFee", label: "Late Fee Applied (if any, $)", placeholder: "75.00" },
       { name: "deadline", label: "Payment Deadline", placeholder: "Within 14 days of this notice" },
+    ],
+  },
+
+  "freelance-reminder": {
+    id: "freelance-reminder",
+    name: "Payment Reminder",
+    description: "A friendly nudge before sending a formal demand letter",
+    icon: "💬",
+    priceCents: 1900,
+    productName: "Freelance Payment Reminder",
+    productDescription: "A polite but professional payment reminder, ready to send.",
+    heading: "Send a Friendly Payment Reminder",
+    subheading: "A professional nudge before things get formal. Only $19.",
+    successTitle: "Your payment reminder is ready!",
+    successMessage:
+      "Review it below, then download or print it as a PDF to send to your client.",
+    fields: [
+      { name: "yourName", label: "Your Full Name", placeholder: "Jane Freelancer" },
+      { name: "yourEmail", label: "Your Email", type: "email", placeholder: "jane@example.com" },
+      { name: "clientName", label: "Client / Business Name", placeholder: "Acme Corp" },
+      { name: "amount", label: "Invoice Amount ($)", placeholder: "2500.00" },
+      { name: "invoiceNumber", label: "Invoice Number / Reference", placeholder: "INV-2026-0042" },
+      { name: "description", label: "Brief Description of Work Done", placeholder: "Website redesign and development" },
+      { name: "dateCompleted", label: "Date Work Was Completed", placeholder: "March 15, 2026" },
+      { name: "dueDate", label: "Original Due Date", placeholder: "April 1, 2026" },
+      { name: "paymentMethod", label: "Preferred Payment Method", placeholder: "Bank transfer, credit card, PayPal, etc." },
     ],
   },
 };

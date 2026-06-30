@@ -108,13 +108,40 @@ export const RENT_FIELD_KEYS: (keyof RentNoticeFields)[] = [
   "deadline",
 ];
 
+// ─── Freelance Payment Reminder Fields ────────────────────────────────────────
+
+export interface FreelanceReminderFields {
+  yourName: string;
+  yourEmail: string;
+  clientName: string;
+  amount: string;
+  invoiceNumber: string;
+  description: string;
+  dateCompleted: string;
+  dueDate: string;
+  paymentMethod: string;
+}
+
+export const FREELANCE_REMINDER_FIELD_KEYS: (keyof FreelanceReminderFields)[] = [
+  "yourName",
+  "yourEmail",
+  "clientName",
+  "amount",
+  "invoiceNumber",
+  "description",
+  "dateCompleted",
+  "dueDate",
+  "paymentMethod",
+];
+
 // ─── All-field union ─────────────────────────────────────────────────────────
 
 export type AnyTemplateFields =
   | LetterFields
   | CeaseAndDesistFields
   | ContractTermFields
-  | RentNoticeFields;
+  | RentNoticeFields
+  | FreelanceReminderFields;
 
 export function getFieldKeys(templateId: TemplateId): string[] {
   switch (templateId) {
@@ -126,6 +153,8 @@ export function getFieldKeys(templateId: TemplateId): string[] {
       return CONTRACT_FIELD_KEYS as string[];
     case "late-rent-notice":
       return RENT_FIELD_KEYS as string[];
+    case "freelance-reminder":
+      return FREELANCE_REMINDER_FIELD_KEYS as string[];
     default:
       return LETTER_FIELD_KEYS as string[];
   }
@@ -466,6 +495,48 @@ export function renderRentNoticeHtml(fields: RentNoticeFields): string {
   return renderShell(`Late Rent Notice — ${escapeHtml(fields.yourName)}`, body);
 }
 
+// ─── Freelance Payment Reminder Renderer ──────────────────────────────────────
+
+export function renderFreelanceReminderHtml(
+  fields: FreelanceReminderFields,
+): string {
+  const amount = formatAmount(fields.amount);
+  const paymentMethod = escapeHtml(fields.paymentMethod || "bank transfer");
+
+  const body = `
+    <p class="block">${escapeHtml(fields.yourName)}<br />${escapeHtml(fields.yourEmail)}</p>
+
+    <p class="block">${escapeHtml(fields.clientName)}</p>
+
+    <p class="re">Re: Friendly Payment Reminder — Invoice ${escapeHtml(fields.invoiceNumber)}</p>
+
+    <p>Hi ${escapeHtml(fields.clientName)},</p>
+
+    <p>I hope this message finds you well! I wanted to send a quick reminder about the invoice below, which appears to be past its due date. I understand things get busy, so I wanted to check in before anything becomes urgent.</p>
+
+    <p>
+      <strong>Invoice:</strong> ${escapeHtml(fields.invoiceNumber)}<br />
+      <strong>Amount:</strong> $${amount}<br />
+      <strong>Work Completed:</strong> ${escapeHtml(fields.description)}<br />
+      <strong>Completed On:</strong> ${escapeHtml(fields.dateCompleted)}<br />
+      <strong>Due Date:</strong> ${escapeHtml(fields.dueDate)}
+    </p>
+
+    <p>If payment has already been made, please disregard this message and accept my thanks! If not, I'd greatly appreciate it if you could process payment at your earliest convenience. My preferred payment method is ${paymentMethod}.</p>
+
+    <p>If there are any questions about the invoice or if you'd like to discuss payment terms, please don't hesitate to reach out — I'm happy to work something out.</p>
+
+    <p>Thank you for your business and I look forward to continuing our work together!</p>
+
+    <p class="signature">Best regards,</p>
+    <p>${escapeHtml(fields.yourName)}</p>`;
+
+  return renderShell(
+    `Payment Reminder — ${escapeHtml(fields.yourName)}`,
+    body,
+  );
+}
+
 // ─── Dispatcher ──────────────────────────────────────────────────────────────
 
 export function renderTemplateHtml(
@@ -485,6 +556,10 @@ export function renderTemplateHtml(
       );
     case "late-rent-notice":
       return renderRentNoticeHtml(fields as unknown as RentNoticeFields);
+    case "freelance-reminder":
+      return renderFreelanceReminderHtml(
+        fields as unknown as FreelanceReminderFields,
+      );
     default:
       return renderLetterHtml(fields as unknown as LetterFields);
   }

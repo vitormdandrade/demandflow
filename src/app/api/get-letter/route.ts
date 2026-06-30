@@ -63,6 +63,7 @@ export async function GET(request: NextRequest) {
     "cease-and-desist": "cease-and-desist-letter.html",
     "contract-termination": "contract-termination-letter.html",
     "late-rent-notice": "late-rent-notice.html",
+    "freelance-reminder": "freelance-payment-reminder.html",
   };
   const filename = filenames[templateId] || "letter.html";
 

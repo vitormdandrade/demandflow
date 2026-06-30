@@ -34,20 +34,23 @@ function SuccessInner() {
           setHtml(text);
 
           // Try to parse templateId from the HTML title
+          let detected: TemplateId = "demand-letter";
           if (text.includes("Cease and Desist")) {
-            setTemplateId("cease-and-desist");
+            detected = "cease-and-desist";
           } else if (text.includes("Contract Termination")) {
-            setTemplateId("contract-termination");
+            detected = "contract-termination";
           } else if (text.includes("Late Rent Notice")) {
-            setTemplateId("late-rent-notice");
-          } else {
-            setTemplateId("demand-letter");
+            detected = "late-rent-notice";
+          } else if (text.includes("Payment Reminder")) {
+            detected = "freelance-reminder";
           }
+          setTemplateId(detected);
 
+          const tpl = TEMPLATE_LIST.find((t) => t.id === detected) ?? TEMPLATE_LIST[0];
           pushDataLayer({
             event: "purchase",
             currency: "USD",
-            value: 29.0,
+            value: tpl.priceCents / 100,
             transaction_id: sessionId,
           });
         }
