@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { pushDataLayer } from "@/lib/gtm";
+import { TEMPLATE_LIST, type TemplateId } from "@/lib/templates";
 
 function SuccessInner() {
   const searchParams = useSearchParams();
@@ -11,6 +12,7 @@ function SuccessInner() {
 
   const [html, setHtml] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [templateId, setTemplateId] = useState<TemplateId>("demand-letter");
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -31,8 +33,18 @@ function SuccessInner() {
         const text = await res.text();
         if (!cancelled) {
           setHtml(text);
-          // Payment is confirmed server-side before the letter is returned, so
-          // this is the right moment to record the conversion.
+
+          // Try to parse templateId from the HTML title
+          if (text.includes("Cease and Desist")) {
+            setTemplateId("cease-and-desist");
+          } else if (text.includes("Contract Termination")) {
+            setTemplateId("contract-termination");
+          } else if (text.includes("Late Rent Notice")) {
+            setTemplateId("late-rent-notice");
+          } else {
+            setTemplateId("demand-letter");
+          }
+
           pushDataLayer({
             event: "purchase",
             currency: "USD",
@@ -61,6 +73,9 @@ function SuccessInner() {
     }
   }
 
+  const currentTemplate = TEMPLATE_LIST.find((t) => t.id === templateId);
+  const otherTemplates = TEMPLATE_LIST.filter((t) => t.id !== templateId);
+
   return (
     <main className="mx-auto w-full max-w-[760px] px-5 py-12 sm:py-16">
       <div className="text-center">
@@ -68,11 +83,11 @@ function SuccessInner() {
           ✓
         </div>
         <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          Your demand letter is ready!
+          {currentTemplate?.successTitle ?? "Your letter is ready!"}
         </h1>
         <p className="mt-3 text-slate-600">
-          Review it below, then download or print it as a PDF to send to your
-          client.
+          {currentTemplate?.successMessage ??
+            "Review it below, then download or print it as a PDF to send."}
         </p>
       </div>
 
@@ -111,12 +126,44 @@ function SuccessInner() {
           <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
             <iframe
               ref={iframeRef}
-              title="Your demand letter"
+              title="Your letter"
               srcDoc={html}
               className="h-[800px] w-full border-0"
             />
           </div>
         </>
+      )}
+
+      {/* ── Cross-sell: Need another letter type? ── */}
+      {otherTemplates.length > 0 && (
+        <section className="mt-14 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <h2 className="text-center text-xl font-semibold text-slate-900">
+            Need another letter type?
+          </h2>
+          <p className="mt-2 text-center text-sm text-slate-600">
+            We have more templates ready for you.
+          </p>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {otherTemplates.map((t) => (
+              <Link
+                key={t.id}
+                href="/"
+                className="flex flex-col items-center rounded-xl border border-slate-200 bg-slate-50 p-4 text-center transition hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm"
+              >
+                <span className="text-2xl">{t.icon}</span>
+                <span className="mt-2 text-sm font-semibold text-slate-800">
+                  {t.name}
+                </span>
+                <span className="mt-1 text-xs text-slate-500">
+                  {t.description}
+                </span>
+                <span className="mt-2 inline-block rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-700">
+                  $29
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
 
       <p className="mt-10 text-center text-sm text-slate-500">

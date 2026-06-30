@@ -2,49 +2,10 @@
 
 import { useRef, useState } from "react";
 import { pushDataLayer } from "@/lib/gtm";
-
-interface Field {
-  name: string;
-  label: string;
-  type?: string;
-  placeholder?: string;
-}
-
-const FIELDS: Field[] = [
-  { name: "yourName", label: "Your Full Name", placeholder: "Jane Freelancer" },
-  {
-    name: "yourEmail",
-    label: "Your Email",
-    type: "email",
-    placeholder: "jane@example.com",
-  },
-  {
-    name: "clientName",
-    label: "Client / Business Name",
-    placeholder: "Acme Corp",
-  },
-  {
-    name: "clientAddress",
-    label: "Client Address",
-    placeholder: "123 Market St, San Francisco, CA 94103",
-  },
-  { name: "amount", label: "Amount Owed ($)", placeholder: "2500.00" },
-  {
-    name: "description",
-    label: "Brief Description of Work Done",
-    placeholder: "Website redesign and development",
-  },
-  {
-    name: "dateCompleted",
-    label: "Date Work Was Completed",
-    placeholder: "March 15, 2026",
-  },
-];
-
-const EMPTY = Object.fromEntries(FIELDS.map((f) => [f.name, ""])) as Record<
-  string,
-  string
->;
+import {
+  TEMPLATE_LIST,
+  type TemplateConfig,
+} from "@/lib/templates";
 
 const TESTIMONIALS = [
   {
@@ -74,7 +35,7 @@ const STEPS = [
   {
     icon: "📝",
     title: "Fill in the details",
-    body: "Enter your info, your client's details, and what you're owed. Takes about a minute.",
+    body: "Enter your info, the recipient's details, and your situation. Takes about a minute.",
   },
   {
     icon: "🔒",
@@ -84,18 +45,25 @@ const STEPS = [
   {
     icon: "📄",
     title: "Download your letter",
-    body: "Get a polished, ready-to-send demand letter instantly. Save it as a PDF and send.",
+    body: "Get a polished, ready-to-send letter instantly. Save it as a PDF and send.",
   },
 ];
 
 export default function Home() {
-  const [values, setValues] = useState<Record<string, string>>(EMPTY);
+  const [template, setTemplate] = useState<TemplateConfig>(TEMPLATE_LIST[0]);
+  const [values, setValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const formStarted = useRef(false);
 
+  function selectTemplate(t: TemplateConfig) {
+    setTemplate(t);
+    setValues({});
+    setError(null);
+    formStarted.current = false;
+  }
+
   function update(name: string, value: string) {
-    // Fire a single `form_start` event the first time the user types anything.
     if (!formStarted.current && value.length > 0) {
       formStarted.current = true;
       pushDataLayer({ event: "form_start" });
@@ -111,12 +79,13 @@ export default function Home() {
       event: "begin_checkout",
       currency: "USD",
       value: 29.0,
+      template: template.id,
     });
     try {
       const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ template: template.id, ...values }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
@@ -136,10 +105,10 @@ export default function Home() {
     <main className="mx-auto w-full max-w-[600px] px-5 py-12 sm:py-16">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Send a Demand Letter When a Client Doesn&apos;t Pay
+          {template.heading}
         </h1>
         <p className="mt-4 text-lg text-slate-600">
-          A legally-formatted demand letter in 60 seconds. No lawyer needed.{" "}
+          {template.subheading}{" "}
           <span className="font-semibold text-slate-900">$29.</span>
         </p>
         <div className="mt-5 flex justify-center">
@@ -147,17 +116,47 @@ export default function Home() {
             <span className="text-amber-500" aria-hidden>
               ★★★★★
             </span>
-            Trusted by freelancers
+            Trusted by thousands
           </span>
         </div>
       </header>
 
+      {/* ── Template Selector ── */}
+      <div className="mb-8">
+        <p className="mb-3 text-sm font-medium text-slate-500">
+          Choose a letter type:
+        </p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {TEMPLATE_LIST.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => selectTemplate(t)}
+              className={`flex flex-col items-center rounded-xl border p-3 text-center transition ${
+                template.id === t.id
+                  ? "border-blue-500 bg-blue-50 ring-2 ring-blue-500/30"
+                  : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+              }`}
+            >
+              <span className="text-2xl">{t.icon}</span>
+              <span className="mt-1 text-xs font-semibold text-slate-800">
+                {t.name}
+              </span>
+              <span className="mt-0.5 text-[10px] text-slate-500 leading-tight">
+                {t.description}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Form ── */}
       <form
         onSubmit={handleSubmit}
         className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 sm:p-8"
       >
         <div className="flex flex-col gap-5">
-          {FIELDS.map((field) => (
+          {template.fields.map((field) => (
             <div key={field.name} className="flex flex-col gap-1.5">
               <label
                 htmlFor={field.name}
@@ -169,7 +168,7 @@ export default function Home() {
                 id={field.name}
                 name={field.name}
                 type={field.type ?? "text"}
-                value={values[field.name]}
+                value={values[field.name] || ""}
                 placeholder={field.placeholder}
                 onChange={(e) => update(field.name, e.target.value)}
                 required
@@ -191,7 +190,7 @@ export default function Home() {
           disabled={loading}
           className="mt-7 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {loading ? "Redirecting to checkout…" : "Send Demand Letter — $29"}
+          {loading ? "Redirecting to checkout…" : `Send ${template.name} — $29`}
         </button>
 
         <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">

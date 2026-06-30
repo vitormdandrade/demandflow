@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import {
-  LETTER_FIELD_KEYS,
-  renderLetterHtml,
-  type LetterFields,
+  getFieldKeys,
+  renderTemplateHtml,
 } from "@/lib/letter";
+import type { TemplateId } from "@/lib/templates";
 
 export const runtime = "nodejs";
 
@@ -31,33 +31,48 @@ export async function GET(request: NextRequest) {
   }
 
   const metadata = session.metadata ?? {};
-  const fields: Partial<LetterFields> = {};
-  for (const key of LETTER_FIELD_KEYS) {
+  const templateId = (metadata.template as TemplateId) || "demand-letter";
+
+  // Collect fields for this template.
+  const fieldKeys = getFieldKeys(templateId);
+  const fields: Record<string, string> = {};
+  for (const key of fieldKeys) {
     if (typeof metadata[key] === "string") {
       fields[key] = metadata[key];
     }
   }
 
-  if (!fields.yourName || !fields.clientName || !fields.amount) {
+  // Basic validation — require at least name fields.
+  if (!fields.yourName) {
     return Response.json(
       { error: "Letter details are missing from this session." },
       { status: 422 },
     );
   }
 
-  const html = renderLetterHtml(fields as LetterFields);
+  const html = renderTemplateHtml(templateId, fields);
 
   // Return a standalone, printable HTML document. The success page renders it
   // in an iframe; the browser's "Save as PDF" handles the PDF export. The
   // `download` param serves it as an attachment instead.
   const asDownload = request.nextUrl.searchParams.get("download") === "1";
+
+  // Choose a filename based on template.
+  const filenames: Record<string, string> = {
+    "demand-letter": "demand-letter.html",
+    "cease-and-desist": "cease-and-desist-letter.html",
+    "contract-termination": "contract-termination-letter.html",
+    "late-rent-notice": "late-rent-notice.html",
+  };
+  const filename = filenames[templateId] || "letter.html";
+
   const headers: Record<string, string> = {
     "Content-Type": "text/html; charset=utf-8",
     "Cache-Control": "no-store",
   };
   if (asDownload) {
     headers["Content-Disposition"] =
-      'attachment; filename="demand-letter.html"';
+      `attachment; filename="${filename}"`;
   }
 
   return new Response(html, { status: 200, headers });

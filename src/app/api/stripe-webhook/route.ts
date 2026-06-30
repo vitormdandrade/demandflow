@@ -1,7 +1,8 @@
 import { NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
-import { LETTER_FIELD_KEYS, type LetterFields } from "@/lib/letter";
+import { getFieldKeys } from "@/lib/letter";
+import type { TemplateId } from "@/lib/templates";
 
 // Signature verification uses Node crypto and the raw request body.
 export const runtime = "nodejs";
@@ -33,12 +34,12 @@ export async function POST(request: NextRequest) {
     const session = event.data.object as Stripe.Checkout.Session;
     const metadata = session.metadata ?? {};
 
-    // Reconstruct the form fields from metadata. The letter itself is generated
-    // on demand by /api/get-letter and shown on the success page, so here we
-    // just confirm the data is present and log it. This is the hook point for
-    // emailing the PDF (e.g. via SendGrid) in a future iteration.
-    const fields: Partial<LetterFields> = {};
-    for (const key of LETTER_FIELD_KEYS) {
+    const templateId = (metadata.template as TemplateId) || "demand-letter";
+    const fieldKeys = getFieldKeys(templateId);
+
+    // Reconstruct the form fields from metadata.
+    const fields: Record<string, string> = {};
+    for (const key of fieldKeys) {
       if (typeof metadata[key] === "string") {
         fields[key] = metadata[key];
       }
@@ -46,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     console.log(
       `[stripe-webhook] checkout.session.completed for ${session.id} ` +
-        `(customer: ${fields.yourEmail ?? "unknown"})`,
+        `(template: ${templateId}, customer: ${fields.yourEmail ?? "unknown"})`,
     );
     // TODO: deliver the letter by email here.
   }
