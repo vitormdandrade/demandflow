@@ -80,3 +80,20 @@ body {
   color: #475569;
   font-style: italic;
 }
+
+/* Subtle attention pulse for primary conversion CTAs. */
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+.btn-glow {
+  animation: cta-pulse 2.6s ease-in-out infinite;
+}
+.btn-glow:hover {
+  animation: none;
+}

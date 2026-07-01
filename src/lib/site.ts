@@ -31,6 +31,9 @@ export const BLOG_SLUGS: string[] = [
   "demand-letter-vs-lawyer",
   "get-paid-freelance-fast",
   "small-claims-court-alternatives",
+  "psychology-of-getting-paid",
+  "freelancer-legal-toolkit",
+  "50-demand-letters-case-study",
 ];
 
 export const STATIC_ROUTES: string[] = [

@@ -93,6 +93,54 @@ export const BLOG_POSTS: BlogPost[] = [
       "alternatives to suing",
     ],
   },
+  {
+    slug: "psychology-of-getting-paid",
+    title: "The Psychology of Getting Paid: Why Clients Ghost and How to Fix It",
+    description:
+      "Why clients go quiet on invoices — avoidance, cash-flow triage, diffusion of responsibility — and the psychological tactics that actually get you paid.",
+    excerpt:
+      "Late payment usually isn't about the money. It's about avoidance, triage, and a psychological discount freelancers don't have to accept. Here's the fix.",
+    category: "Getting Paid",
+    readMins: 7,
+    date: "2026-06-29",
+    keywords: [
+      "why clients don't pay",
+      "client ghosting invoice",
+      "psychology of unpaid invoices",
+    ],
+  },
+  {
+    slug: "freelancer-legal-toolkit",
+    title: "The Freelancer's Legal Toolkit: Demand Letter, Contract, Invoice — The Holy Trinity",
+    description:
+      "How a contract, an invoice, and a demand letter work together as one system to protect freelancers — what each must include and how they reinforce each other.",
+    excerpt:
+      "Most freelancers treat their contract, invoice, and demand letter as three separate afterthoughts. Used as one system, they're nearly impossible to ignore.",
+    category: "Guides",
+    readMins: 8,
+    date: "2026-07-02",
+    keywords: [
+      "freelancer contract invoice demand letter",
+      "freelance legal documents",
+      "protect freelance business legally",
+    ],
+  },
+  {
+    slug: "50-demand-letters-case-study",
+    title: "I Sent 50 Demand Letters. Here's What Happened.",
+    description:
+      "A breakdown of 50 demand letters and what separated the ones paid in 48 hours from the ones that went nowhere — illustrative data for freelancers.",
+    excerpt:
+      "What actually moves the needle when you send a demand letter? A look at 50 of them, broken down by deadline, tone, and what happened next.",
+    category: "Getting Paid",
+    readMins: 8,
+    date: "2026-07-06",
+    keywords: [
+      "demand letter results",
+      "does a demand letter work",
+      "demand letter success rate",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {

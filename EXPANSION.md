@@ -8,6 +8,16 @@
 
 ---
 
+## 0. The Vision
+
+Every year, millions of small legal and financial actions never happen because the cost of doing them "properly" is wildly disproportionate to the stakes. A $680 invoice doesn't justify a $300 lawyer consult. A noisy neighbor doesn't justify a cease-and-desist retainer. A month of unpaid rent from one tenant doesn't justify a property-management legal team. So people do nothing, or they send an angry text that has zero legal weight — and the person who owes them money, or is violating their rights, correctly bets that inaction is the most likely outcome.
+
+**DemandFlow's long-run bet: become the Stripe for legal micro-actions.** Stripe didn't win by being a better bank — it won by collapsing "accept a payment" from a weeks-long merchant-account ordeal into an API call. DemandFlow collapses "assert a legal right" from a $300–$500, multi-day lawyer engagement into a 60-second, $29 self-serve flow. The wedge is the demand letter, because unpaid freelance invoices are the highest-frequency, highest-intent version of this problem. But the pattern — a real legal document, instantly generated, professionally formatted, at a price where the decision to act is nearly free — generalizes to cease-and-desist, contract termination, late-rent notices, and dozens of adjacent "I have a legitimate claim but going to a lawyer isn't worth it" moments.
+
+If DemandFlow wins, it isn't because it out-templates a template site. It's because it becomes the default first move whenever someone searches "how do I make them ___" and the honest answer used to be "hire a lawyer or give up."
+
+---
+
 ## 1. Executive Summary
 
 **Thesis:** DemandFlow sells a painkiller, not a vitamin. A freelancer with a $2,400 unpaid invoice will happily pay $29 to generate a professional, legally-worded demand letter in five minutes — the alternative is a $200/hr lawyer or eating the loss. The problem is high-frequency (roughly 1 in 3 freelancers reports a late/non-paying client each year), searched with clear commercial intent ("demand letter template", "how to get a client to pay"), and the product's cost to serve is near-zero. That combination — high pain, high search intent, near-zero COGS — is the ideal profile for a bootstrapped, SEO-led, low-price/high-volume growth engine.
@@ -18,9 +28,71 @@
 
 ---
 
-## 2. Phase 1 — SEO Content Flywheel (Months 0–12, always on)
+## 1a. Market Sizing — TAM / SAM / SOM
 
-SEO is the primary channel. It compounds, it's free of marginal cost, and it matches intent perfectly. The flywheel: **article ranks → captures high-intent searcher → soft CTA into the relevant template → $29 checkout.**
+| Layer | Definition | Estimate | Basis |
+|---|---|---|---|
+| **TAM** | All freelancers, gig workers, and small businesses in the US with at least one unpaid-invoice or micro-legal-dispute event per year | **~15–20M** people/entities, generating an estimated **$400M–$600M** in addressable annual willingness-to-pay (at a $29–$79 price point for the fraction who'd act) | US freelance workforce is ~70M+ (Upwork/Freelancers Union estimates); roughly 1 in 3 report a late or non-paying client annually; extend to small landlords and micro-businesses with the same "not worth a lawyer" dynamic |
+| **SAM** | US, English-speaking, actively searching online for a DIY solution (i.e., reachable through SEO/SEM/content, not requiring outbound sales) | **~3–5M** searchers/year across the demand-letter, unpaid-invoice, and adjacent-letter keyword clusters | Keyword volume research across the P0/P1 clusters in Section 2, scaled by conversion-relevant informational + transactional intent |
+| **SOM** | Realistically capturable in 12 months at current team size (one operator, bootstrapped, SEO+ads led) | **~3,000–5,000 paying transactions over Year 1**, corresponding to the 800–1,100/mo run-rate target by Month 12 | Bottom-up from the organic ramp (Section 2) plus paid + affiliate contribution (Sections 3–4) |
+
+The gap between SAM and SOM is the entire 12-month opportunity: DemandFlow is not remotely close to saturating even the narrow, English-language, self-serve slice of this market. The constraint in Year 1 is execution bandwidth and content velocity, not demand.
+
+---
+
+## 1b. Competitive Moat
+
+DemandFlow doesn't win on any single dimension in isolation — free template sites can match the price, and law firms can match the credibility. It wins on the **combination**, which is expensive for either type of competitor to replicate:
+
+| Dimension | DemandFlow | Free template sites | Lawyers / legal services |
+|---|---|---|---|
+| **Speed** | 60 seconds, instant output | Fast, but requires manual editing and self-formatting | Days to weeks |
+| **Price** | $29 flat | $0, but low-trust, generic, no guarantee | $300–$500+ retainer |
+| **Friction** | No account, no login, no subscription required | Low friction, but no polish or guidance | High friction — intake calls, engagement letters |
+| **Output quality** | Professional letterhead, legally-structured language, per-template logic | Copy-paste Word doc, inconsistent quality | High quality, but overkill for the stakes |
+| **Trust signal** | Stripe-verified checkout, money-back guarantee, instant delivery | None — no accountability if the template is bad | High, but priced for it |
+| **Breadth** | 5 templates today, expanding to a full "getting paid" workflow | Usually single-purpose | Full service, but not economical at this price point |
+
+**Why this is defensible, not just a feature list:** free sites compete on price but can't add a credible guarantee or a checkout-grade experience without becoming a real business (at which point they're competing with DemandFlow directly, not free anymore). Lawyers can't compete on price without cannibalizing their own retainer model. The moat compounds over time through three reinforcing assets a clone can't instantly copy: **(1)** accumulated SEO authority across dozens of ranking articles, **(2)** a growing library of state-specific and template-specific landing pages that took months of content investment, and **(3)** the recurring-revenue relationship (Pro, Invoice Guard, agency seats) that turns one-time buyers into a retained base competitors have to win back one at a time.
+
+---
+
+## 2. Phase 1 — Distribution Flywheel: SEO Content (Months 0–12, always on)
+
+SEO is the primary channel. It compounds, it's free of marginal cost, and it matches intent perfectly. This is the core engine that everything else (ads, affiliates, product expansion) is built to accelerate, not replace:
+
+```
+  ┌─────────────────────┐
+  │  Publish SEO article │
+  │  (unpaid invoice /   │
+  │  demand letter intent)│
+  └──────────┬───────────┘
+             │ ranks over 3–6 months
+             ▼
+  ┌─────────────────────┐
+  │ High-intent searcher  │◄────────────┐
+  │  lands, mid-funnel     │             │
+  └──────────┬───────────┘             │
+             │ inline + end-post CTA     │ word-of-mouth,
+             ▼                            │ repeat visits,
+  ┌─────────────────────┐             │ referrals
+  │ Template landing page │             │
+  │ (sample, guarantee)    │             │
+  └──────────┬───────────┘             │
+             │ 1.5–3% CVR                │
+             ▼                            │
+  ┌─────────────────────┐             │
+  │  $29 checkout → paid   │─────────────┘
+  │  letter, real result   │
+  └──────────┬───────────┘
+             │ new topical authority,
+             │ backlinks, testimonials
+             ▼
+     (compounds into more
+      articles ranking faster)
+```
+
+The flywheel: **article ranks → captures high-intent searcher → soft CTA into the relevant template → $29 checkout → satisfied customer becomes a backlink, a testimonial, or a referral → next article ranks faster because domain authority is higher.** Every other channel in this plan (paid, affiliate, product expansion) exists to either accelerate this flywheel's first turn (ads buy intent SEO hasn't ranked for yet) or to monetize it more deeply once it's spinning (Pro, B2B).
 
 ### Keyword clusters
 
@@ -165,6 +237,21 @@ Individual freelancers are volume; **agencies and studios are LTV.** An agency m
 
 ---
 
+## 6a. Revenue Waterfall
+
+The business is designed to monetize the same customer relationship at increasing depth rather than only re-acquiring new $29 buyers forever:
+
+| Tier | Price | Who | What unlocks it |
+|---|---|---|---|
+| **Single letter** | $29 one-time ($19 for the payment reminder) | Any freelancer with one unpaid invoice, right now | The wedge — zero-commitment, first-touch conversion straight from SEO/ads/affiliate traffic |
+| **Pro** | $79/yr | Repeat freelancers, agencies of one, anyone who expects to need this again | Checkout order-bump on the $29 purchase ("unlimited for $79/yr"); converts a one-time transaction into a subscription with near-zero incremental build cost |
+| **B2B / Agency** | $199–$399/yr per team (5–15 seats) | Creative/dev agencies, bookkeeping & fractional-CFO firms, freelance collectives | Direct outreach + `/agencies` landing page once Pro is proven; same product, seat-based pricing |
+| **White-label / Enterprise** | $499–$999/yr+, custom above that | Agencies and collections-adjacent firms sending letters on clients' behalf; eventually larger collections/legal-aid/BPO orgs needing volume, API access, or custom branding | Bespoke — the ceiling of the waterfall, reserved for accounts where the standard product's economics no longer fit and a direct relationship justifies custom terms |
+
+Each tier is a strict superset of the one below it in effort required to sell, and each is introduced only once the tier beneath it has proven demand — Pro isn't built until organic + paid traffic is real, B2B isn't pitched until Pro's attach rate validates recurring willingness-to-pay, and Enterprise/white-label conversations only start once inbound interest from agencies materializes organically. This keeps the model bootstrap-safe: no tier requires a big upfront bet before the tier below it has already paid for the effort.
+
+---
+
 ## 7. Revenue Projections (Month 1–12)
 
 **Assumptions (clearly labeled as projections, not guarantees):**
@@ -213,42 +300,78 @@ Blended CVR (session → paid) target: **1.5–2.5%**, consistent with the low-p
 
 ---
 
-## 9. Risks & Mitigations
+## 9. Risk Matrix
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| **SEO ramps slower than modeled** | Delays primary channel | Front-load money pages + "vs small claims" bottom-funnel content; lean harder on ads/affiliates in interim |
-| **Google Ads CAC > AOV** | Paid unprofitable on first sale | Strict negatives (esp. "free"), message-matched LPs, push $79 order-bump to lift AOV; cap spend if CVR < 8% |
-| **"Free template" competitors** | Price/attention pressure | Compete on speed, polish, guarantee, and state-specific legal wording — not on being free |
-| **Unauthorized practice of law / liability** | Legal/trust risk | Clear "not legal advice" disclaimer; position as document generation, not representation; keep the money-back guarantee |
-| **Low repeat rate (one-time nature)** | Weak LTV | This is *the* reason Phase 4 (Pro, Invoice Guard) exists — convert one-time buyers into subscribers |
-| **Single-channel dependency (Google)** | Fragile | Diversify: affiliates, email list, community presence from Month 3 |
-| **Placeholder GA4/GTM IDs still live** | No attribution data | Fix in Week 1 — non-negotiable; you can't optimize what you can't measure |
+Rated on **Likelihood** (Low / Medium / High) and **Impact** (Low / Medium / High) if it happens. Sorted by severity.
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| **Competitor clones DemandFlow directly** (same templates, same $29 price, same guarantee) | Medium | High | The moat is compounding SEO authority + recurring-revenue relationships, not the UI — a clone starts at zero on both. Keep shipping content and templates faster than a clone can copy; the guarantee and instant checkout experience are also non-trivial to match credibly on day one. |
+| **Regulatory action on DIY legal document generation** (state UPL enforcement, new disclosure requirements) | Low–Medium | High | Maintain a clear, prominent "not legal advice / document generation only" disclaimer sitewide (already shipped in the footer); avoid any language implying legal representation; monitor state-level UPL guidance as templates expand into more jurisdictions (e.g., rent notices, which are more state-law-sensitive than demand letters). |
+| **Google algorithm update tanks organic rankings** | Medium | High | Don't concentrate ranking equity in 1–2 "hero" pages — spread topical authority across the full hub-and-spoke content set; diversify traffic sources (affiliates, email list, paid) from Month 3 so no single algorithm change is existential; avoid any thin/AI-boilerplate content patterns that are typical deindexing targets. |
+| **SEO ramps slower than modeled** | Medium | Medium | Front-load money pages + "vs small claims" bottom-funnel content; lean harder on ads/affiliates in the interim; the 90-day plan below is designed to validate ramp speed early (Week 6 checkpoint) rather than discover it's off-track at Month 6. |
+| **Google Ads CAC > AOV** | Medium | Medium | Strict negatives (esp. "free"), message-matched landing pages, push the $79 order-bump to lift AOV; cap spend automatically if CVR falls below 8%. |
+| **Low repeat rate (one-time-purchase nature of the product)** | Medium | Medium | This is *the* reason Phase 4 (Pro, Invoice Guard) and the Revenue Waterfall (Section 6a) exist — convert one-time buyers into subscribers before repeat-rate weakness caps LTV. |
+| **"Free template" competitors erode price position** | High | Low–Medium | Don't compete on being free — compete on speed, polish, the money-back guarantee, and per-template legal structure a free Word doc doesn't have. Price sensitivity is low at $29 relative to the invoice sizes involved. |
+| **Single-channel dependency on Google (organic + ads both)** | Medium | Medium | Diversify deliberately: affiliates, email list, and community presence starting Month 3, so a Google-side shock (algorithm or CPC spike) doesn't hit both channels simultaneously. |
+| **Placeholder GA4/GTM IDs still live in production** | High (until fixed) | Medium | Fix in Week 1 — non-negotiable. Every dollar spent on content or ads before attribution works is spent partially blind. |
 
 ---
 
-## 10. 90-Day Action Plan
+## 10. 90-Day Action Plan (Weekly Milestones)
 
-**Weeks 1–2 (Foundation)**
-- Replace placeholder GA4/GTM IDs with real ones; verify Stripe → conversion event fires end-to-end.
-- Set up conversion tracking + Google Ads account; build the 3 ad groups (paused).
-- Polish the 5 template landing pages (sample output, guarantee, message-match variants).
+**Week 1 — Measurement foundation**
+- Replace placeholder GA4/GTM IDs with real ones; verify the Stripe → conversion event fires end-to-end for every template.
+- Set up the Google Ads account and conversion tracking (account live, campaigns still paused).
+- Audit the 5 template landing pages for message-match gaps.
 
-**Weeks 3–4 (Content + Ads live)**
-- Publish 2 P0 money-page articles (unpaid invoice, "vs small claims").
-- Launch Google Ads at $30/day, Phrase+Exact, full negative list. Watch search-term report daily; add negatives.
-- Add email opt-in ("Free demand letter checklist") sitewide.
+**Week 2 — Landing page polish**
+- Ship sample-output previews, guarantee placement, and message-match variants across all 5 template pages.
+- Build the 3 Google Ads ad groups (Demand Letter / Unpaid Invoice / Adjacent Templates) with full negative-keyword lists, still paused.
+- Draft the first 2 P0 money-page articles (unpaid invoice, "vs small claims").
 
-**Month 2**
-- Publish 3 articles (target 11 total). Build pillar page + internal-link the spokes.
-- Tune ads: pause keywords with CPC > $3 or CVR < 5%; shift budget to winners.
-- Draft affiliate program terms + assets; open applications.
+**Week 3 — Content + ads go live**
+- Publish the 2 P0 articles from Week 2.
+- Launch Google Ads at $30/day, Phrase + Exact match only.
+- Add the sitewide email opt-in ("Free demand letter checklist").
 
-**Month 3**
-- Publish 3 more articles (14 total); ship first state-specific page.
-- Recruit first 5 affiliates (freelance creators + invoicing-adjacent newsletters).
-- **Build & launch the $79 Pro plan as a checkout order-bump.** Measure attach rate.
-- Review: organic sessions ≥ 1,000/mo, ad CAC ≤ $30, first affiliate sales, Pro attach ≥ 8%. Decide Phase 4/5 sequencing from real data.
+**Week 4 — First tuning pass**
+- Watch the Google Ads search-term report daily; add negatives as junk queries surface.
+- Publish 1 more article (3 published this cycle, on pace for the 3/month cadence).
+- **Checkpoint:** confirm attribution is clean (GA4 events matching Stripe transactions 1:1) before trusting any CAC number.
+
+**Week 5 — Content velocity**
+- Publish 2 articles toward the Month 2 target of 11 total.
+- Begin building the pillar page ("The Complete Guide to Getting Paid as a Freelancer") and start internal-linking spokes to it.
+
+**Week 6 — Mid-quarter checkpoint**
+- Review: organic sessions trending toward the Month-2 target (~600/mo)? Ad CAC holding ≤ $30? If either is materially off-track, this is the point to adjust the plan rather than wait for Month 3.
+- Pause any ad keyword with CPC > $3 or CVR < 5%; reallocate budget to winners.
+- Draft affiliate program terms, commission structure, and swipe-copy assets.
+
+**Week 7 — Affiliate groundwork**
+- Open affiliate applications; reach out to 10 target partners (freelance creators, invoicing-adjacent newsletters).
+- Publish 1 more article (target: 14 total by end of Month 3).
+
+**Week 8 — First state-specific page**
+- Ship the first programmatic state-specific page ("Demand Letter Laws in California" or similar) as a template for the rest of the series.
+- Continue ad tuning; layer in any new negatives from 4 weeks of search-term data.
+
+**Week 9 — Pro plan build**
+- **Build and ship the $79/yr Pro plan as a checkout order-bump** on the $29 flow.
+- Recruit and onboard the first 5 affiliates.
+
+**Week 10 — Pro plan measurement**
+- Measure Pro attach rate on real traffic; iterate the order-bump copy/placement if attach is below the 8% target.
+- Publish 1 more article.
+
+**Week 11 — Affiliate activation**
+- First affiliate-driven sales should be landing; verify discount-code attribution is working correctly.
+- Continue content cadence; keep the pillar page's internal links current as new spokes publish.
+
+**Week 12 — 90-day review**
+- Full review against targets: organic sessions ≥ 1,000/mo, ad CAC ≤ $30, first affiliate sales confirmed, Pro attach ≥ 8%, 14 total articles published.
+- Decide Phase 4 (Payment Reminder Automation, Invoice Guard) and Phase 5 (B2B/agency) sequencing from real data — not from this plan's assumptions.
 
 ---
 

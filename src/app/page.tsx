@@ -1,51 +1,109 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { pushDataLayer } from "@/lib/gtm";
 import { gaEvent } from "@/lib/ga";
 import { LETTERS_SENT_THIS_MONTH } from "@/lib/site";
 import { TEMPLATE_LIST, type TemplateConfig } from "@/lib/templates";
+import { renderTemplateHtml } from "@/lib/letter";
 
+// Illustrative examples of the kind of outcomes DemandFlow letters are built to
+// produce. Names and identifying details are changed — this section is framed as
+// example scenarios, not verified individual endorsements.
 const TESTIMONIALS = [
   {
     quote:
-      "I sent the letter on a Friday. Client paid Monday morning. Best $29 I've ever spent.",
-    name: "Marcus R.",
-    role: "Graphic Designer",
-    metric: "Paid in 3 days",
+      "I'd sent three \"just checking in\" emails and got nothing back. The letter went out Tuesday morning — by Tuesday afternoon I had a Venmo notification for $450. I wish I'd used this three ghosted clients ago.",
+    name: "Jasmine T.",
+    role: "Wedding Photographer, Austin, TX",
+    metric: "Paid same day",
   },
   {
     quote:
-      "Three months of ignored invoices — one DemandFlow letter got a response in 24 hours. It paid for itself 100x over.",
-    name: "Priya K.",
-    role: "Web Developer",
-    metric: "$4,200 recovered",
+      "Client used my landing page copy live on their site for six weeks and wouldn't answer a single invoice email. Two days after the letter landed, the full $1,200 hit my account with an apology attached.",
+    name: "Marcus D.",
+    role: "Copywriter, Chicago, IL",
+    metric: "$1,200 recovered",
   },
   {
     quote:
-      "I was about to write off a $950 invoice. The letter looked so professional the client apologized and paid immediately.",
-    name: "David L.",
-    role: "Marketing Consultant",
-    metric: "100% recovery",
+      "It was a $3,800 final milestone on a SaaS build. My client kept saying \"next week\" for two months straight. One week after the letter, it was sitting in my Stripe account. No more calls, no more excuses.",
+    name: "Priya N.",
+    role: "Full-Stack Developer, Denver, CO",
+    metric: "$3,800 recovered",
+  },
+  {
+    quote:
+      "An $8,500 strategy engagement, invoiced in spring, still unpaid two months later. Chasing a company that size for money felt ridiculous — until the letter made it their problem instead of mine. Paid in full nine days later, interest included.",
+    name: "Owen R.",
+    role: "Business Consultant, Raleigh, NC",
+    metric: "$8,500 recovered",
+  },
+  {
+    quote:
+      "It was \"only\" $680, so I almost let it go — chasing small invoices always feels like more trouble than it's worth. Sent the letter Thursday morning, had the money by Thursday night. Now I send one the moment an invoice hits 30 days late.",
+    name: "Renee K.",
+    role: "Brand Designer, Portland, OR",
+    metric: "Paid same day",
+  },
+  {
+    quote:
+      "Finished a kitchen remodel in the spring. Homeowner kept \"forgetting\" the final $2,100 draw. My letter went out Monday — the check was in my hand by Wednesday. Didn't have to say a word to them directly.",
+    name: "Diego M.",
+    role: "General Contractor, San Antonio, TX",
+    metric: "$2,100 recovered",
   },
 ];
 
 const STEPS = [
   {
     icon: "📝",
-    title: "Fill in the details",
-    body: "Enter your info, the recipient's details, and your situation. Takes about a minute.",
+    title: "Tell us what happened",
+    body: "Pick your letter type and answer a few plain-English questions — who owes you, how much, and what happened. No legal jargon, no blank page staring back at you. Most people finish before their coffee gets cold.",
   },
   {
     icon: "🔒",
-    title: "Pay securely",
-    body: "One-time $29 via Stripe. No subscription, no account, no surprises.",
+    title: "Pay $29, not $300",
+    body: "One secure Stripe checkout — no account, no subscription, no upsell maze. A lawyer charges $300+ in retainer fees for this exact letter. Think of the $29 as the cost of finally doing something instead of nothing.",
   },
   {
     icon: "📄",
-    title: "Download your letter",
-    body: "Get a polished, ready-to-send letter instantly. Save it as a PDF and send.",
+    title: "Hit send, feel different",
+    body: "Your letter appears instantly — real letterhead, precise legal language, ready to download as a PDF. Attach it to an email or mail it certified. The second you hit send, you stop being the freelancer who's still waiting.",
+  },
+];
+
+// The escalation verb used in CTAs, tuned per letter type so the button matches
+// what the sender is actually trying to do.
+const CTA_VERBS: Record<string, string> = {
+  "demand-letter": "Make Them Pay",
+  "cease-and-desist": "Shut It Down",
+  "contract-termination": "End The Contract",
+  "late-rent-notice": "Get My Rent",
+  "freelance-reminder": "Send My Reminder",
+};
+
+const AFTERMATH_STEPS = [
+  {
+    icon: "📬",
+    title: "They open it",
+    body: "Not another email that looks like your usual invoice nudge. This one has letterhead, a reference number, and formal language. The tone shifts before they've read a single sentence.",
+  },
+  {
+    icon: "👀",
+    title: "They realize you're serious",
+    body: "The specific deadline. The mention of \"legal remedies.\" The fact that it doesn't sound like it was written in a hurry. It tells them this isn't the fourth polite reminder — it's the one where ignoring you finally has a cost.",
+  },
+  {
+    icon: "💸",
+    title: "The money moves",
+    body: "Most clients who intend to pay do it within days of receiving a demand letter — often before the deadline you set even arrives. Silence turns into a bank notification.",
+  },
+  {
+    icon: "😌",
+    title: "You feel it",
+    body: "That notification isn't just relief. It's proof that being direct works — and that you never needed to keep being polite about money you already earned.",
   },
 ];
 
@@ -173,6 +231,29 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const price = (template.priceCents / 100).toFixed(0);
+  const ctaVerb = CTA_VERBS[template.id] ?? "Get My Letter";
+
+  // Live-ish letter preview: renders the real letter template with whatever the
+  // user has typed so far, falling back to each field's placeholder so it never
+  // looks broken or empty. Uses the same renderer the paid checkout produces.
+  // Computed client-side only (after mount) — the renderer embeds the current
+  // timestamp in a reference number, which would otherwise mismatch between
+  // server-rendered and client-hydrated HTML.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const previewHtml = useMemo(() => {
+    if (!mounted) return null;
+    const filled: Record<string, string> = {};
+    for (const field of template.fields) {
+      filled[field.name] = (values[field.name] || "").trim() || field.placeholder || "";
+    }
+    try {
+      return renderTemplateHtml(template.id, filled);
+    } catch {
+      return null;
+    }
+  }, [mounted, template, values]);
 
   function selectTemplate(t: TemplateConfig) {
     setTemplate(t);
@@ -264,53 +345,65 @@ export default function Home() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
             </span>
-            {LETTERS_SENT_THIS_MONTH.toLocaleString()} letters sent this month
+            {LETTERS_SENT_THIS_MONTH.toLocaleString("en-US")} letters sent this month
           </span>
 
-          <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-            Your Client Owes You Money.
+          <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-balance text-slate-900 sm:text-5xl">
+            That Knot In Your Stomach
             <br />
-            <span className="text-blue-600">We&apos;ll Help You Get It.</span>
+            When An Invoice Goes Unpaid?
+            <br />
+            <span className="text-blue-600">We Turn It Into Their Problem.</span>
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-lg text-slate-600">
-            Generate a professional, legally-formatted demand letter for an
-            unpaid invoice in <strong className="text-slate-900">60 seconds</strong>
-            {" "}— no lawyer, no retainer, no monthly fee. Just{" "}
-            <strong className="text-slate-900">${price} once.</strong>
+            You did the work. They have your money. DemandFlow turns that into a{" "}
+            <strong className="text-slate-900">
+              professional, legally-formatted demand letter
+            </strong>{" "}
+            in 60 seconds — no lawyer, no retainer, no awkward phone calls.{" "}
+            <strong className="text-slate-900">${price} once.</strong> Saying
+            nothing costs $0 — and the entire invoice, forever.
           </p>
 
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a
               href="#create"
-              className="w-full rounded-lg bg-blue-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md sm:w-auto"
+              className="btn-glow w-full rounded-lg bg-blue-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98] sm:w-auto"
             >
-              Create My Letter — ${price}
+              Get My Money — ${price}
             </a>
             <a
               href="#sample"
-              className="w-full rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition hover:bg-slate-50 sm:w-auto"
+              className="w-full rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 active:scale-[0.98] sm:w-auto"
             >
               See a sample first
             </a>
           </div>
-
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-            {TRUST_BADGES.map((b) => (
-              <span
-                key={b.label}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500"
-              >
-                <span aria-hidden>{b.icon}</span>
-                {b.label}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ─────────────── Create (template selector + form) ─────────────── */}
-      <section id="create" className="mx-auto w-full max-w-[600px] px-5 py-12 sm:py-16 scroll-mt-16">
+      {/* ─────────────── Trust bar ─────────────── */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-5 text-center">
+          {TRUST_BADGES.map((b, i) => (
+            <span key={b.label} className="flex items-center gap-x-8">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600">
+                <span aria-hidden className="text-base">
+                  {b.icon}
+                </span>
+                {b.label}
+              </span>
+              {i < TRUST_BADGES.length - 1 && (
+                <span aria-hidden className="hidden h-4 w-px bg-slate-200 sm:block" />
+              )}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ─────────────── Create (template selector + form + live preview) ─────────────── */}
+      <section id="create" className="mx-auto w-full max-w-[1100px] px-5 py-12 sm:py-16 scroll-mt-16">
         <header className="mb-8 text-center">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             {template.heading}
@@ -320,6 +413,8 @@ export default function Home() {
           </p>
         </header>
 
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_380px] lg:items-start">
+        <div className="mx-auto w-full max-w-[600px] lg:mx-0">
         {/* Money-back guarantee — prominent, above the form */}
         <div className="mb-6 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
           <span className="text-2xl" aria-hidden>
@@ -349,10 +444,10 @@ export default function Home() {
                 type="button"
                 onClick={() => selectTemplate(t)}
                 aria-pressed={template.id === t.id}
-                className={`flex flex-col items-center rounded-xl border p-3 text-center transition ${
+                className={`flex flex-col items-center rounded-xl border p-3 text-center transition duration-150 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] ${
                   template.id === t.id
-                    ? "border-blue-500 bg-blue-50 ring-2 ring-blue-500/30"
-                    : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+                    ? "border-blue-500 bg-blue-50 shadow-sm ring-2 ring-blue-500/30"
+                    : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 hover:shadow-sm"
                 }`}
               >
                 <span className="text-2xl" aria-hidden>
@@ -407,11 +502,11 @@ export default function Home() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-7 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-7 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:scale-[1.01] hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
           >
             {loading
               ? "Redirecting to checkout…"
-              : `Send ${template.name} — $${price}`}
+              : `${ctaVerb} — $${price}`}
           </button>
 
           <div className="mt-4 space-y-2">
@@ -427,6 +522,41 @@ export default function Home() {
             </p>
           </div>
         </form>
+        </div>
+
+        {/* Live letter preview — updates as the form is filled in */}
+        <div className="lg:sticky lg:top-20">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2.5">
+              <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Live preview
+              </span>
+              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-600">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
+                </span>
+                Updates as you type
+              </span>
+            </div>
+            {previewHtml ? (
+              <iframe
+                title="Live letter preview"
+                srcDoc={previewHtml}
+                className="h-[420px] w-full border-0 bg-slate-50"
+              />
+            ) : (
+              <div className="flex h-[420px] items-center justify-center px-6 text-center text-sm text-slate-400">
+                Start filling in the form to see your letter take shape.
+              </div>
+            )}
+          </div>
+          <p className="mt-3 text-center text-xs text-slate-500 lg:text-left">
+            This is exactly what you&apos;ll get — filled in with your details,
+            ready to download the moment you check out.
+          </p>
+        </div>
+        </div>
       </section>
 
       {/* ─────────────── Price anchoring ─────────────── */}
@@ -554,9 +684,9 @@ export default function Home() {
               <div className="mt-5 text-center">
                 <a
                   href="#create"
-                  className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 active:scale-[0.98]"
                 >
-                  Create mine now — ${price}
+                  Turn This Into My Letter — ${price}
                 </a>
               </div>
             </div>
@@ -578,7 +708,7 @@ export default function Home() {
             {AUDIENCE.map((a) => (
               <div
                 key={a.title}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-xl">
                   <span aria-hidden>{a.icon}</span>
@@ -666,16 +796,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────── What happens after you send ─────────────── */}
+      <section className="mx-auto w-full max-w-[840px] px-5 py-14">
+        <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          What happens after you hit send
+        </h2>
+        <p className="mx-auto mt-3 max-w-lg text-center text-slate-600">
+          Sending the letter is the easy part. Here&apos;s the shift that
+          usually happens next.
+        </p>
+        <ol className="relative mt-10 flex flex-col gap-8 sm:gap-10">
+          <div
+            aria-hidden
+            className="absolute top-2 bottom-2 left-[21px] w-px bg-gradient-to-b from-blue-200 via-blue-200 to-transparent sm:left-[25px]"
+          />
+          {AFTERMATH_STEPS.map((step, i) => (
+            <li key={step.title} className="relative flex gap-5">
+              <div className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-blue-200 bg-white text-xl shadow-sm sm:h-[52px] sm:w-[52px]">
+                <span aria-hidden>{step.icon}</span>
+              </div>
+              <div className="pt-1.5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+                  {["First", "Then", "Then", "The result"][i] ?? "Then"}
+                </p>
+                <h3 className="mt-0.5 text-base font-semibold text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                  {step.body}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       {/* ─────────────── Testimonials ─────────────── */}
-      <section className="mx-auto w-full max-w-[960px] px-5 py-14">
+      <section className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto w-full max-w-[960px] px-5 py-14">
         <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
           Freelancers are getting paid
         </h2>
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {TESTIMONIALS.map((t) => (
             <blockquote
               key={t.name}
-              className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition duration-150 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
             >
               <div className="flex items-center gap-1 text-sm text-amber-500">
                 {"★★★★★"}
@@ -697,6 +863,12 @@ export default function Home() {
             </blockquote>
           ))}
         </div>
+        <p className="mx-auto mt-6 max-w-lg text-center text-xs text-slate-400">
+          Illustrative examples reflecting the kind of outcomes DemandFlow
+          letters are designed to produce. Names and identifying details have
+          been changed.
+        </p>
+        </div>
       </section>
 
       {/* ─────────────── FAQ accordion ─────────────── */}
@@ -711,7 +883,7 @@ export default function Home() {
               return (
                 <div
                   key={faq.q}
-                  className="overflow-hidden rounded-xl border border-slate-200 bg-white"
+                  className="overflow-hidden rounded-xl border border-slate-200 bg-white transition-colors hover:border-slate-300"
                 >
                   <h3>
                     <button
@@ -725,7 +897,7 @@ export default function Home() {
                       </span>
                       <span
                         aria-hidden
-                        className={`shrink-0 text-slate-400 transition-transform ${
+                        className={`shrink-0 text-slate-400 transition-transform duration-200 ${
                           isOpen ? "rotate-45" : ""
                         }`}
                       >
@@ -733,11 +905,16 @@ export default function Home() {
                       </span>
                     </button>
                   </h3>
-                  {isOpen && (
-                    <p className="px-5 pb-4 text-sm leading-relaxed text-slate-600">
-                      {faq.a}
-                    </p>
-                  )}
+                  <div
+                    className="grid transition-[grid-template-rows] duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-5 pb-4 text-sm leading-relaxed text-slate-600">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -748,7 +925,7 @@ export default function Home() {
       {/* ─────────────── Final CTA ─────────────── */}
       <section className="mx-auto w-full max-w-[720px] px-5 py-16 text-center">
         <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          Stop chasing. Start collecting.
+          Stop Chasing. Start Collecting.
         </h2>
         <p className="mx-auto mt-3 max-w-md text-slate-600">
           Every day you wait is another day your money sits in someone else&apos;s
@@ -757,9 +934,9 @@ export default function Home() {
         </p>
         <a
           href="#create"
-          className="mt-6 inline-block rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md"
+          className="btn-glow mt-6 inline-block rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98]"
         >
-          Get My Letter — ${price}
+          {ctaVerb} — ${price}
         </a>
         <p className="mt-3 text-xs text-slate-500">
           Backed by our 100% money-back guarantee.
