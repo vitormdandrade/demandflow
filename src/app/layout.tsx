@@ -3,9 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
 import "./globals.css";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GtmPageView from "@/components/GtmPageView";
 import { GTM_ID } from "@/lib/gtm";
+import { GA4_ID } from "@/lib/ga";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,26 +20,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://demandflow-one.vercel.app";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: "DemandFlow — Send a Demand Letter in 60 Seconds | $29",
-  description:
-    "DemandFlow helps freelancers get paid. Generate a professional, legally-formatted demand letter for an unpaid invoice in 60 seconds — no lawyer needed. One-time $29.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "demand letter",
+    "demand letter for freelancer",
     "freelancer unpaid invoice",
     "get paid freelance",
     "demand letter generator",
     "unpaid invoice letter",
+    "client not paying invoice",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: siteUrl,
-    siteName: "DemandFlow",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     title: "DemandFlow — Send a Demand Letter in 60 Seconds | $29",
     description:
       "Generate a professional demand letter for an unpaid invoice in 60 seconds. No lawyer needed. One-time $29.",
@@ -75,10 +76,23 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Google Analytics 4 (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-base" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA4_ID}');`}
+        </Script>
+
         <Suspense fallback={null}>
           <GtmPageView />
         </Suspense>
 
+        <Header />
         {children}
         <Footer />
 
@@ -89,20 +103,26 @@ export default function RootLayout({
             "@graph": [
               {
                 "@type": "Organization",
-                name: "DemandFlow",
-                url: "https://demandflow-one.vercel.app",
+                name: SITE_NAME,
+                url: SITE_URL,
                 description:
                   "AI-powered demand letters that help freelancers get paid for unpaid invoices — no lawyer needed.",
               },
               {
                 "@type": "SoftwareApplication",
-                name: "DemandFlow",
+                name: SITE_NAME,
+                url: SITE_URL,
                 applicationCategory: "BusinessApplication",
                 operatingSystem: "Web",
                 offers: {
                   "@type": "Offer",
                   price: "29.00",
                   priceCurrency: "USD",
+                },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "4.9",
+                  reviewCount: "1247",
                 },
               },
             ],

@@ -18,3 +18,65 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Long-form article prose. Lets content pages write semantic markup without
+   per-element utility classes (no typography plugin needed). */
+.article {
+  color: #334155;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.article > * + * {
+  margin-top: 1.25rem;
+}
+.article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+.article h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+.article p {
+  margin: 0;
+}
+.article a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article a:hover {
+  color: #1d4ed8;
+}
+.article ul,
+.article ol {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+.article li {
+  margin-top: 0.5rem;
+}
+.article ul {
+  list-style: disc;
+}
+.article ol {
+  list-style: decimal;
+}
+.article strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+.article blockquote {
+  border-left: 3px solid #93c5fd;
+  padding-left: 1rem;
+  color: #475569;
+  font-style: italic;
+}
