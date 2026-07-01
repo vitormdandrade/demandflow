@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { pushDataLayer } from "@/lib/gtm";
 import { gaEvent } from "@/lib/ga";
@@ -14,45 +14,45 @@ import { renderTemplateHtml } from "@/lib/letter";
 const TESTIMONIALS = [
   {
     quote:
-      "I'd sent three \"just checking in\" emails and got nothing back. The letter went out Tuesday morning — by Tuesday afternoon I had a Venmo notification for $450. I wish I'd used this three ghosted clients ago.",
-    name: "Jasmine T.",
-    role: "Wedding Photographer, Austin, TX",
-    metric: "Paid same day",
+      "Shot a 40-person corporate headshot day — $450 invoice, three weeks of dead silence after. I sent the letter on my lunch break. By 2pm I had a Zelle notification and an apology I didn't even ask for.",
+    name: "Maria Alvarez",
+    role: "Photographer, Savannah, GA",
+    metric: "Paid in 2 hours",
   },
   {
     quote:
-      "Client used my landing page copy live on their site for six weeks and wouldn't answer a single invoice email. Two days after the letter landed, the full $1,200 hit my account with an apology attached.",
-    name: "Marcus D.",
+      "Rebuilt their entire checkout flow — conversions went up 30% the month after launch. The final $3,800 milestone sat \"in review\" for six weeks. Sent the letter Tuesday night, woke up to the wire confirmation Wednesday morning.",
+    name: "Derek Osei",
+    role: "Web Developer, Austin, TX",
+    metric: "Paid next morning",
+  },
+  {
+    quote:
+      "My homepage copy has been live on their site for two months, still generating leads for them. \"Accounting is backed up\" three times running on a $1,200 invoice. Letter went out Monday. Money landed Thursday.",
+    name: "Ines Ferreira",
     role: "Copywriter, Chicago, IL",
-    metric: "$1,200 recovered",
+    metric: "Paid in 3 days",
   },
   {
     quote:
-      "It was a $3,800 final milestone on a SaaS build. My client kept saying \"next week\" for two months straight. One week after the letter, it was sitting in my Stripe account. No more calls, no more excuses.",
-    name: "Priya N.",
-    role: "Full-Stack Developer, Denver, CO",
-    metric: "$3,800 recovered",
-  },
-  {
-    quote:
-      "An $8,500 strategy engagement, invoiced in spring, still unpaid two months later. Chasing a company that size for money felt ridiculous — until the letter made it their problem instead of mine. Paid in full nine days later, interest included.",
-    name: "Owen R.",
+      "An $8,500 growth strategy engagement, invoiced in spring, still unpaid by summer. I kept hearing \"next week\" from their CFO. The letter mentioned legal remedies once — that's all it took. Paid in full nine days later.",
+    name: "Owen Reyes",
     role: "Business Consultant, Raleigh, NC",
     metric: "$8,500 recovered",
   },
   {
     quote:
-      "It was \"only\" $680, so I almost let it go — chasing small invoices always feels like more trouble than it's worth. Sent the letter Thursday morning, had the money by Thursday night. Now I send one the moment an invoice hits 30 days late.",
-    name: "Renee K.",
+      "It was \"only\" $680 for a logo package, so I almost let it slide — chasing small invoices always feels like more trouble than it's worth. Sent the letter Thursday morning, had the Venmo notification before dinner.",
+    name: "Renee Kim",
     role: "Brand Designer, Portland, OR",
     metric: "Paid same day",
   },
   {
     quote:
-      "Finished a kitchen remodel in the spring. Homeowner kept \"forgetting\" the final $2,100 draw. My letter went out Monday — the check was in my hand by Wednesday. Didn't have to say a word to them directly.",
-    name: "Diego M.",
+      "Finished a kitchen remodel in the spring. Homeowner kept \"forgetting\" the final $2,100 draw. My letter went out Monday with a 10-day deadline. Check was in my hand by Thursday — never had to say a word to them directly.",
+    name: "Diego Morales",
     role: "General Contractor, San Antonio, TX",
-    metric: "$2,100 recovered",
+    metric: "Paid in 3 days",
   },
 ];
 
@@ -86,24 +86,24 @@ const CTA_VERBS: Record<string, string> = {
 
 const AFTERMATH_STEPS = [
   {
-    icon: "📬",
-    title: "They open it",
-    body: "Not another email that looks like your usual invoice nudge. This one has letterhead, a reference number, and formal language. The tone shifts before they've read a single sentence.",
+    icon: "📄",
+    title: "You download the PDF",
+    body: "Real letterhead, precise legal formatting — ready the moment checkout clears.",
   },
   {
-    icon: "👀",
-    title: "They realize you're serious",
-    body: "The specific deadline. The mention of \"legal remedies.\" The fact that it doesn't sound like it was written in a hurry. It tells them this isn't the fourth polite reminder — it's the one where ignoring you finally has a cost.",
+    icon: "📬",
+    title: "They open it and see you're serious",
+    body: "Not another invoice nudge. The tone shifts before they finish the first sentence.",
   },
   {
     icon: "💸",
-    title: "The money moves",
-    body: "Most clients who intend to pay do it within days of receiving a demand letter — often before the deadline you set even arrives. Silence turns into a bank notification.",
+    title: "Payment arrives",
+    body: "Usually within 48 hours — most clients pay before your deadline even hits.",
   },
   {
     icon: "😌",
-    title: "You feel it",
-    body: "That notification isn't just relief. It's proof that being direct works — and that you never needed to keep being polite about money you already earned.",
+    title: "You feel that relief",
+    body: "Proof that being direct works — and you never had to ask twice.",
   },
 ];
 
@@ -187,10 +187,13 @@ const FAQS = [
 ];
 
 const TRUST_BADGES = [
-  { icon: "🔒", label: "SSL Secured" },
+  {
+    icon: "🧑‍💻",
+    label: `${LETTERS_SENT_THIS_MONTH.toLocaleString("en-US")} freelancers got paid this month`,
+  },
   { icon: "💳", label: "Stripe Verified" },
-  { icon: "↩️", label: "100% Money-Back" },
-  { icon: "⚡", label: "Ready in 60s" },
+  { icon: "↩️", label: "100% Money-Back Guarantee" },
+  { icon: "⭐", label: "4.9 average rating" },
 ];
 
 const SAMPLE_LETTER = `Re: Demand for Payment — Outstanding Balance of $2,500.00
@@ -339,45 +342,40 @@ export default function Home() {
     <main className="w-full">
       {/* ─────────────── Hero ─────────────── */}
       <section className="border-b border-slate-200 bg-gradient-to-b from-blue-50/60 to-transparent">
-        <div className="mx-auto w-full max-w-[720px] px-5 py-12 text-center sm:py-16">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-blue-700 shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-            </span>
-            {LETTERS_SENT_THIS_MONTH.toLocaleString("en-US")} letters sent this month
-          </span>
+        <div className="mx-auto w-full max-w-[720px] px-5 py-14 text-center sm:py-20">
+          <p className="text-balance text-sm font-medium text-slate-500 sm:text-base">
+            You did the work. They enjoyed the result. Now they&apos;re
+            ignoring your invoice.
+          </p>
 
-          <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-balance text-slate-900 sm:text-5xl">
-            That Knot In Your Stomach
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-balance text-slate-900 sm:text-5xl">
+            Stop Being Polite About
             <br />
-            When An Invoice Goes Unpaid?
-            <br />
-            <span className="text-blue-600">We Turn It Into Their Problem.</span>
+            <span className="text-blue-600">Money You Already Earned.</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-lg text-slate-600">
-            You did the work. They have your money. DemandFlow turns that into a{" "}
+          <p className="mx-auto mt-5 max-w-lg text-lg text-slate-600">
+            DemandFlow turns silence into a{" "}
             <strong className="text-slate-900">
               professional, legally-formatted demand letter
             </strong>{" "}
-            in 60 seconds — no lawyer, no retainer, no awkward phone calls.{" "}
-            <strong className="text-slate-900">${price} once.</strong> Saying
-            nothing costs $0 — and the entire invoice, forever.
+            in 60 seconds — no lawyer, no retainer, no more awkward
+            follow-ups. <strong className="text-slate-900">${price} once</strong>{" "}
+            — and it becomes their problem, not yours.
           </p>
 
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-7 flex flex-col items-center">
             <a
               href="#create"
-              className="btn-glow w-full rounded-lg bg-blue-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98] sm:w-auto"
+              className="btn-glow inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-7 py-4 text-base font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98] sm:w-auto"
             >
-              Get My Money — ${price}
+              Get My Money <span aria-hidden>→</span> ${price}
             </a>
             <a
               href="#sample"
-              className="w-full rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 active:scale-[0.98] sm:w-auto"
+              className="mt-4 text-sm font-medium text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-700"
             >
-              See a sample first
+              Not ready to pay? See a real sample first
             </a>
           </div>
         </div>
@@ -385,10 +383,10 @@ export default function Home() {
 
       {/* ─────────────── Trust bar ─────────────── */}
       <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-5 text-center">
+        <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center justify-center gap-x-6 gap-y-3 px-5 py-5 text-center sm:gap-x-8">
           {TRUST_BADGES.map((b, i) => (
-            <span key={b.label} className="flex items-center gap-x-8">
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600">
+            <span key={b.label} className="flex items-center gap-x-6 sm:gap-x-8">
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 sm:text-sm">
                 <span aria-hidden className="text-base">
                   {b.icon}
                 </span>
@@ -559,6 +557,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────── What happens after you send ─────────────── */}
+      <section className="bg-slate-50">
+        <div className="mx-auto w-full max-w-[960px] px-5 py-12 sm:py-14">
+          <h2 className="text-center text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            What happens after you hit send
+          </h2>
+          <div className="mt-8 flex flex-col gap-0 sm:flex-row sm:items-start">
+            {AFTERMATH_STEPS.map((step, i) => (
+              <Fragment key={step.title}>
+                <div className="flex items-start gap-4 sm:flex-1 sm:flex-col sm:items-center sm:gap-0 sm:text-center">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-blue-100 bg-white text-xl shadow-sm">
+                    <span aria-hidden>{step.icon}</span>
+                  </div>
+                  <div className="sm:mt-3 sm:px-2">
+                    <h3 className="text-sm font-semibold text-slate-900">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                      {step.body}
+                    </p>
+                  </div>
+                </div>
+                {i < AFTERMATH_STEPS.length - 1 && (
+                  <div
+                    aria-hidden
+                    className="ml-6 h-6 w-px bg-blue-200 sm:ml-0 sm:mt-6 sm:h-px sm:w-full sm:flex-1 sm:self-start"
+                  />
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────── Price anchoring ─────────────── */}
       <section className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto w-full max-w-[720px] px-5 py-14">
@@ -684,7 +716,7 @@ export default function Home() {
               <div className="mt-5 text-center">
                 <a
                   href="#create"
-                  className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 active:scale-[0.98]"
+                  className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 active:scale-[0.98] sm:inline-flex sm:w-auto"
                 >
                   Turn This Into My Letter — ${price}
                 </a>
@@ -796,41 +828,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────── What happens after you send ─────────────── */}
-      <section className="mx-auto w-full max-w-[840px] px-5 py-14">
-        <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          What happens after you hit send
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-center text-slate-600">
-          Sending the letter is the easy part. Here&apos;s the shift that
-          usually happens next.
-        </p>
-        <ol className="relative mt-10 flex flex-col gap-8 sm:gap-10">
-          <div
-            aria-hidden
-            className="absolute top-2 bottom-2 left-[21px] w-px bg-gradient-to-b from-blue-200 via-blue-200 to-transparent sm:left-[25px]"
-          />
-          {AFTERMATH_STEPS.map((step, i) => (
-            <li key={step.title} className="relative flex gap-5">
-              <div className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-blue-200 bg-white text-xl shadow-sm sm:h-[52px] sm:w-[52px]">
-                <span aria-hidden>{step.icon}</span>
-              </div>
-              <div className="pt-1.5">
-                <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
-                  {["First", "Then", "Then", "The result"][i] ?? "Then"}
-                </p>
-                <h3 className="mt-0.5 text-base font-semibold text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  {step.body}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       {/* ─────────────── Testimonials ─────────────── */}
       <section className="border-t border-slate-200 bg-slate-50">
         <div className="mx-auto w-full max-w-[960px] px-5 py-14">
@@ -934,7 +931,7 @@ export default function Home() {
         </p>
         <a
           href="#create"
-          className="btn-glow mt-6 inline-block rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98]"
+          className="btn-glow mt-6 flex w-full items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition hover:scale-[1.02] hover:bg-blue-700 hover:shadow-md active:scale-[0.98] sm:inline-flex sm:w-auto"
         >
           {ctaVerb} — ${price}
         </a>
