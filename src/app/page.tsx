@@ -955,6 +955,25 @@ export default function Home() {
           }),
         }}
       />
+
+      {/* HowTo structured data — step-by-step demand letter creation */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "How to Send a Demand Letter in 60 Seconds",
+            description: "Generate and send a professional demand letter for unpaid invoices in three simple steps.",
+            step: STEPS.map((step, i) => ({
+              "@type": "HowToStep",
+              position: i + 1,
+              name: step.title,
+              text: step.body,
+            })),
+          }),
+        }}
+      />
     </main>
   );
 }
