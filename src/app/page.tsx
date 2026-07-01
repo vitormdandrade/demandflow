@@ -193,11 +193,17 @@ export default function Home() {
           {loading ? "Redirecting to checkout…" : `Send ${template.name} — $${(template.priceCents / 100).toFixed(0)}`}
         </button>
 
-        <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-          <span aria-hidden>🔒</span>
-          Secure payment via Stripe. Your letter is generated instantly after
-          checkout.
-        </p>
+        <div className="mt-4 space-y-2">
+          <p className="flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
+            <span aria-hidden>🔒</span>
+            Secure payment via Stripe. Your letter is generated instantly after
+            checkout.
+          </p>
+          <p className="flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
+            <span aria-hidden>✓</span>
+            100% Money-Back Guarantee — If you&apos;re not satisfied, we&apos;ll refund you. No questions asked.
+          </p>
+        </div>
       </form>
 
       <section className="mt-14">
