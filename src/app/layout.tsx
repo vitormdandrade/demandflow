@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -95,6 +96,8 @@ gtag('config', '${GA4_ID}');`}
         <Header />
         {children}
         <Footer />
+
+        <Analytics />
 
         {/* Structured data: Organization + SoftwareApplication */}
         <Script id="ld-json-org-app" type="application/ld+json">
