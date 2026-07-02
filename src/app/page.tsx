@@ -237,6 +237,30 @@ export default function Home() {
   // Pro subscriber — instant letter generation
   const [proLetterGenerated, setProLetterGenerated] = useState(false);
   const [proLetterHtml, setProLetterHtml] = useState<string | null>(null);
+  const [isPro, setIsPro] = useState(false);
+  const [isCheckingPro, setIsCheckingPro] = useState(false);
+
+  // Debounced Pro check when user types their email
+  const proTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function checkProStatus(email: string) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setIsPro(false);
+      return;
+    }
+    if (proTimerRef.current) clearTimeout(proTimerRef.current);
+    proTimerRef.current = setTimeout(async () => {
+      setIsCheckingPro(true);
+      try {
+        const res = await fetch(`/api/subscription-status?email=${encodeURIComponent(email)}`);
+        const data = await res.json();
+        setIsPro(!!data.active);
+      } catch {
+        setIsPro(false);
+      } finally {
+        setIsCheckingPro(false);
+      }
+    }, 600);
+  }
 
   const price = (template.priceCents / 100).toFixed(0);
   const ctaVerb = CTA_VERBS[template.id] ?? "Get My Letter";
@@ -271,6 +295,7 @@ export default function Home() {
     setTemplate(t);
     setValues({});
     setError(null);
+    setIsPro(false);
     formStarted.current = false;
   }
 
@@ -281,6 +306,11 @@ export default function Home() {
       gaEvent("form_start", { template: template.id });
     }
     setValues((prev) => ({ ...prev, [name]: value }));
+
+    // Live Pro detection on email field
+    if (name === "yourEmail") {
+      checkProStatus(value);
+    }
   }
 
   async function handleSampleSubmit(e: React.FormEvent) {
@@ -580,27 +610,54 @@ export default function Home() {
             </p>
           )}
 
+          {/* Pro badge — shown when email matches an active subscription */}
+          {isPro && (
+            <div className="mt-5 flex items-center gap-3 rounded-xl border-2 border-green-200 bg-green-50 p-4">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-xl">⚡</span>
+              <div>
+                <p className="text-sm font-bold text-green-800">Pro Subscriber</p>
+                <p className="text-xs text-green-700">
+                  Unlimited letters — no payment needed. Your letter will be generated instantly.
+                </p>
+              </div>
+            </div>
+          )}
+          {isCheckingPro && (
+            <p className="mt-3 text-center text-xs text-slate-400">Checking subscription…</p>
+          )}
+
           <button
             type="submit"
             disabled={loading}
-            className="mt-7 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:scale-[1.01] hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+            className="mt-5 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:scale-[1.01] hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
           >
             {loading
-              ? "Redirecting to checkout…"
-              : `${ctaVerb} — $${price}`}
+              ? "Generating your letter…"
+              : isPro
+                ? `${ctaVerb} — Free (Pro)`
+                : `${ctaVerb} — $${price}`}
           </button>
 
           <div className="mt-4 space-y-2">
-            <p className="flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-              <span aria-hidden>🔒</span>
-              Secure payment via Stripe. Your letter is generated instantly after
-              checkout.
-            </p>
-            <p className="flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
-              <span aria-hidden>✓</span>
-              100% Money-Back Guarantee — refund if you&apos;re not satisfied. No
-              questions asked.
-            </p>
+            {isPro ? (
+              <p className="flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
+                <span aria-hidden>⚡</span>
+                Pro subscriber — your letter will be generated instantly at no extra cost.
+              </p>
+            ) : (
+              <>
+                <p className="flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
+                  <span aria-hidden>🔒</span>
+                  Secure payment via Stripe. Your letter is generated instantly after
+                  checkout.
+                </p>
+                <p className="flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
+                  <span aria-hidden>✓</span>
+                  100% Money-Back Guarantee — refund if you&apos;re not satisfied. No
+                  questions asked.
+                </p>
+              </>
+            )}
           </div>
         </form>
         )}

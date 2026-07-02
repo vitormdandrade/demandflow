@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const PRICING_FAQS = [
   {
     q: "How much does a demand letter cost with DemandFlowww?",
-    a: "A single professional demand letter is a flat $29 — paid once, with no subscription or hidden fees. You get an instantly generated, ready-to-send PDF using any of our five letter templates. If you need to send letters regularly, our Pro plan gives you unlimited letters for $79 per year.",
+    a: "A single professional demand letter is a flat $29 — paid once, with no subscription or hidden fees. You get an instantly generated, ready-to-send PDF using any of our six letter templates. If you need to send letters regularly, our Pro plan gives you unlimited letters for $79 per year.",
   },
   {
     q: "Do you offer refunds?",
@@ -36,18 +36,19 @@ const PRICING_FAQS = [
 const BASIC_FEATURES = [
   "One professional demand letter",
   "Instantly generated, ready-to-send PDF",
-  "All 5 letter templates included",
+  "All 6 letter templates included",
   "Airtight, professional legal language",
+  "Custom letterhead with your brand name",
   "100% money-back guarantee",
   "No account, no subscription, no surprises",
 ];
 
 const PRO_FEATURES = [
   "UNLIMITED letters — send as many as you need",
-  "All current and future letter templates",
-  "Priority generation — always first in line",
-  "Saved sender details for one-click letters",
-  "Early access to new letter types",
+  "All 6 letter templates, current and future",
+  "Instant generation — no checkout, no per-letter fees",
+  "Professional letterhead with your brand name",
+  "Cancel anytime from your account page",
   "Everything in Basic, forever",
 ];
 
