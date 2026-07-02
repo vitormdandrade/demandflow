@@ -45,4 +45,6 @@ export const STATIC_ROUTES: string[] = [
   "/blog",
   "/privacy",
   "/terms",
+  "/invoice-guard",
+  "/retirement",
 ];
