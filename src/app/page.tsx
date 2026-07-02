@@ -512,6 +512,21 @@ export default function Home() {
           </div>
         </div>
 
+        {/* NDA & Contracts */}
+        <Link
+          href="/nda"
+          className="mb-8 flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-sm transition hover:border-blue-300 hover:bg-blue-50 hover:shadow-md"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-xl">🔏</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-slate-900">NDA &amp; Contracts</p>
+            <p className="text-xs text-slate-500 leading-tight mt-0.5">
+              Non-Disclosure Agreements, Service Agreements &amp; more — from $15
+            </p>
+          </div>
+          <span className="shrink-0 text-slate-400 text-sm">→</span>
+        </Link>
+
         {/* Form — or Pro success */}
         {proLetterGenerated && proLetterHtml ? (
           <div className="rounded-2xl border-2 border-blue-500 bg-white p-8 shadow-lg shadow-blue-200/40 ring-1 ring-blue-500/10">
