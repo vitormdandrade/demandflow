@@ -260,12 +260,11 @@ export default function NdaWizardPage() {
             {docType === "service-agreement" && values.paymentAmount ? (
               <LegalWarning
                 value={parseFloat(values.paymentAmount) || 0}
-                threshold={5000}
                 label="payment amount"
               />
             ) : null}
             {docType === "partnership-agreement" ? (
-              <div className="mt-4 flex items-start gap-3 rounded-lg border-2 border-red-200 bg-red-50 px-4 py-4 text-sm text-red-800">
+              <div className="mt-4 flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3.5 text-sm text-amber-800">
                 <span className="mt-0.5 shrink-0 text-lg leading-none" aria-hidden>
                   ⚖️
                 </span>
@@ -276,8 +275,8 @@ export default function NdaWizardPage() {
                   <p className="mt-1.5 leading-relaxed">
                     A partnership agreement governs profit sharing, liability,
                     and governance — decisions that can have{" "}
-                    <strong className="font-semibold">serious financial and legal
-                    consequences</strong>. We strongly recommend having this
+                    <strong className="font-semibold">meaningful financial and legal
+                    consequences</strong>. We recommend having this
                     document reviewed by a licensed attorney before signing.
                   </p>
                   <p className="mt-2 leading-relaxed">
@@ -286,7 +285,7 @@ export default function NdaWizardPage() {
                     assume full responsibility. See our{" "}
                     <Link
                       href="/terms"
-                      className="font-medium text-red-700 underline hover:text-red-900"
+                      className="font-medium text-amber-900 underline hover:text-amber-950"
                     >
                       Terms of Service
                     </Link>.
@@ -339,6 +338,12 @@ export default function NdaWizardPage() {
       </div>
 
       <p className="mt-6 text-center text-xs text-slate-400">
+        📍 Templates based on general US contract principles. State-specific
+        requirements may apply — verify with local counsel for complex
+        transactions.
+      </p>
+
+      <p className="mt-3 text-center text-xs text-slate-400">
         By purchasing, you agree to the{" "}
         <Link
           href="/terms"

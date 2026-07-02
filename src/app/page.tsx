@@ -657,7 +657,6 @@ export default function Home() {
             {/* High-amount legal warning */}
             <LegalWarning
               value={parseFloat(values["amount"] || "0") || 0}
-              threshold={5000}
               label="invoice amount"
             />
           </div>

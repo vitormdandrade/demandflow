@@ -126,6 +126,14 @@ export default function NdaLandingPage() {
       </section>
 
       <p className="mt-10 text-center text-sm text-slate-500">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-500">
+          📍 Templates based on general US contract principles. State-specific
+          requirements (e.g. California contractor rules, Louisiana civil law) may
+          apply — verify with local counsel for complex transactions.
+        </span>
+      </p>
+
+      <p className="mt-4 text-center text-sm text-slate-500">
         Looking for demand letters?{" "}
         <Link href="/" className="font-medium text-blue-600 underline hover:text-blue-700">
           Go back to DemandFlow

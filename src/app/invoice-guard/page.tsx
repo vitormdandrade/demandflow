@@ -323,7 +323,6 @@ export default function InvoiceGuardPage() {
           <div className="border-t border-slate-200 bg-blue-50/60 px-6 py-5 rounded-b-2xl">
             <LegalWarning
               value={result.totalDue}
-              threshold={5000}
               label="invoice total"
             />
             <p className="mb-4 text-sm text-slate-700">
