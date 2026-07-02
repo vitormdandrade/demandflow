@@ -532,6 +532,21 @@ export default function Home() {
           <span className="shrink-0 text-slate-400 text-sm">→</span>
         </Link>
 
+        {/* Late Fee Calculator */}
+        <Link
+          href="/invoice-guard"
+          className="mb-3 flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-sm transition hover:border-blue-300 hover:bg-blue-50 hover:shadow-md"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-xl">⏱️</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-slate-900">Late Fee Calculator</p>
+            <p className="text-xs text-slate-500 leading-tight mt-0.5">
+              Calculate statutory interest by state — free tool
+            </p>
+          </div>
+          <span className="shrink-0 text-slate-400 text-sm">→</span>
+        </Link>
+
         {/* Retirement Simulator */}
         <Link
           href="/retirement"
