@@ -30,6 +30,11 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // Optional brand name for letterhead
+  if (typeof body.brandName === "string" && body.brandName.trim()) {
+    fields.brandName = (body.brandName as string).trim();
+  }
+
   // All template fields are required. Check for missing.
   const missing = template.fields
     .map((f) => f.name)

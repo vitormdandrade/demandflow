@@ -236,8 +236,20 @@ function referenceNumber(): string {
 
 // ─── Shared letter shell (style + letterhead) ────────────────────────────────
 
-function renderShell(title: string, bodyHtml: string): string {
+function renderShell(title: string, bodyHtml: string, brandName?: string): string {
   const reference = referenceNumber();
+  const hasBrand = (brandName ?? "").trim().length > 0;
+
+  const leftSide = hasBrand
+    ? `<div>
+        <p class="brand">${escapeHtml(brandName!.trim())}</p>
+        <p class="brand-tagline">Professional Correspondence</p>
+      </div>`
+    : "";
+
+  const letterheadClass = hasBrand
+    ? "letterhead letterhead--branded"
+    : "letterhead";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -273,6 +285,24 @@ function renderShell(title: string, bodyHtml: string): string {
     margin-bottom: 36px;
     border-bottom: 2px solid #1e3a8a;
   }
+  .letterhead--branded {
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #1e3a8a;
+    margin: 0;
+  }
+  .brand-tagline {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    color: #64748b;
+    margin: 2px 0 0;
+    text-transform: uppercase;
+  }
   .ref {
     text-align: right;
     font-family: "Courier New", monospace;
@@ -297,7 +327,8 @@ function renderShell(title: string, bodyHtml: string): string {
 </head>
 <body>
   <div class="sheet">
-    <div class="letterhead">
+    <div class="${letterheadClass}">
+      ${leftSide}
       <div class="ref">
         Ref: <strong>${reference}</strong><br />${todayLong()}
       </div>
@@ -352,7 +383,7 @@ export function renderLetterHtml(fields: LetterFields): string {
     <p class="signature">Sincerely,</p>
     <p>${escapeHtml(fields.yourName)}</p>`;
 
-  return renderShell(`Demand Letter — ${escapeHtml(fields.yourName)}`, body);
+  return renderShell(`Demand Letter — ${escapeHtml(fields.yourName)}`, body, (fields as any).brandName);
 }
 
 // ─── Cease & Desist Renderer ─────────────────────────────────────────────────
@@ -394,6 +425,7 @@ export function renderCeaseAndDesistHtml(fields: CeaseAndDesistFields): string {
   return renderShell(
     `Cease and Desist — ${escapeHtml(fields.yourName)}`,
     body,
+    (fields as any).brandName,
   );
 }
 
@@ -441,6 +473,7 @@ export function renderContractTerminationHtml(
   return renderShell(
     `Contract Termination — ${escapeHtml(fields.yourName)}`,
     body,
+    (fields as any).brandName,
   );
 }
 
@@ -492,7 +525,7 @@ export function renderRentNoticeHtml(fields: RentNoticeFields): string {
     <p class="signature">Sincerely,</p>
     <p>${escapeHtml(fields.yourName)}<br /><em>Landlord / Property Manager</em></p>`;
 
-  return renderShell(`Late Rent Notice — ${escapeHtml(fields.yourName)}`, body);
+  return renderShell(`Late Rent Notice — ${escapeHtml(fields.yourName)}`, body, (fields as any).brandName);
 }
 
 // ─── Freelance Payment Reminder Renderer ──────────────────────────────────────
@@ -534,6 +567,7 @@ export function renderFreelanceReminderHtml(
   return renderShell(
     `Payment Reminder — ${escapeHtml(fields.yourName)}`,
     body,
+    (fields as any).brandName,
   );
 }
 
@@ -575,6 +609,7 @@ export function renderFinalNoticeHtml(fields: FinalNoticeFields): string {
   return renderShell(
     `Final Notice — ${escapeHtml(fields.yourName)}`,
     body,
+    (fields as any).brandName,
   );
 }
 

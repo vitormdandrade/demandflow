@@ -469,6 +469,31 @@ export default function Home() {
           className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 sm:p-8"
         >
           <div className="flex flex-col gap-5">
+            {/* Optional brand name — letterhead */}
+            <div className="flex flex-col gap-1.5">
+              <label
+                htmlFor="brandName"
+                className="text-sm font-medium text-slate-700"
+              >
+                Your Company / Brand Name{" "}
+                <span className="font-normal text-slate-400">(optional)</span>
+              </label>
+              <input
+                id="brandName"
+                name="brandName"
+                type="text"
+                value={values["brandName"] || ""}
+                placeholder="Leave blank for a clean, unbranded letterhead"
+                onChange={(e) => update("brandName", e.target.value)}
+                disabled={loading}
+                className="w-full rounded-lg border border-slate-300 bg-slate-50/50 px-3.5 py-2.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/30 disabled:opacity-60"
+              />
+              <p className="text-xs text-slate-400">
+                Appears at the top of your letter as professional letterhead. Leave
+                empty for no branding.
+              </p>
+            </div>
+
             {template.fields.map((field) => (
               <div key={field.name} className="flex flex-col gap-1.5">
                 <label
