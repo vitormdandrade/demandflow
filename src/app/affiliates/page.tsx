@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import AffiliateSignupForm from "@/components/AffiliateSignupForm";
 
 export const metadata: Metadata = {
-  title: "Affiliate Program — Earn 10% Promoting DemandFlow",
+  title: "Affiliate Program — Earn 10% Promoting DemandFlowww",
   description:
-    "Join the DemandFlow affiliate program and earn a 10% commission on every $29 demand-letter sale you refer. 60-day cookie, monthly payouts via Stripe or PayPal, no cost to join.",
+    "Join the DemandFlowww affiliate program and earn a 10% commission on every $29 demand-letter sale you refer. 60-day cookie, monthly payouts via Stripe or PayPal, no cost to join.",
   keywords: [
-    "DemandFlow affiliate program",
+    "DemandFlowww affiliate program",
     "affiliate program for freelancers",
     "earn commission demand letter",
     "freelance tools affiliate",
@@ -43,7 +43,7 @@ const PARTNERS = [
   {
     icon: "🧾",
     title: "Accounting & invoicing software audiences",
-    body: "Invoicing tools send the invoice — DemandFlow handles what happens when it goes unpaid. A perfect complement.",
+    body: "Invoicing tools send the invoice — DemandFlowww handles what happens when it goes unpaid. A perfect complement.",
   },
   {
     icon: "🎥",
@@ -93,7 +93,7 @@ export default function AffiliatesPage() {
         <div className="mx-auto w-full max-w-[720px] px-5 py-12 text-center sm:py-16">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-blue-700 shadow-sm">
             <span aria-hidden>🤝</span>
-            DemandFlow Affiliate Program
+            DemandFlowww Affiliate Program
           </span>
 
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
@@ -182,7 +182,7 @@ export default function AffiliatesPage() {
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-center text-slate-600">
             If you reach freelancers, creators, or small business owners,
-            DemandFlow practically sells itself.
+            DemandFlowww practically sells itself.
           </p>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PARTNERS.map((p) => (

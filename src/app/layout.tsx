@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "DemandFlow — Send a Demand Letter in 60 Seconds | $29",
+  title: "DemandFlowww — Send a Demand Letter in 60 Seconds | $29",
   description: SITE_DESCRIPTION,
   keywords: [
     "demand letter",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "DemandFlow — Send a Demand Letter in 60 Seconds | $29",
+    title: "DemandFlowww — Send a Demand Letter in 60 Seconds | $29",
     description:
       "Generate a professional demand letter for an unpaid invoice in 60 seconds. No lawyer needed. One-time $29.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DemandFlow — Send a Demand Letter in 60 Seconds | $29",
+    title: "DemandFlowww — Send a Demand Letter in 60 Seconds | $29",
     description:
       "Generate a professional demand letter for an unpaid invoice in 60 seconds. No lawyer needed. One-time $29.",
   },

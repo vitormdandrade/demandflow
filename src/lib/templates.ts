@@ -1,7 +1,7 @@
-// Multi-template definitions for DemandFlow.
+// Multi-template definitions for DemandFlowww.
 // Each template has its own fields, renderer, and product metadata.
 
-export type TemplateId = "demand-letter" | "cease-and-desist" | "contract-termination" | "late-rent-notice" | "freelance-reminder";
+export type TemplateId = "demand-letter" | "final-notice" | "cease-and-desist" | "contract-termination" | "late-rent-notice" | "freelance-reminder";
 
 export interface TemplateField {
   name: string;
@@ -47,6 +47,32 @@ export const TEMPLATES: Record<TemplateId, TemplateConfig> = {
       { name: "amount", label: "Amount Owed ($)", placeholder: "2500.00" },
       { name: "description", label: "Brief Description of Work Done", placeholder: "Website redesign and development" },
       { name: "dateCompleted", label: "Date Work Was Completed", placeholder: "March 15, 2026" },
+    ],
+  },
+
+  "final-notice": {
+    id: "final-notice",
+    name: "Final Notice",
+    description: "Last warning before legal action — escalate an ignored demand",
+    icon: "⚖️",
+    priceCents: 2900,
+    productName: "Final Notice Letter",
+    productDescription: "A final legal notice before court — the last step before filing.",
+    heading: "Send a Final Legal Notice",
+    subheading: "The last warning before court. For when your demand letter was ignored.",
+    successTitle: "Your final notice is ready!",
+    successMessage:
+      "Review it below, then download or print it as a PDF to send via certified mail.",
+    fields: [
+      { name: "yourName", label: "Your Full Name", placeholder: "Jane Freelancer" },
+      { name: "yourEmail", label: "Your Email", type: "email", placeholder: "jane@example.com" },
+      { name: "clientName", label: "Client / Business Name", placeholder: "Acme Corp" },
+      { name: "clientAddress", label: "Client Address", placeholder: "123 Market St, San Francisco, CA 94103" },
+      { name: "amount", label: "Amount Owed ($)", placeholder: "2500.00" },
+      { name: "description", label: "Brief Description of Work Done", placeholder: "Website redesign and development" },
+      { name: "dateCompleted", label: "Date Work Was Completed", placeholder: "March 15, 2026" },
+      { name: "previousAction", label: "Previous Action Taken", placeholder: "Sent demand letter on June 15, 2026 — no response received" },
+      { name: "deadline", label: "Final Deadline", placeholder: "Within 7 days of this notice" },
     ],
   },
 

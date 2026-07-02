@@ -6,10 +6,10 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_APP_URL || "https://demandflowww.com"
 ).replace(/\/$/, "");
 
-export const SITE_NAME = "DemandFlow";
+export const SITE_NAME = "DemandFlowww";
 
 export const SITE_DESCRIPTION =
-  "DemandFlow helps freelancers get paid. Generate a professional, legally-formatted demand letter for an unpaid invoice in 60 seconds — no lawyer needed. One-time $29.";
+  "DemandFlowww helps freelancers get paid. Generate a professional, legally-formatted demand letter for an unpaid invoice in 60 seconds — no lawyer needed. One-time $29.";
 
 // A small, human-friendly "letters sent" figure used for social proof. Kept as a
 // constant so server and client render the exact same value (no hydration drift).

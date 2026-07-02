@@ -173,7 +173,7 @@ export default function Page() {
         <a href="/blog/psychology-of-getting-paid">
           the psychology of getting paid
         </a>
-        . And if you&apos;re ready to write your own, <a href="/">DemandFlow</a>{" "}
+        . And if you&apos;re ready to write your own, <a href="/">DemandFlowww</a>{" "}
         builds a professional, properly formatted letter with a specific
         deadline and clear next steps baked in, in about 60 seconds, for $29
         with a 100% money-back guarantee. See every situation it covers on our{" "}

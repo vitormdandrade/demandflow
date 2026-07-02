@@ -8,7 +8,7 @@ import { LETTERS_SENT_THIS_MONTH } from "@/lib/site";
 import { TEMPLATE_LIST, type TemplateConfig } from "@/lib/templates";
 import { renderTemplateHtml } from "@/lib/letter";
 
-// Illustrative examples of the kind of outcomes DemandFlow letters are built to
+// Illustrative examples of the kind of outcomes DemandFlowww letters are built to
 // produce. Names and identifying details are changed — this section is framed as
 // example scenarios, not verified individual endorsements.
 const TESTIMONIALS = [
@@ -78,6 +78,7 @@ const STEPS = [
 // what the sender is actually trying to do.
 const CTA_VERBS: Record<string, string> = {
   "demand-letter": "Make Them Pay",
+  "final-notice": "Escalate Now",
   "cease-and-desist": "Shut It Down",
   "contract-termination": "End The Contract",
   "late-rent-notice": "Get My Rent",
@@ -170,7 +171,7 @@ const FAQS = [
   },
   {
     q: "Do I need a lawyer to send a demand letter?",
-    a: "No. A demand letter does not require a lawyer. DemandFlow generates a legally-formatted letter based on your details that you send directly to your client. For disputes involving very large amounts or complex contracts, consulting an attorney is always an option.",
+    a: "No. A demand letter does not require a lawyer. DemandFlowww generates a legally-formatted letter based on your details that you send directly to your client. For disputes involving very large amounts or complex contracts, consulting an attorney is always an option.",
   },
   {
     q: "What if the letter doesn't get me paid?",
@@ -178,7 +179,7 @@ const FAQS = [
   },
   {
     q: "Is my payment information secure?",
-    a: "Yes. All payments are processed by Stripe, a PCI-DSS Level 1 certified payment provider — the same infrastructure used by Amazon and Google. DemandFlow never sees or stores your card details.",
+    a: "Yes. All payments are processed by Stripe, a PCI-DSS Level 1 certified payment provider — the same infrastructure used by Amazon and Google. DemandFlowww never sees or stores your card details.",
   },
   {
     q: "Do you store my personal or client information?",
@@ -355,7 +356,7 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-lg text-lg text-slate-600">
-            DemandFlow turns silence into a{" "}
+            DemandFlowww turns silence into a{" "}
             <strong className="text-slate-900">
               professional, legally-formatted demand letter
             </strong>{" "}
@@ -640,7 +641,7 @@ export default function Home() {
                     <span className="mr-1.5" aria-hidden>
                       ⭐
                     </span>
-                    DemandFlow
+                    DemandFlowww
                   </td>
                   <td className="px-4 py-3 font-bold text-blue-700">$29 flat</td>
                   <td className="hidden px-4 py-3 font-medium sm:table-cell">
@@ -673,7 +674,7 @@ export default function Home() {
           </h2>
           <p className="mx-auto mt-2 max-w-md text-center text-slate-600">
             Enter your email and we&apos;ll show you exactly what a finished
-            DemandFlow letter looks like — no payment required.
+            DemandFlowww letter looks like — no payment required.
           </p>
 
           {!sampleShown ? (
@@ -758,7 +759,7 @@ export default function Home() {
       {/* ─────────────── Before vs After ─────────────── */}
       <section className="mx-auto w-full max-w-[960px] px-5 py-14">
         <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          The hard way vs. the DemandFlow way
+          The hard way vs. the DemandFlowww way
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
@@ -781,7 +782,7 @@ export default function Home() {
           </div>
           <div className="rounded-2xl border-2 border-blue-200 bg-blue-50/40 p-6">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-blue-900">
-              <span aria-hidden>⚡</span> With DemandFlow
+              <span aria-hidden>⚡</span> With DemandFlowww
             </h3>
             <ul className="mt-4 space-y-3">
               {BEFORE_AFTER.after.map((item) => (
@@ -861,7 +862,7 @@ export default function Home() {
           ))}
         </div>
         <p className="mx-auto mt-6 max-w-lg text-center text-xs text-slate-400">
-          Illustrative examples reflecting the kind of outcomes DemandFlow
+          Illustrative examples reflecting the kind of outcomes DemandFlowww
           letters are designed to produce. Names and identifying details have
           been changed.
         </p>

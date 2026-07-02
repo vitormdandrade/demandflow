@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TEMPLATE_LIST } from "@/lib/templates";
 
 export const metadata: Metadata = {
-  title: "Legal Letter Templates for Freelancers | DemandFlow",
+  title: "Legal Letter Templates for Freelancers | DemandFlowww",
   description:
     "Professional demand letter, cease & desist, contract termination, late rent notice, and payment reminder templates. Lawyer-quality legal letters generated in 60 seconds from $19. No lawyer, no retainer.",
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/templates" },
   openGraph: {
-    title: "Legal Letter Templates for Freelancers | DemandFlow",
+    title: "Legal Letter Templates for Freelancers | DemandFlowww",
     description:
       "Lawyer-quality demand letters, cease & desist notices, contract terminations, and more — generated in 60 seconds from $19.",
     url: "/templates",
@@ -112,7 +112,7 @@ export default function TemplatesPage() {
     "@type": "ItemList",
     name: "Legal Letter Templates for Freelancers",
     description:
-      "Professional, legally-formatted letter templates generated instantly by DemandFlow.",
+      "Professional, legally-formatted letter templates generated instantly by DemandFlowww.",
     itemListElement: TEMPLATE_LIST.map((t, i) => ({
       "@type": "ListItem",
       position: i + 1,

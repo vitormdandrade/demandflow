@@ -3,9 +3,9 @@ import Link from "next/link";
 import ProWaitlistForm from "@/components/ProWaitlistForm";
 
 export const metadata: Metadata = {
-  title: "Pricing — DemandFlow | $29 Per Letter or Unlimited from $79/yr",
+  title: "Pricing — DemandFlowww | $29 Per Letter or Unlimited from $79/yr",
   description:
-    "DemandFlow pricing: pay $29 once for a professional demand letter — instant PDF, all 5 templates, money-back guarantee. Or go Pro for unlimited letters from $79/year. Far cheaper than a lawyer ($300–$500) or a collections agency (20–50%).",
+    "DemandFlowww pricing: pay $29 once for a professional demand letter — instant PDF, all 6 templates, money-back guarantee. Or go Pro for unlimited letters from $79/year. Far cheaper than a lawyer ($300–$500) or a collections agency (20–50%).",
   keywords: [
     "demand letter cost",
     "demand letter price",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const PRICING_FAQS = [
   {
-    q: "How much does a demand letter cost with DemandFlow?",
+    q: "How much does a demand letter cost with DemandFlowww?",
     a: "A single professional demand letter is a flat $29 — paid once, with no subscription or hidden fees. You get an instantly generated, ready-to-send PDF using any of our five letter templates. If you need to send letters regularly, our Pro plan gives you unlimited letters for $79 per year.",
   },
   {
@@ -28,8 +28,8 @@ const PRICING_FAQS = [
     a: "Yes. Every $29 letter is backed by a 100% money-back guarantee. If you're not satisfied for any reason, email us and we'll refund your payment — no questions asked. The only real risk is leaving your invoice unpaid.",
   },
   {
-    q: "Why is DemandFlow so much cheaper than a lawyer?",
-    a: "A lawyer charges $300–$500+ just to draft a first demand letter, and a collections agency can take 20–50% of whatever they recover. DemandFlow automates the legal formatting and language, so you get a letter that looks like it came from a law office for a flat $29 — generated in about 60 seconds.",
+    q: "Why is DemandFlowww so much cheaper than a lawyer?",
+    a: "A lawyer charges $300–$500+ just to draft a first demand letter, and a collections agency can take 20–50% of whatever they recover. DemandFlowww automates the legal formatting and language, so you get a letter that looks like it came from a law office for a flat $29 — generated in about 60 seconds.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function PricingPage() {
             <span className="text-blue-600">Pay for what you need.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-slate-600">
-            One letter or a hundred — DemandFlow costs a fraction of a lawyer and
+            One letter or a hundred — DemandFlowww costs a fraction of a lawyer and
             gets your invoices paid. Start with a single{" "}
             <strong className="text-slate-900">$29</strong> letter, or go{" "}
             <strong className="text-slate-900">Pro</strong> for unlimited.
@@ -227,7 +227,7 @@ export default function PricingPage() {
                     <span className="mr-1.5" aria-hidden>
                       ⭐
                     </span>
-                    DemandFlow Basic
+                    DemandFlowww Basic
                   </td>
                   <td className="px-4 py-3 font-bold text-blue-700">$29 flat</td>
                   <td className="hidden px-4 py-3 font-medium sm:table-cell">
@@ -239,7 +239,7 @@ export default function PricingPage() {
                     <span className="mr-1.5" aria-hidden>
                       ⚡
                     </span>
-                    DemandFlow Pro
+                    DemandFlowww Pro
                   </td>
                   <td className="px-4 py-3 font-bold text-blue-700">
                     $79/yr — unlimited

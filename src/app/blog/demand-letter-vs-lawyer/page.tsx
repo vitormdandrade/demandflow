@@ -86,7 +86,7 @@ export default function Page() {
       <ul>
         <li>
           <strong>Cost.</strong> Lawyer&apos;s letter: $300–$500+. A DIY letter:
-          your time, or $29 with a tool like DemandFlow.
+          your time, or $29 with a tool like DemandFlowww.
         </li>
         <li>
           <strong>Speed.</strong> A lawyer means booking a consult, waiting for
@@ -118,7 +118,7 @@ export default function Page() {
       <p>
         For years the choice looked binary: pay $300+ for a professional letter, or
         write something yourself and hope it sounds serious enough. There&apos;s a
-        third option now. <a href="/">DemandFlow</a> generates a professional,
+        third option now. <a href="/">DemandFlowww</a> generates a professional,
         properly-formatted demand letter — the same firm tone and structure a lawyer
         uses — in about 60 seconds for <strong>$29</strong>, backed by a 100%
         money-back guarantee. You get the quality and gravity of a real demand

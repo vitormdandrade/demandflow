@@ -49,7 +49,7 @@ export default function ArticleLayout({
           Skip the blank page — generate your letter in 60 seconds
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm text-slate-600">
-          DemandFlow turns your details into a professional, legally-formatted
+          DemandFlowww turns your details into a professional, legally-formatted
           demand letter for just $29. No lawyer, no subscription, and a 100%
           money-back guarantee.
         </p>
@@ -68,7 +68,7 @@ export default function ArticleLayout({
             href="/blog"
             className="text-sm font-medium text-blue-600 hover:text-blue-700"
           >
-            Browse all DemandFlow guides →
+            Browse all DemandFlowww guides →
           </Link>
           <Link
             href="/templates"
@@ -89,8 +89,8 @@ export default function ArticleLayout({
             description: post.description,
             datePublished: post.date,
             dateModified: post.date,
-            author: { "@type": "Organization", name: "DemandFlow" },
-            publisher: { "@type": "Organization", name: "DemandFlow" },
+            author: { "@type": "Organization", name: "DemandFlowww" },
+            publisher: { "@type": "Organization", name: "DemandFlowww" },
             mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           }),
         }}

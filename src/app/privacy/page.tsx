@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — DemandFlow",
+  title: "Privacy Policy — DemandFlowww",
   description:
-    "How DemandFlow collects, uses, and protects your information when you create a demand letter.",
+    "How DemandFlowww collects, uses, and protects your information when you create a demand letter.",
 };
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         href="/"
         className="text-sm font-medium text-blue-600 transition hover:text-blue-700"
       >
-        ← Back to DemandFlow
+        ← Back to DemandFlowww
       </Link>
 
       <article className="prose-slate mt-6">
@@ -24,14 +24,14 @@ export default function PrivacyPage() {
         <p className="mt-2 text-sm text-slate-500">Last updated: June 28, 2026</p>
 
         <p className="mt-6 text-slate-600">
-          DemandFlow (&ldquo;we&rdquo;, &ldquo;us&rdquo;) helps freelancers
+          DemandFlowww (&ldquo;we&rdquo;, &ldquo;us&rdquo;) helps freelancers
           generate professional demand letters. This policy explains what
           information we collect, why we collect it, and the choices you have. We
           keep it short and plain because that&rsquo;s how it should be.
         </p>
 
         <Section title="Information we collect">
-          <p>When you use DemandFlow you provide details to build your letter:</p>
+          <p>When you use DemandFlowww you provide details to build your letter:</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600">
             <li>Your name and email address</li>
             <li>

@@ -122,7 +122,7 @@ export default function Page() {
       <p>
         Writing one from scratch is where people freeze — the tone has to be firm
         but not aggressive, and the structure has to be right. That&apos;s exactly
-        what <a href="/">DemandFlow</a> handles for you. Answer a few questions and
+        what <a href="/">DemandFlowww</a> handles for you. Answer a few questions and
         it produces a professional, properly-formatted demand letter in about 60
         seconds for $29, backed by a 100% money-back guarantee. No lawyer, no
         subscription, no blank page. You can be sending it today — see{" "}

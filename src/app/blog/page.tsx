@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "The DemandFlow Blog — Get Paid for Your Freelance Work",
+  title: "The DemandFlowww Blog — Get Paid for Your Freelance Work",
   description:
     "Practical guides for freelancers on demand letters, unpaid invoices, getting paid faster, and recovering money from clients who won't pay.",
   alternates: { canonical: "/blog" },

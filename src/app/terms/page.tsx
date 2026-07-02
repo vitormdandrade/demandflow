@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — DemandFlow",
+  title: "Terms of Service — DemandFlowww",
   description:
-    "The terms that govern your use of DemandFlow, including payment, refunds, and important legal disclaimers.",
+    "The terms that govern your use of DemandFlowww, including payment, refunds, and important legal disclaimers.",
 };
 
 export default function TermsPage() {
@@ -14,7 +14,7 @@ export default function TermsPage() {
         href="/"
         className="text-sm font-medium text-blue-600 transition hover:text-blue-700"
       >
-        ← Back to DemandFlow
+        ← Back to DemandFlowww
       </Link>
 
       <article className="mt-6">
@@ -24,14 +24,14 @@ export default function TermsPage() {
         <p className="mt-2 text-sm text-slate-500">Last updated: June 28, 2026</p>
 
         <p className="mt-6 text-slate-600">
-          These terms govern your use of DemandFlow. By using the service, you
+          These terms govern your use of DemandFlowww. By using the service, you
           agree to them. Please read them carefully &mdash; especially the
           disclaimer, which is important.
         </p>
 
         <Section title="The service">
           <p>
-            DemandFlow generates a professionally formatted demand letter from
+            DemandFlowww generates a professionally formatted demand letter from
             the details you provide. You receive a printable document you can
             download, save as a PDF, and send to your client.
           </p>
@@ -39,7 +39,7 @@ export default function TermsPage() {
 
         <Section title="Payment terms">
           <p>
-            DemandFlow costs a one-time fee of{" "}
+            DemandFlowww costs a one-time fee of{" "}
             <span className="font-semibold text-slate-900">$29</span> per letter,
             charged at checkout via Stripe. Prices are in U.S. dollars. Your
             letter is generated immediately after a successful payment.
@@ -63,9 +63,9 @@ export default function TermsPage() {
 
         <Section title="Not legal advice">
           <p>
-            DemandFlow is a document-generation tool, not a law firm. The letters
+            DemandFlowww is a document-generation tool, not a law firm. The letters
             we produce are templates populated with the information you provide.
-            We do not provide legal advice, and using DemandFlow does not create
+            We do not provide legal advice, and using DemandFlowww does not create
             an attorney&ndash;client relationship. For advice about your specific
             situation, consult a licensed attorney in your jurisdiction.
           </p>
@@ -75,14 +75,14 @@ export default function TermsPage() {
           <p>
             You are responsible for the accuracy of the information you enter and
             for ensuring your letter is appropriate for your situation. You agree
-            to use DemandFlow only for lawful purposes.
+            to use DemandFlowww only for lawful purposes.
           </p>
         </Section>
 
         <Section title="Limitation of liability">
           <p>
-            DemandFlow is provided &ldquo;as is&rdquo; without warranties of any
-            kind. To the fullest extent permitted by law, DemandFlow and its
+            DemandFlowww is provided &ldquo;as is&rdquo; without warranties of any
+            kind. To the fullest extent permitted by law, DemandFlowww and its
             operators are not liable for any indirect, incidental, or
             consequential damages arising from your use of the service. Our total
             liability is limited to the amount you paid us.
