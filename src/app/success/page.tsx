@@ -6,9 +6,130 @@ import Link from "next/link";
 import { pushDataLayer } from "@/lib/gtm";
 import { TEMPLATE_LIST, type TemplateId } from "@/lib/templates";
 
+interface CheckoutSessionSummary {
+  mode: string;
+  status: string | null;
+  payment_status: string;
+  customer_email: string | null;
+  subscription_id: string | null;
+  amount_total: number | null;
+  currency: string | null;
+}
+
+function SubscriptionSuccess({ sessionId }: { sessionId: string }) {
+  const [session, setSession] = useState<CheckoutSessionSummary | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/checkout-session?session_id=${encodeURIComponent(sessionId)}`,
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "We couldn't confirm your subscription.");
+        }
+        if (!cancelled) {
+          setSession(data);
+          pushDataLayer({
+            event: "purchase",
+            currency: (data.currency ?? "usd").toUpperCase(),
+            value: (data.amount_total ?? 7900) / 100,
+            transaction_id: sessionId,
+            plan: "pro",
+          });
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(
+            err instanceof Error ? err.message : "We couldn't confirm your subscription.",
+          );
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId]);
+
+  return (
+    <main className="mx-auto w-full max-w-[600px] px-5 py-12 text-center sm:py-16">
+      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-2xl">
+        ✓
+      </div>
+      <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+        Welcome to Pro!
+      </h1>
+      <p className="mt-3 text-slate-600">
+        Your subscription is active — send as many letters as you need, all
+        year.
+      </p>
+
+      {error && (
+        <div className="mt-8 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+
+      {!error && !session && (
+        <p className="mt-8 text-slate-500">Confirming your subscription…</p>
+      )}
+
+      {session && (
+        <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 text-left shadow-sm">
+          <dl className="space-y-3 text-sm">
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate-500">Plan</dt>
+              <dd className="font-semibold text-slate-900">DemandFlowww Pro</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate-500">Email</dt>
+              <dd className="font-semibold text-slate-900">
+                {session.customer_email ?? "—"}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate-500">Billed</dt>
+              <dd className="font-semibold text-slate-900">
+                {session.amount_total != null
+                  ? `$${(session.amount_total / 100).toFixed(2)} / year`
+                  : "$79.00 / year"}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate-500">Status</dt>
+              <dd className="font-semibold capitalize text-green-700">
+                {session.payment_status}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      )}
+
+      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <Link
+          href="/"
+          className="w-full rounded-lg bg-blue-600 px-5 py-3 text-center font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
+        >
+          Create your first letter
+        </Link>
+        <Link
+          href="/account"
+          className="w-full rounded-lg border border-slate-300 px-5 py-3 text-center font-semibold text-slate-700 transition hover:bg-slate-50 sm:w-auto"
+        >
+          Manage subscription
+        </Link>
+      </div>
+    </main>
+  );
+}
+
 function SuccessInner() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const isSubscription = searchParams.get("subscription") === "1";
 
   const [html, setHtml] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(
@@ -18,7 +139,7 @@ function SuccessInner() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    if (!sessionId) return;
+    if (!sessionId || isSubscription) return;
     let cancelled = false;
     (async () => {
       try {
@@ -65,7 +186,7 @@ function SuccessInner() {
     return () => {
       cancelled = true;
     };
-  }, [sessionId]);
+  }, [sessionId, isSubscription]);
 
   function handlePrint() {
     const win = iframeRef.current?.contentWindow;
@@ -77,6 +198,17 @@ function SuccessInner() {
 
   const currentTemplate = TEMPLATE_LIST.find((t) => t.id === templateId);
   const otherTemplates = TEMPLATE_LIST.filter((t) => t.id !== templateId);
+
+  if (isSubscription) {
+    if (!sessionId) {
+      return (
+        <main className="mx-auto w-full max-w-[600px] px-5 py-16 text-center text-slate-500">
+          No checkout session was found in the URL.
+        </main>
+      );
+    }
+    return <SubscriptionSuccess sessionId={sessionId} />;
+  }
 
   return (
     <main className="mx-auto w-full max-w-[760px] px-5 py-12 sm:py-16">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ProWaitlistForm from "@/components/ProWaitlistForm";
+import ProSubscribeButton from "@/components/ProSubscribeButton";
 
 export const metadata: Metadata = {
   title: "Pricing — DemandFlowww | $29 Per Letter or Unlimited from $79/yr",
@@ -135,7 +135,7 @@ export default function PricingPage() {
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-slate-900">Pro</h2>
               <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
-                Coming soon
+                Unlimited
               </span>
             </div>
             <p className="mt-3 flex items-baseline gap-1.5">
@@ -166,12 +166,13 @@ export default function PricingPage() {
               ))}
             </ul>
 
-            <div className="mt-7 rounded-xl border border-slate-200 bg-slate-50/60 p-4">
-              <p className="mb-3 text-center text-sm font-semibold text-slate-900">
-                Pro isn&apos;t live yet — join the waitlist
-              </p>
-              <ProWaitlistForm />
+            <div className="mt-7">
+              <ProSubscribeButton />
             </div>
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs font-medium text-blue-700">
+              <span aria-hidden>✓</span>
+              Cancel anytime from your account page
+            </p>
           </div>
         </div>
       </section>

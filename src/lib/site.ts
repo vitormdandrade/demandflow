@@ -21,6 +21,7 @@ export const NAV_LINKS: { href: string; label: string }[] = [
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
   { href: "/affiliates", label: "Affiliates" },
+  { href: "/account", label: "Account" },
 ];
 
 // All content/blog routes, in one place, so the sitemap stays in sync with the
