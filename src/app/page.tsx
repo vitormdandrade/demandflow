@@ -234,6 +234,10 @@ export default function Home() {
   // FAQ accordion.
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  // Pro subscriber — instant letter generation
+  const [proLetterGenerated, setProLetterGenerated] = useState(false);
+  const [proLetterHtml, setProLetterHtml] = useState<string | null>(null);
+
   const price = (template.priceCents / 100).toFixed(0);
   const ctaVerb = CTA_VERBS[template.id] ?? "Get My Letter";
 
@@ -251,6 +255,10 @@ export default function Home() {
     const filled: Record<string, string> = {};
     for (const field of template.fields) {
       filled[field.name] = (values[field.name] || "").trim() || field.placeholder || "";
+    }
+    // Optional brand name for live preview letterhead
+    if (values["brandName"]?.trim()) {
+      filled["brandName"] = values["brandName"].trim();
     }
     try {
       return renderTemplateHtml(template.id, filled);
@@ -326,6 +334,17 @@ export default function Home() {
         body: JSON.stringify({ template: template.id, ...values }),
       });
       const data = await res.json();
+
+      // Pro subscriber — letter generated instantly, no payment needed
+      if (data.pro && data.html) {
+        pushDataLayer({ event: "pro_letter_generated", template: template.id });
+        gaEvent("pro_letter_generated", { template: template.id });
+        setProLetterHtml(data.html);
+        setProLetterGenerated(true);
+        setLoading(false);
+        return;
+      }
+
       if (!res.ok || !data.url) {
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
@@ -463,7 +482,45 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Form */}
+        {/* Form — or Pro success */}
+        {proLetterGenerated && proLetterHtml ? (
+          <div className="rounded-2xl border-2 border-blue-500 bg-white p-8 shadow-lg shadow-blue-200/40 ring-1 ring-blue-500/10">
+            <div className="mb-6 flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-xl">⚡</span>
+              <div>
+                <h3 className="text-lg font-bold text-blue-700">Pro — Letter Ready!</h3>
+                <p className="text-sm text-slate-500">
+                  Generated instantly as a Pro subscriber. Download or print below.
+                </p>
+              </div>
+            </div>
+            <iframe
+              srcDoc={proLetterHtml}
+              className="h-[700px] w-full rounded-lg border border-slate-200"
+              title="Your letter preview"
+            />
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-between">
+              <button
+                type="button"
+                onClick={() => {
+                  setProLetterGenerated(false);
+                  setProLetterHtml(null);
+                  setValues({});
+                }}
+                className="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              >
+                ← Create another letter
+              </button>
+              <a
+                href={`data:text/html;charset=utf-8,${encodeURIComponent(proLetterHtml)}`}
+                download="demand-letter.html"
+                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              >
+                Download PDF →
+              </a>
+            </div>
+          </div>
+        ) : (
         <form
           onSubmit={handleSubmit}
           className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 sm:p-8"
@@ -546,6 +603,7 @@ export default function Home() {
             </p>
           </div>
         </form>
+        )}
         </div>
 
         {/* Live letter preview — updates as the form is filled in */}

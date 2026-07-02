@@ -1,7 +1,8 @@
 import { NextRequest } from "next/server";
 import { getStripe } from "@/lib/stripe";
-import { getFieldKeys } from "@/lib/letter";
+import { getFieldKeys, renderTemplateHtml } from "@/lib/letter";
 import { getTemplate, type TemplateId } from "@/lib/templates";
+import { hasActivePro } from "@/lib/pro";
 
 // Stripe's Node SDK needs the Node.js runtime (it uses Node crypto).
 export const runtime = "nodejs";
@@ -46,6 +47,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // ── Pro subscriber? Generate the letter instantly, no payment ──
+  if (fields.yourEmail && (await hasActivePro(fields.yourEmail))) {
+    try {
+      const html = renderTemplateHtml(templateId, fields);
+      return Response.json({ pro: true, html });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Letter generation failed.";
+      return Response.json({ error: message }, { status: 500 });
+    }
+  }
+
+  // ── Non-Pro: Stripe checkout as usual ──
   const origin =
     request.headers.get("origin") ?? request.nextUrl.origin;
 
@@ -67,7 +80,6 @@ export async function POST(request: NextRequest) {
           },
         },
       ],
-      // Store the template id and all form fields in metadata.
       metadata: {
         template: templateId,
         ...fields,
