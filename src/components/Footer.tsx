@@ -34,11 +34,8 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-[960px] px-5 py-12">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2">
-              <Logo className="h-7 w-7" />
-              <span className="text-base font-bold tracking-tight text-slate-900">
-                DemandFlowww
-              </span>
+            <div className="flex items-center">
+              <Logo className="text-lg" />
             </div>
             <p className="mt-3 max-w-xs text-sm text-slate-500">
               Professional demand letters that help freelancers get paid — in 60

@@ -6,11 +6,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/85 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-[960px] items-center justify-between gap-4 px-5 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <Logo className="h-7 w-7" />
-          <span className="text-base font-bold tracking-tight text-slate-900">
-            DemandFlowww
-          </span>
+        <Link href="/" className="flex items-center">
+          <Logo className="text-lg" />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 sm:flex">
