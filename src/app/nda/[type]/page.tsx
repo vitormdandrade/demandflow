@@ -35,6 +35,7 @@ export default function NdaWizardPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [agreedToDisclaimer, setAgreedToDisclaimer] = useState(false);
 
   if (!doc) {
     return notFound();
@@ -142,6 +143,20 @@ export default function NdaWizardPage() {
       <StepProgressBar steps={progressLabels} current={step} />
 
       <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 sm:p-8">
+        {/* Disclaimer banner — visible on every step */}
+        <div className="mb-6 flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <span className="mt-0.5 text-base" aria-hidden>
+            ⚠️
+          </span>
+          <p>
+            DemandFlowww generates document{" "}
+            <strong>templates</strong> — it is{" "}
+            <strong>not a law firm</strong> and does not provide legal advice.
+            For complex situations, consult a licensed attorney in your
+            jurisdiction.
+          </p>
+        </div>
+
         {!isReviewStep ? (
           <>
             <h2 className="mb-5 text-base font-semibold text-slate-800">
@@ -240,6 +255,22 @@ export default function NdaWizardPage() {
               </p>
             )}
 
+            {/* Required legal disclaimer checkbox */}
+            <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-700 transition hover:bg-slate-100">
+              <input
+                type="checkbox"
+                checked={agreedToDisclaimer}
+                onChange={(e) => setAgreedToDisclaimer(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span>
+                I understand that DemandFlowww generates document{" "}
+                <strong>templates</strong> and is{" "}
+                <strong>not a law firm</strong>. I am not receiving legal advice,
+                and no attorney–client relationship is created.
+              </span>
+            </label>
+
             <div className="mt-7 flex gap-3">
               <button
                 type="button"
@@ -251,7 +282,7 @@ export default function NdaWizardPage() {
               <button
                 type="button"
                 onClick={handleCheckout}
-                disabled={loading}
+                disabled={loading || !agreedToDisclaimer}
                 className="flex-1 rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {loading
@@ -266,6 +297,17 @@ export default function NdaWizardPage() {
           </>
         )}
       </div>
+
+      <p className="mt-6 text-center text-xs text-slate-400">
+        By purchasing, you agree to the{" "}
+        <Link
+          href="/terms"
+          className="font-medium text-slate-500 underline hover:text-slate-700"
+        >
+          Terms of Service
+        </Link>
+        .
+      </p>
     </main>
   );
 }

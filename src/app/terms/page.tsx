@@ -89,6 +89,20 @@ export default function TermsPage() {
           </p>
         </Section>
 
+        <Section title="Indemnification">
+          <p>
+            You agree to indemnify, defend, and hold harmless DemandFlowww,
+            its operators, affiliates, and employees from any claim, demand,
+            loss, liability, or expense (including reasonable attorneys&rsquo;
+            fees) arising out of or related to: (a)&nbsp;your use of the
+            documents or templates generated through the service;
+            (b)&nbsp;your violation of these terms; or (c)&nbsp;your
+            violation of any third-party right, including any intellectual
+            property or privacy right. This obligation survives any
+            termination of these terms.
+          </p>
+        </Section>
+
         <Section title="Changes to these terms">
           <p>
             We may update these terms from time to time. Continued use of the
