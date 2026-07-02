@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { getNdaDoc, NDA_WIZARD_STEPS, type NdaDocType } from "@/lib/nda";
 import { StepProgressBar } from "@/components/nda/StepProgressBar";
 import { pushDataLayer } from "@/lib/gtm";
+import LegalWarning from "@/components/LegalWarning";
 
 const REVIEW_LABELS: Record<string, string> = {
   party1Name: "Party 1",
@@ -254,6 +255,45 @@ export default function NdaWizardPage() {
                 {checkoutError}
               </p>
             )}
+
+            {/* High-value legal warning */}
+            {docType === "service-agreement" && values.paymentAmount ? (
+              <LegalWarning
+                value={parseFloat(values.paymentAmount) || 0}
+                threshold={5000}
+                label="payment amount"
+              />
+            ) : null}
+            {docType === "partnership-agreement" ? (
+              <div className="mt-4 flex items-start gap-3 rounded-lg border-2 border-red-200 bg-red-50 px-4 py-4 text-sm text-red-800">
+                <span className="mt-0.5 shrink-0 text-lg leading-none" aria-hidden>
+                  ⚖️
+                </span>
+                <div>
+                  <p className="font-semibold">
+                    Partnership Agreements carry significant legal weight.
+                  </p>
+                  <p className="mt-1.5 leading-relaxed">
+                    A partnership agreement governs profit sharing, liability,
+                    and governance — decisions that can have{" "}
+                    <strong className="font-semibold">serious financial and legal
+                    consequences</strong>. We strongly recommend having this
+                    document reviewed by a licensed attorney before signing.
+                  </p>
+                  <p className="mt-2 leading-relaxed">
+                    DemandFlowww provides document <strong>templates</strong>{" "}
+                    and is <strong>not a law firm</strong>. By proceeding, you
+                    assume full responsibility. See our{" "}
+                    <Link
+                      href="/terms"
+                      className="font-medium text-red-700 underline hover:text-red-900"
+                    >
+                      Terms of Service
+                    </Link>.
+                  </p>
+                </div>
+              </div>
+            ) : null}
 
             {/* Required legal disclaimer checkbox */}
             <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-700 transition hover:bg-slate-100">

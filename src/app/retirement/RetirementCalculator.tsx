@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { calculateRetirement, type RetirementParams, type RetirementResult } from "@/lib/retirement-calc";
+import LegalWarning from "@/components/LegalWarning";
 
 type FormValues = {
   currentAge: string;
@@ -371,6 +372,13 @@ export default function RetirementCalculator() {
               </p>
             </div>
           </div>
+
+          {/* High-projection legal warning */}
+          <LegalWarning
+            value={result.projectedSavings}
+            threshold={250000}
+            label="projected retirement savings"
+          />
 
           {/* PDF CTA */}
           <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-6">

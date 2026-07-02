@@ -7,6 +7,7 @@ import { gaEvent } from "@/lib/ga";
 import { LETTERS_SENT_THIS_MONTH } from "@/lib/site";
 import { TEMPLATE_LIST, type TemplateConfig } from "@/lib/templates";
 import { renderTemplateHtml } from "@/lib/letter";
+import LegalWarning from "@/components/LegalWarning";
 
 // Illustrative examples of the kind of outcomes DemandFlowww letters are built to
 // produce. Names and identifying details are changed — this section is framed as
@@ -652,6 +653,13 @@ export default function Home() {
                 />
               </div>
             ))}
+
+            {/* High-amount legal warning */}
+            <LegalWarning
+              value={parseFloat(values["amount"] || "0") || 0}
+              threshold={5000}
+              label="invoice amount"
+            />
           </div>
 
           {error && (

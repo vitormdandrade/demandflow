@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import LegalWarning from "@/components/LegalWarning";
 
 // Per-state statutory late payment / judgment interest rates (annual %).
 // Source: publicly available state statutes as of 2025. Rates may change by
@@ -320,6 +321,11 @@ export default function InvoiceGuardPage() {
           </dl>
 
           <div className="border-t border-slate-200 bg-blue-50/60 px-6 py-5 rounded-b-2xl">
+            <LegalWarning
+              value={result.totalDue}
+              threshold={5000}
+              label="invoice total"
+            />
             <p className="mb-4 text-sm text-slate-700">
               Ready to collect? A professional demand letter puts clients on notice
               — and gets you paid faster.
