@@ -126,6 +126,22 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "demand-letter-laws-california",
+    title: "Demand Letter Laws in California: Requirements, Limits & Liens",
+    description:
+      "What California law says about demand letters — small claims thresholds ($12,500 for individuals), the 20-day preliminary lien notice, and how to send a compliant letter before you sue.",
+    excerpt:
+      "California has its own rules for demanding payment — from the $12,500 small claims cap to the 20-day preliminary notice for liens. Here's what freelancers need to know.",
+    category: "Costs & Legal",
+    readMins: 8,
+    date: "2026-07-03",
+    keywords: [
+      "demand letter california",
+      "california small claims limit",
+      "california 20-day preliminary notice",
+    ],
+  },
+  {
     slug: "50-demand-letters-case-study",
     title: "I Sent 50 Demand Letters. Here's What Happened.",
     description:

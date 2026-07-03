@@ -35,6 +35,7 @@ export const BLOG_SLUGS: string[] = [
   "psychology-of-getting-paid",
   "freelancer-legal-toolkit",
   "50-demand-letters-case-study",
+  "demand-letter-laws-california",
 ];
 
 export const STATIC_ROUTES: string[] = [
