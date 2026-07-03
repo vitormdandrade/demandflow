@@ -19,6 +19,7 @@ export const LETTERS_SENT_THIS_MONTH = 1863;
 export const NAV_LINKS: { href: string; label: string }[] = [
   { href: "/templates", label: "Templates" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/pro", label: "Pro" },
   { href: "/blog", label: "Blog" },
   { href: "/affiliates", label: "Affiliates" },
   { href: "/account", label: "Account" },
@@ -42,6 +43,7 @@ export const STATIC_ROUTES: string[] = [
   "/",
   "/templates",
   "/pricing",
+  "/pro",
   "/affiliates",
   "/blog",
   "/privacy",

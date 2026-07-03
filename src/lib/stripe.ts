@@ -16,12 +16,12 @@ export function getStripe(): Stripe {
 // The one-time price for a demand letter, in cents.
 export const LETTER_PRICE_CENTS = 2900;
 
-// The Stripe Price ID for the "DemandFlowww Pro" $79/year subscription.
-// Created once via `scripts/create-pro-product.mjs` (run manually with
-// STRIPE_SECRET_KEY set), then pasted into STRIPE_PRO_PRICE_ID in the
-// environment. Not hardcoded because test-mode and live-mode price IDs
-// differ, and this constant needs to work in both.
-export const PRO_YEARLY_PRICE_ID = process.env.STRIPE_PRO_PRICE_ID || "";
+// Pro subscription pricing — $19/month.
+// Uses inline price_data in the Checkout Session so no pre-created Stripe
+// Price ID is needed. Changing the price here updates both test and live
+// mode without touching the Stripe dashboard.
+export const PRO_MONTHLY_PRICE_CENTS = 1900;
+export const PRO_MONTHLY_PRICE_LABEL = "$19/mo";
 
 // Creates a Stripe Billing Portal session so a subscriber can manage or
 // cancel their plan without a custom UI. `returnUrl` is where Stripe sends

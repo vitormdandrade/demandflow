@@ -236,20 +236,42 @@ function referenceNumber(): string {
 
 // ─── Shared letter shell (style + letterhead) ────────────────────────────────
 
-function renderShell(title: string, bodyHtml: string, brandName?: string): string {
+function renderShell(
+  title: string,
+  bodyHtml: string,
+  brandName?: string,
+  watermark?: boolean,
+  opts?: { brandAddress?: string; brandPhone?: string; brandLogo?: string },
+): string {
   const reference = referenceNumber();
   const hasBrand = (brandName ?? "").trim().length > 0;
+  const brandAddress = opts?.brandAddress?.trim() ?? "";
+  const brandPhone = opts?.brandPhone?.trim() ?? "";
+  const brandLogo = opts?.brandLogo?.trim() ?? "";
+
+  const logoHtml = brandLogo
+    ? `<img src="${brandLogo}" alt="Logo" class="brand-logo" style="max-height:48px;max-width:200px;object-fit:contain;" />`
+    : "";
 
   const leftSide = hasBrand
     ? `<div>
+        ${logoHtml}
         <p class="brand">${escapeHtml(brandName!.trim())}</p>
-        <p class="brand-tagline">Professional Correspondence</p>
+        ${brandAddress ? `<p class="brand-tagline">${escapeHtml(brandAddress)}</p>` : ""}
+        ${brandPhone ? `<p class="brand-tagline">${escapeHtml(brandPhone)}</p>` : ""}
+        ${!brandAddress && !brandPhone ? `<p class="brand-tagline">Professional Correspondence</p>` : ""}
       </div>`
     : "";
 
   const letterheadClass = hasBrand
     ? "letterhead letterhead--branded"
     : "letterhead";
+
+  const watermarkOverlay = watermark
+    ? `<div class="watermark">FREE TIER — Upgrade to Pro for watermark-free letters</div>`
+    : "";
+
+  const bodyClass = watermark ? "sheet sheet--watermarked" : "sheet";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -268,6 +290,7 @@ function renderShell(title: string, bodyHtml: string, brandName?: string): strin
     line-height: 1.7;
   }
   .sheet {
+    position: relative;
     width: 100%;
     max-width: 720px;
     margin: 0 auto;
@@ -276,6 +299,24 @@ function renderShell(title: string, bodyHtml: string, brandName?: string): strin
     box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
     overflow-x: hidden;
     word-wrap: break-word;
+  }
+  .sheet--watermarked::after {
+    content: "FREE TIER";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(203, 213, 225, 0.35);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: 4px;
+    z-index: 0;
+  }
+  .sheet--watermarked > * {
+    position: relative;
+    z-index: 1;
   }
   .letterhead {
     display: flex;
@@ -326,7 +367,8 @@ function renderShell(title: string, bodyHtml: string, brandName?: string): strin
 </style>
 </head>
 <body>
-  <div class="sheet">
+  <div class="${bodyClass}">
+    ${watermarkOverlay}
     <div class="${letterheadClass}">
       ${leftSide}
       <div class="ref">
@@ -347,7 +389,7 @@ function senderBlock(name: string, address?: string): string {
 
 // ─── Demand Letter Renderer ──────────────────────────────────────────────────
 
-export function renderLetterHtml(fields: LetterFields): string {
+export function renderLetterHtml(fields: LetterFields, watermark = false): string {
   const amount = formatAmount(fields.amount);
   const paymentMethod = (fields.paymentMethod || "bank transfer").trim();
   const sender = senderBlock(fields.yourName, fields.yourAddress);
@@ -383,12 +425,22 @@ export function renderLetterHtml(fields: LetterFields): string {
     <p class="signature">Sincerely,</p>
     <p>${escapeHtml(fields.yourName)}</p>`;
 
-  return renderShell(`Demand Letter — ${escapeHtml(fields.yourName)}`, body, (fields as any).brandName);
+  return renderShell(
+    `Demand Letter — ${escapeHtml(fields.yourName)}`,
+    body,
+    (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
+  );
 }
 
 // ─── Cease & Desist Renderer ─────────────────────────────────────────────────
 
-export function renderCeaseAndDesistHtml(fields: CeaseAndDesistFields): string {
+export function renderCeaseAndDesistHtml(fields: CeaseAndDesistFields, watermark = false): string {
   const sender = senderBlock(fields.yourName, fields.yourAddress);
 
   const body = `
@@ -426,6 +478,12 @@ export function renderCeaseAndDesistHtml(fields: CeaseAndDesistFields): string {
     `Cease and Desist — ${escapeHtml(fields.yourName)}`,
     body,
     (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
   );
 }
 
@@ -433,6 +491,7 @@ export function renderCeaseAndDesistHtml(fields: CeaseAndDesistFields): string {
 
 export function renderContractTerminationHtml(
   fields: ContractTermFields,
+  watermark = false,
 ): string {
   const sender = senderBlock(fields.yourName, fields.yourAddress);
 
@@ -474,12 +533,18 @@ export function renderContractTerminationHtml(
     `Contract Termination — ${escapeHtml(fields.yourName)}`,
     body,
     (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
   );
 }
 
 // ─── Late Rent Notice Renderer ───────────────────────────────────────────────
 
-export function renderRentNoticeHtml(fields: RentNoticeFields): string {
+export function renderRentNoticeHtml(fields: RentNoticeFields, watermark = false): string {
   const sender = senderBlock(fields.yourName, fields.yourAddress);
   const rentAmount = formatAmount(fields.rentAmount);
   const amountDue = formatAmount(fields.amountDue);
@@ -525,13 +590,24 @@ export function renderRentNoticeHtml(fields: RentNoticeFields): string {
     <p class="signature">Sincerely,</p>
     <p>${escapeHtml(fields.yourName)}<br /><em>Landlord / Property Manager</em></p>`;
 
-  return renderShell(`Late Rent Notice — ${escapeHtml(fields.yourName)}`, body, (fields as any).brandName);
+  return renderShell(
+    `Late Rent Notice — ${escapeHtml(fields.yourName)}`,
+    body,
+    (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
+  );
 }
 
 // ─── Freelance Payment Reminder Renderer ──────────────────────────────────────
 
 export function renderFreelanceReminderHtml(
   fields: FreelanceReminderFields,
+  watermark = false,
 ): string {
   const amount = formatAmount(fields.amount);
   const paymentMethod = escapeHtml(fields.paymentMethod || "bank transfer");
@@ -568,12 +644,18 @@ export function renderFreelanceReminderHtml(
     `Payment Reminder — ${escapeHtml(fields.yourName)}`,
     body,
     (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
   );
 }
 
 // ─── Final Notice Renderer ────────────────────────────────────────────────────
 
-export function renderFinalNoticeHtml(fields: FinalNoticeFields): string {
+export function renderFinalNoticeHtml(fields: FinalNoticeFields, watermark = false): string {
   const amount = formatAmount(fields.amount);
 
   const body = `
@@ -610,6 +692,12 @@ export function renderFinalNoticeHtml(fields: FinalNoticeFields): string {
     `Final Notice — ${escapeHtml(fields.yourName)}`,
     body,
     (fields as any).brandName,
+    watermark,
+    {
+      brandAddress: (fields as any).brandAddress,
+      brandPhone: (fields as any).brandPhone,
+      brandLogo: (fields as any).brandLogo,
+    },
   );
 }
 
@@ -618,27 +706,32 @@ export function renderFinalNoticeHtml(fields: FinalNoticeFields): string {
 export function renderTemplateHtml(
   templateId: TemplateId,
   fields: Record<string, string>,
+  opts?: { watermark?: boolean },
 ): string {
+  const wm = opts?.watermark ?? false;
   switch (templateId) {
     case "demand-letter":
-      return renderLetterHtml(fields as unknown as LetterFields);
+      return renderLetterHtml(fields as unknown as LetterFields, wm);
     case "final-notice":
-      return renderFinalNoticeHtml(fields as unknown as FinalNoticeFields);
+      return renderFinalNoticeHtml(fields as unknown as FinalNoticeFields, wm);
     case "cease-and-desist":
       return renderCeaseAndDesistHtml(
         fields as unknown as CeaseAndDesistFields,
+        wm,
       );
     case "contract-termination":
       return renderContractTerminationHtml(
         fields as unknown as ContractTermFields,
+        wm,
       );
     case "late-rent-notice":
-      return renderRentNoticeHtml(fields as unknown as RentNoticeFields);
+      return renderRentNoticeHtml(fields as unknown as RentNoticeFields, wm);
     case "freelance-reminder":
       return renderFreelanceReminderHtml(
         fields as unknown as FreelanceReminderFields,
+        wm,
       );
     default:
-      return renderLetterHtml(fields as unknown as LetterFields);
+      return renderLetterHtml(fields as unknown as LetterFields, wm);
   }
 }

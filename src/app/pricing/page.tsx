@@ -3,9 +3,9 @@ import Link from "next/link";
 import ProSubscribeButton from "@/components/ProSubscribeButton";
 
 export const metadata: Metadata = {
-  title: "Pricing — DemandFlowww | $29 Per Letter or Unlimited from $79/yr",
+  title: "Pricing — DemandFlowww | $29 Per Letter or Pro $19/mo",
   description:
-    "DemandFlowww pricing: pay $29 once for a professional demand letter — instant PDF, all 6 templates, money-back guarantee. Or go Pro for unlimited letters from $79/year. Far cheaper than a lawyer ($300–$500) or a collections agency (20–50%).",
+    "DemandFlowww pricing: pay $29 once for a professional demand letter — instant PDF, all 6 templates, money-back guarantee. Or go Pro for unlimited letters at $19/month. Far cheaper than a lawyer ($300–$500) or a collections agency (20–50%).",
   keywords: [
     "demand letter cost",
     "demand letter price",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const PRICING_FAQS = [
   {
     q: "How much does a demand letter cost with DemandFlowww?",
-    a: "A single professional demand letter is a flat $29 — paid once, with no subscription or hidden fees. You get an instantly generated, ready-to-send PDF using any of our six letter templates. If you need to send letters regularly, our Pro plan gives you unlimited letters for $79 per year.",
+    a: "A single professional demand letter is a flat $29 — paid once, with no subscription or hidden fees. You get an instantly generated, ready-to-send PDF using any of our six letter templates. If you need to send letters regularly, our Pro plan gives you unlimited letters for $19 per month.",
   },
   {
     q: "Do you offer refunds?",
@@ -47,9 +47,10 @@ const PRO_FEATURES = [
   "UNLIMITED letters — send as many as you need",
   "All 6 letter templates, current and future",
   "Instant generation — no checkout, no per-letter fees",
-  "Professional letterhead with your brand name",
+  "Custom letterhead with your logo & brand",
+  "Batch export — download all letters as ZIP",
+  "No watermark on your PDFs",
   "Cancel anytime from your account page",
-  "Everything in Basic, forever",
 ];
 
 export default function PricingPage() {
@@ -141,16 +142,16 @@ export default function PricingPage() {
             </div>
             <p className="mt-3 flex items-baseline gap-1.5">
               <span className="text-4xl font-extrabold tracking-tight text-slate-900">
-                $79
+                $19
               </span>
               <span className="text-sm font-medium text-slate-500">
-                /year (billed annually)
+                /month
               </span>
             </p>
             <p className="mt-2 text-sm text-slate-600">
               For freelancers and small businesses who chase payment more than
-              once. Send unlimited letters for less than the cost of three
-              single ones.
+              once. Send unlimited letters for less than the cost of a single
+              lunch out.
             </p>
 
             <ul className="mt-6 space-y-3">
@@ -172,7 +173,7 @@ export default function PricingPage() {
             </div>
             <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs font-medium text-blue-700">
               <span aria-hidden>✓</span>
-              Cancel anytime from your account page
+              Cancel anytime — no long-term commitment
             </p>
           </div>
         </div>
@@ -244,7 +245,7 @@ export default function PricingPage() {
                     DemandFlowww Pro
                   </td>
                   <td className="px-4 py-3 font-bold text-blue-700">
-                    $79/yr — unlimited
+                    $19/mo — unlimited
                   </td>
                   <td className="hidden px-4 py-3 font-medium sm:table-cell">
                     60 seconds each

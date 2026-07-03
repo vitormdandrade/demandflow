@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getStripe, PRO_YEARLY_PRICE_ID } from "@/lib/stripe";
+import { getStripe, PRO_MONTHLY_PRICE_CENTS } from "@/lib/stripe";
 
 // Stripe's Node SDK needs the Node.js runtime (it uses Node crypto).
 export const runtime = "nodejs";
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!PRO_YEARLY_PRICE_ID) {
+  if (!PRO_MONTHLY_PRICE_CENTS) {
     return Response.json(
       { error: "Pro subscriptions are not configured yet." },
       { status: 500 },
@@ -34,8 +34,19 @@ export async function POST(request: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer_email: email,
-      line_items: [{ price: PRO_YEARLY_PRICE_ID, quantity: 1 }],
-      metadata: { plan: "pro" },
+      line_items: [{
+        quantity: 1,
+        price_data: {
+          currency: "usd",
+          unit_amount: PRO_MONTHLY_PRICE_CENTS,
+          recurring: { interval: "month" },
+          product_data: {
+            name: "DemandFlowww Pro",
+            description: "Unlimited demand letters, custom letterhead, batch export, no watermark — $19/month.",
+          },
+        },
+      }],
+      metadata: { plan: "pro", interval: "monthly" },
       success_url: `${origin}/success?subscription=1&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/pricing`,
     });

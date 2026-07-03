@@ -33,13 +33,13 @@ function SubscriptionSuccess({ sessionId }: { sessionId: string }) {
         }
         if (!cancelled) {
           setSession(data);
-          pushDataLayer({
-            event: "purchase",
-            currency: (data.currency ?? "usd").toUpperCase(),
-            value: (data.amount_total ?? 7900) / 100,
-            transaction_id: sessionId,
-            plan: "pro",
-          });
+            pushDataLayer({
+              event: "purchase",
+              currency: (data.currency ?? "usd").toUpperCase(),
+              value: (data.amount_total ?? 1900) / 100,
+              transaction_id: sessionId,
+              plan: "pro",
+            });
         }
       } catch (err) {
         if (!cancelled) {
@@ -64,7 +64,7 @@ function SubscriptionSuccess({ sessionId }: { sessionId: string }) {
       </h1>
       <p className="mt-3 text-slate-600">
         Your subscription is active — send as many letters as you need, all
-        year.
+        month.
       </p>
 
       {error && (
@@ -94,8 +94,8 @@ function SubscriptionSuccess({ sessionId }: { sessionId: string }) {
               <dt className="text-slate-500">Billed</dt>
               <dd className="font-semibold text-slate-900">
                 {session.amount_total != null
-                  ? `$${(session.amount_total / 100).toFixed(2)} / year`
-                  : "$79.00 / year"}
+                  ? `$${(session.amount_total / 100).toFixed(2)} / month`
+                  : "$19.00 / month"}
               </dd>
             </div>
             <div className="flex justify-between gap-4">

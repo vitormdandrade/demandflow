@@ -8,6 +8,7 @@ import { LETTERS_SENT_THIS_MONTH } from "@/lib/site";
 import { TEMPLATE_LIST, type TemplateConfig } from "@/lib/templates";
 import { renderTemplateHtml } from "@/lib/letter";
 import LegalWarning from "@/components/LegalWarning";
+import { useUsageCounter } from "@/lib/useUsageCounter";
 
 // Illustrative examples of the kind of outcomes DemandFlowww letters are built to
 // produce. Names and identifying details are changed — this section is framed as
@@ -241,6 +242,9 @@ export default function Home() {
   const [isPro, setIsPro] = useState(false);
   const [isCheckingPro, setIsCheckingPro] = useState(false);
 
+  // Usage counter — tracks free letters generated this month
+  const usage = useUsageCounter(isPro);
+
   // Debounced Pro check when user types their email
   const proTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   function checkProStatus(email: string) {
@@ -291,7 +295,7 @@ export default function Home() {
       filled["brandName"] = values["brandName"].trim();
     }
     try {
-      return renderTemplateHtml(template.id, filled);
+      return renderTemplateHtml(template.id, filled, { watermark: !isPro });
     } catch {
       return null;
     }
@@ -380,6 +384,9 @@ export default function Home() {
         setLoading(false);
         return;
       }
+
+      // Non-Pro: increment usage counter before redirecting to checkout
+      usage.increment();
 
       if (!res.ok || !data.url) {
         throw new Error(data.error || "Something went wrong. Please try again.");
@@ -683,9 +690,50 @@ export default function Home() {
             <p className="mt-3 text-center text-xs text-slate-400">Checking subscription…</p>
           )}
 
+          {/* Usage counter — shows free tier limit / Pro unlimited */}
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs">
+            {isPro ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">
+                <span>⚡</span>
+                Pro — Unlimited letters
+              </span>
+            ) : (
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-medium ${
+                  usage.remaining === 0
+                    ? "bg-red-50 text-red-700"
+                    : "bg-slate-100 text-slate-600"
+                }`}
+              >
+                <span>📊</span>
+                {usage.count}/{usage.limit} free letters this month
+                {usage.remaining === 0 && " — upgrade to Pro"}
+              </span>
+            )}
+          </div>
+
+          {/* Block form if free limit exceeded and not Pro */}
+          {!isPro && usage.remaining === 0 && !proLetterGenerated && (
+            <div className="mt-4 rounded-xl border-2 border-orange-200 bg-orange-50 p-4">
+              <p className="text-sm font-bold text-orange-800">
+                You've used all {usage.limit} free letters this month.
+              </p>
+              <p className="mt-1 text-xs text-orange-700">
+                Upgrade to Pro for $19/mo to get unlimited letters, custom
+                letterhead, batch export, and no watermarks.
+              </p>
+              <Link
+                href="/pro"
+                className="mt-3 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              >
+                Upgrade to Pro — $19/mo
+              </Link>
+            </div>
+          )}
+
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || (!isPro && usage.remaining === 0)}
             className="mt-5 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:scale-[1.01] hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
           >
             {loading

@@ -18,7 +18,7 @@ export default function ProSubscribeButton() {
     }
 
     setLoading(true);
-    pushDataLayer({ event: "begin_checkout", plan: "pro", value: 79 });
+    pushDataLayer({ event: "begin_checkout", plan: "pro", value: 19 });
     try {
       const res = await fetch("/api/create-subscription", {
         method: "POST",
@@ -61,7 +61,7 @@ export default function ProSubscribeButton() {
         disabled={loading}
         className="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {loading ? "Redirecting…" : "Subscribe — $79/year"}
+        {loading ? "Redirecting…" : "Subscribe — $19/mo"}
       </button>
       {error && (
         <p className="text-center text-sm text-red-600">{error}</p>

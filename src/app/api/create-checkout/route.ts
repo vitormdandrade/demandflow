@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // ── Pro subscriber? Generate the letter instantly, no payment ──
+  // ── Pro subscriber? Generate the letter instantly, no payment, no watermark ──
   if (fields.yourEmail && (await hasActivePro(fields.yourEmail))) {
     try {
       const html = renderTemplateHtml(templateId, fields);
