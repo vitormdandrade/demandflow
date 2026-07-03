@@ -142,6 +142,22 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "demand-letter-legally-binding",
+    title: "Is a Demand Letter Legally Binding? What It Can and Can't Do",
+    description:
+      "Is a demand letter enforceable in court? What it can legally do — show intent, create a paper trail, trigger payment — and what it absolutely cannot do. A clear guide for freelancers.",
+    excerpt:
+      "A demand letter isn't a court order. But it is one of the most effective tools for getting paid — if you understand what it can and can't legally do.",
+    category: "Costs & Legal",
+    readMins: 8,
+    date: "2026-07-03",
+    keywords: [
+      "is a demand letter legally binding",
+      "demand letter legal effect",
+      "does a demand letter hold up in court",
+    ],
+  },
+  {
     slug: "50-demand-letters-case-study",
     title: "I Sent 50 Demand Letters. Here's What Happened.",
     description:
