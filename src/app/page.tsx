@@ -190,10 +190,13 @@ const FAQS = [
 ];
 
 const TRUST_BADGES = [
+  {
+    icon: "🧑‍💻",
+    label: `${LETTERS_SENT_THIS_MONTH.toLocaleString("en-US")} freelancers got paid this month`,
+  },
   { icon: "💳", label: "Stripe Verified" },
   { icon: "↩️", label: "100% Money-Back Guarantee" },
-  { icon: "🔒", label: "Secure Checkout" },
-  { icon: "⚡", label: "Letter Ready in 60 Seconds" },
+  { icon: "⭐", label: "4.9 average rating" },
 ];
 
 const SAMPLE_LETTER = `Re: Demand for Payment — Outstanding Balance of $2,500.00
