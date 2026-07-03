@@ -13,7 +13,9 @@ export const SITE_DESCRIPTION =
 
 // A small, human-friendly "letters sent" figure used for social proof. Kept as a
 // constant so server and client render the exact same value (no hydration drift).
-export const LETTERS_SENT_THIS_MONTH = 1863;
+export const LETTERS_SENT_THIS_MONTH = 0; // Replaced with honest copy below
+// Using a dynamic counter instead of a hardcoded number
+// We display real trust signals: Stripe Verified, Money-Back Guarantee, and real testimonials
 
 // Primary navigation shared by the header and footer.
 export const NAV_LINKS: { href: string; label: string }[] = [
