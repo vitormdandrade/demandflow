@@ -158,6 +158,23 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "demand-letter-unpaid-invoice-template",
+    title: "Demand Letter for Unpaid Invoice: Free Template + What to Say",
+    description:
+      "A complete guide to writing a demand letter for an unpaid freelance invoice — with a free template, step-by-step instructions, and exactly what to say to get paid faster.",
+    excerpt:
+      "The exact structure, language, and template for a demand letter that gets unpaid invoices paid — plus what to say, when to send it, and the one paragraph that makes the difference.",
+    category: "Guides",
+    readMins: 8,
+    date: "2026-07-04",
+    keywords: [
+      "demand letter unpaid invoice template",
+      "demand letter for unpaid invoice",
+      "unpaid invoice demand letter sample",
+      "how to write demand letter for payment",
+    ],
+  },
+  {
     slug: "50-demand-letters-case-study",
     title: "I Sent 50 Demand Letters. Here's What Happened.",
     description:
