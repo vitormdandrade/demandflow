@@ -5,7 +5,7 @@ import { getSupabase } from "@/lib/supabase";
 import { getFieldKeys } from "@/lib/letter";
 import type { TemplateId } from "@/lib/templates";
 
-// Signature verification uses Node crypto and the raw request body.
+import { sendLetterEmail } from "@/lib/email";
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
@@ -75,7 +75,18 @@ export async function POST(request: NextRequest) {
         `[stripe-webhook] checkout.session.completed for ${session.id} ` +
           `(template: ${templateId}, customer: ${fields.yourEmail ?? "unknown"})`,
       );
-      // TODO: deliver the letter by email here.
+      // Deliver the letter by email so buyers don't lose it if they close the tab.
+      const customerEmail = session.customer_details?.email ?? fields.yourEmail;
+      if (customerEmail) {
+        sendLetterEmail({
+          to: customerEmail,
+          templateId,
+          fields,
+          sessionId: session.id,
+        }).catch((err) =>
+          console.error("[stripe-webhook] Email delivery failed:", err),
+        );
+      }
     }
   }
 

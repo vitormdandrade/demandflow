@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const html = renderTemplateHtml(templateId, fields, { watermark: true });
+  const html = renderTemplateHtml(templateId, fields, { watermark: false });
 
   // Return a standalone, printable HTML document. The success page renders it
   // in an iframe; the browser's "Save as PDF" handles the PDF export. The
