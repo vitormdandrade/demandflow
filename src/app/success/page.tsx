@@ -552,6 +552,25 @@ function SuccessInner() {
         </>
       )}
 
+      {/* ── Go Pro upsell ── */}
+      {html && (
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-blue-200 bg-blue-50 px-6 py-5 sm:flex-row">
+          <div>
+            <p className="font-semibold text-slate-900">Need to send more letters?</p>
+            <p className="mt-0.5 text-sm text-slate-600">
+              Unlimited letters + priority support for{" "}
+              <strong className="text-slate-900">$19/month</strong> with Go Pro.
+            </p>
+          </div>
+          <Link
+            href="/pricing#subscription"
+            className="w-full shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
+          >
+            Go Pro — $19/mo
+          </Link>
+        </div>
+      )}
+
       {/* ── Cross-sell: Need another letter type? ── */}
       {otherTemplates.length > 0 && (
         <section className="mt-14 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">

@@ -182,14 +182,14 @@ export default function TemplatesPage() {
             return (
               <article
                 key={t.id}
-                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
               >
-                <div className="flex items-center justify-between">
+                <span className="absolute right-3 top-3 rounded-full bg-green-100 px-3 py-1 text-sm font-bold text-green-700 ring-1 ring-green-200">
+                  {priceLabel(t.priceCents)}
+                </span>
+                <div className="flex items-center">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-50 text-2xl">
                     <span aria-hidden>{t.icon}</span>
-                  </span>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
-                    {priceLabel(t.priceCents)}
                   </span>
                 </div>
 

@@ -5,7 +5,7 @@ import { getSupabase } from "@/lib/supabase";
 import { getFieldKeys } from "@/lib/letter";
 import type { TemplateId } from "@/lib/templates";
 
-import { sendLetterEmail } from "@/lib/email";
+import { sendLetterEmail, sendInvoiceGuardReportEmail } from "@/lib/email";
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
@@ -59,6 +59,24 @@ export async function POST(request: NextRequest) {
       }
     } else {
       const metadata = session.metadata ?? {};
+
+      // ── Invoice Guard Full Report ──
+      if (metadata.product === "invoice-guard-report") {
+        const email = session.customer_details?.email ?? metadata.email;
+        if (email) {
+          sendInvoiceGuardReportEmail({
+            to: email,
+            sessionId: session.id,
+            invoiceAmount: metadata.invoiceAmount ?? "",
+            dueDate: metadata.dueDate ?? "",
+            paymentDate: metadata.paymentDate ?? "",
+            stateCode: metadata.stateCode ?? "",
+          }).catch((err) =>
+            console.error("[stripe-webhook] Invoice guard email failed:", err),
+          );
+        }
+        return new Response("Success", { status: 200 });
+      }
 
       const templateId = (metadata.template as TemplateId) || "demand-letter";
       const fieldKeys = getFieldKeys(templateId);

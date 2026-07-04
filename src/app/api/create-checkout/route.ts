@@ -15,6 +15,56 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
+  // ── Invoice Guard Full Report ($9) ──
+  if (body.product === "invoice-guard-report") {
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const invoiceAmount = typeof body.invoiceAmount === "string" ? body.invoiceAmount.trim() : "";
+    const dueDate = typeof body.dueDate === "string" ? body.dueDate.trim() : "";
+    const paymentDate = typeof body.paymentDate === "string" ? body.paymentDate.trim() : "";
+    const stateCode = typeof body.stateCode === "string" ? body.stateCode.trim() : "";
+
+    if (!email || !invoiceAmount || !dueDate || !paymentDate || !stateCode) {
+      return Response.json({ error: "Missing required fields." }, { status: 400 });
+    }
+
+    const origin = request.headers.get("origin") ?? request.nextUrl.origin;
+    try {
+      const stripe = getStripe();
+      const session = await stripe.checkout.sessions.create({
+        mode: "payment",
+        customer_email: email,
+        line_items: [
+          {
+            quantity: 1,
+            price_data: {
+              currency: "usd",
+              unit_amount: 900,
+              product_data: {
+                name: "Invoice Guard — Full Late Fee Report",
+                description:
+                  "All 50 states comparison, payment timeline, and demand letter template — delivered as a PDF.",
+              },
+            },
+          },
+        ],
+        metadata: {
+          product: "invoice-guard-report",
+          email,
+          invoiceAmount,
+          dueDate,
+          paymentDate,
+          stateCode,
+        },
+        success_url: `${origin}/invoice-guard?paid=1&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/invoice-guard`,
+      });
+      return Response.json({ url: session.url });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Checkout failed.";
+      return Response.json({ error: message }, { status: 500 });
+    }
+  }
+
   // ── Freelancer Legal Kit bundle checkout ──
   // No letter fields at purchase time — the buyer fills them in on the
   // success page and generates each of the six templates there.

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import LegalWarning from "@/components/LegalWarning";
@@ -111,6 +111,42 @@ export default function InvoiceGuardPage() {
   const [stateCode, setStateCode] = useState("");
   const [result, setResult] = useState<CalcResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [reportEmail, setReportEmail] = useState("");
+  const [reportLoading, setReportLoading] = useState(false);
+  const [reportError, setReportError] = useState<string | null>(null);
+  const [paid, setPaid] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("paid") === "1") setPaid(true);
+  }, []);
+
+  async function handleReportCheckout(e: React.FormEvent) {
+    e.preventDefault();
+    if (!result) return;
+    setReportError(null);
+    setReportLoading(true);
+    try {
+      const res = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product: "invoice-guard-report",
+          email: reportEmail,
+          invoiceAmount,
+          dueDate,
+          paymentDate,
+          stateCode,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) throw new Error(data.error || "Checkout failed.");
+      window.location.href = data.url;
+    } catch (err) {
+      setReportError(err instanceof Error ? err.message : "Something went wrong.");
+      setReportLoading(false);
+    }
+  }
 
   function handleCalculate(e: React.FormEvent) {
     e.preventDefault();
@@ -155,6 +191,14 @@ export default function InvoiceGuardPage() {
 
   return (
     <main className="mx-auto w-full max-w-[680px] px-5 py-12 sm:py-16">
+      {paid && (
+        <div className="mb-6 flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 px-5 py-4">
+          <span className="shrink-0 text-lg" aria-hidden>✓</span>
+          <p className="text-sm font-semibold text-green-800">
+            Your Full Late Fee Report is on its way! Check your inbox in a few minutes.
+          </p>
+        </div>
+      )}
       <header className="mb-10 text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-600">
           Invoice Guard
@@ -337,6 +381,66 @@ export default function InvoiceGuardPage() {
             </Link>
             <p className="mt-2.5 text-center text-xs text-slate-500">
               Amount pre-filled · $29 one-time · PDF in 60 seconds
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Full Report upsell */}
+      {result && (
+        <div className="mt-4 rounded-2xl border-2 border-amber-300 bg-amber-50 shadow-sm">
+          <div className="px-6 py-5">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-base font-bold text-slate-900">
+                  Get the Full Late Fee Report
+                </p>
+                <p className="mt-1 text-sm text-slate-600">
+                  A detailed PDF delivered to your inbox, including:
+                </p>
+                <ul className="mt-2 space-y-1">
+                  {[
+                    "All 50 states comparison with statutory rates",
+                    "Your invoice payment timeline breakdown",
+                    "Demand letter template ready to send",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                      <span className="mt-0.5 font-bold text-amber-600" aria-hidden>✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <span className="shrink-0 rounded-full bg-amber-500 px-3 py-1 text-sm font-bold text-white">
+                $9
+              </span>
+            </div>
+            <form
+              onSubmit={handleReportCheckout}
+              className="mt-4 flex flex-col gap-3 sm:flex-row"
+            >
+              <input
+                type="email"
+                required
+                placeholder="your@email.com"
+                value={reportEmail}
+                onChange={(e) => setReportEmail(e.target.value)}
+                disabled={reportLoading}
+                className="flex-1 rounded-lg border border-amber-300 bg-white px-3.5 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 disabled:opacity-60"
+              />
+              <button
+                type="submit"
+                disabled={reportLoading}
+                className="rounded-lg bg-amber-500 px-5 py-2.5 font-semibold text-white transition hover:bg-amber-600 active:scale-[0.98] disabled:opacity-60"
+              >
+                {reportLoading ? "Redirecting…" : "Get Full Report — $9"}
+              </button>
+            </form>
+            {reportError && (
+              <p className="mt-2 text-sm text-red-600">{reportError}</p>
+            )}
+            <p className="mt-2 text-xs text-slate-500">
+              One-time · PDF by email · 100% money-back guarantee
             </p>
           </div>
         </div>
