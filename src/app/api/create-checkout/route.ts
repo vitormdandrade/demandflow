@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getFieldKeys, renderTemplateHtml } from "@/lib/letter";
-import { getTemplate, type TemplateId } from "@/lib/templates";
+import { getTemplate, LEGAL_KIT, type TemplateId } from "@/lib/templates";
 import { hasActivePro } from "@/lib/pro";
 
 // Stripe's Node SDK needs the Node.js runtime (it uses Node crypto).
@@ -13,6 +13,59 @@ export async function POST(request: NextRequest) {
     body = await request.json();
   } catch {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  // ── Freelancer Legal Kit bundle checkout ──
+  // No letter fields at purchase time — the buyer fills them in on the
+  // success page and generates each of the six templates there.
+  if (body.bundle === LEGAL_KIT.id) {
+    const yourName = typeof body.yourName === "string" ? body.yourName.trim() : "";
+    const yourEmail = typeof body.yourEmail === "string" ? body.yourEmail.trim() : "";
+    const missingKitFields = [
+      !yourName && "yourName",
+      !yourEmail && "yourEmail",
+    ].filter(Boolean);
+    if (missingKitFields.length > 0) {
+      return Response.json(
+        { error: `Missing required fields: ${missingKitFields.join(", ")}` },
+        { status: 400 },
+      );
+    }
+
+    const origin = request.headers.get("origin") ?? request.nextUrl.origin;
+
+    try {
+      const stripe = getStripe();
+      const session = await stripe.checkout.sessions.create({
+        mode: "payment",
+        customer_email: yourEmail,
+        line_items: [
+          {
+            quantity: 1,
+            price_data: {
+              currency: "usd",
+              unit_amount: LEGAL_KIT.priceCents,
+              product_data: {
+                name: LEGAL_KIT.productName,
+                description: LEGAL_KIT.productDescription,
+              },
+            },
+          },
+        ],
+        metadata: {
+          bundle: LEGAL_KIT.id,
+          yourName,
+          yourEmail,
+        },
+        success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}&bundle=1`,
+        cancel_url: `${origin}/pricing`,
+      });
+
+      return Response.json({ url: session.url });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Checkout failed.";
+      return Response.json({ error: message }, { status: 500 });
+    }
   }
 
   const templateId = (typeof body.template === "string" ? body.template : "demand-letter") as TemplateId;

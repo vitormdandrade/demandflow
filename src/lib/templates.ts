@@ -186,3 +186,27 @@ export const TEMPLATE_LIST: TemplateConfig[] = Object.values(TEMPLATES);
 export function getTemplate(id: string): TemplateConfig | undefined {
   return TEMPLATES[id as TemplateId];
 }
+
+// ─── Freelancer Legal Kit (bundle) ───────────────────────────────────────────
+// One-time purchase that unlocks all six letter templates. The buyer fills in
+// their details on the success page and can regenerate any template as often
+// as they need — no watermark, no per-letter fees.
+
+export const LEGAL_KIT = {
+  id: "legal-kit",
+  priceCents: 7900,
+  productName: "Freelancer Legal Kit — All 6 Templates",
+  productDescription:
+    "All six letter templates in one bundle: Demand Letter, Final Notice, Cease & Desist, Contract Termination, Late Rent Notice, and Payment Reminder — with unlimited regenerations.",
+} as const;
+
+// What the six templates cost when bought individually, and how much the
+// bundle saves — computed from the live template prices so sales copy never
+// drifts out of date.
+export const LEGAL_KIT_INDIVIDUAL_TOTAL_CENTS = TEMPLATE_LIST.reduce(
+  (sum, t) => sum + t.priceCents,
+  0,
+);
+
+export const LEGAL_KIT_SAVINGS_CENTS =
+  LEGAL_KIT_INDIVIDUAL_TOTAL_CENTS - LEGAL_KIT.priceCents;

@@ -5,7 +5,12 @@ import Link from "next/link";
 import { pushDataLayer } from "@/lib/gtm";
 import { gaEvent } from "@/lib/ga";
 import { LETTERS_SENT_THIS_MONTH } from "@/lib/site";
-import { TEMPLATE_LIST, type TemplateConfig } from "@/lib/templates";
+import {
+  LEGAL_KIT,
+  LEGAL_KIT_SAVINGS_CENTS,
+  TEMPLATE_LIST,
+  type TemplateConfig,
+} from "@/lib/templates";
 import { renderTemplateHtml } from "@/lib/letter";
 import LegalWarning from "@/components/LegalWarning";
 import { useUsageCounter } from "@/lib/useUsageCounter";
@@ -896,6 +901,32 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+          {/* Legal Kit bundle banner */}
+          <div className="mt-6 flex flex-col items-center justify-between gap-4 rounded-2xl border-2 border-slate-900 bg-white p-5 shadow-sm sm:flex-row sm:p-6">
+            <div className="flex items-start gap-3 text-center sm:text-left">
+              <span className="hidden text-2xl sm:block" aria-hidden>
+                📦
+              </span>
+              <div>
+                <p className="text-sm font-bold text-slate-900">
+                  Freelancer Legal Kit
+                </p>
+                <p className="mt-0.5 text-sm text-slate-600">
+                  Get all 6 templates for $
+                  {(LEGAL_KIT.priceCents / 100).toFixed(0)} — save $
+                  {(LEGAL_KIT_SAVINGS_CENTS / 100).toFixed(0)} vs buying
+                  individually.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/pricing#legal-kit"
+              className="w-full shrink-0 rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 sm:w-auto"
+            >
+              Get the Legal Kit →
+            </Link>
+          </div>
+
           <p className="mt-4 text-center text-sm text-slate-500">
             Need more than one letter?{" "}
             <Link

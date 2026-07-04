@@ -5,8 +5,9 @@ import { hasActivePro } from "@/lib/pro";
 
 export const runtime = "nodejs";
 
-// Dynamic import — archiver is ESM-only
-const archiverPromise = import("archiver").then((m) => m.default);
+// Dynamic import — archiver is ESM-only. v8 exports archive classes instead
+// of a default factory function.
+const zipArchivePromise = import("archiver").then((m) => m.ZipArchive);
 
 interface LetterData {
   template: string;
@@ -56,8 +57,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const archiver = await archiverPromise;
-    const archive = archiver("zip", { zlib: { level: 9 } });
+    const ZipArchive = await zipArchivePromise;
+    const archive = new ZipArchive({ zlib: { level: 9 } });
     const chunks: Buffer[] = [];
 
     archive.on("data", (chunk: Buffer) => chunks.push(chunk));
@@ -94,8 +95,10 @@ export async function POST(request: NextRequest) {
     await archive.finalize();
     const zipBuffer = await archivePromise;
 
+    // Copy into a fresh Uint8Array so TypeScript sees a plain ArrayBuffer
+    // backing (Buffer's ArrayBufferLike isn't assignable to BodyInit).
     return new Response(
-      new Uint8Array(zipBuffer.buffer, zipBuffer.byteOffset, zipBuffer.byteLength),
+      new Uint8Array(zipBuffer),
       {
       status: 200,
       headers: {

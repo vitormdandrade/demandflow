@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ProSubscribeButton from "@/components/ProSubscribeButton";
+import LegalKitBuyButton from "@/components/LegalKitBuyButton";
+import { LEGAL_KIT, LEGAL_KIT_SAVINGS_CENTS } from "@/lib/templates";
 
 export const metadata: Metadata = {
   title: "Pricing — DemandFlowww | $29 Per Letter or Pro $19/mo",
@@ -43,6 +45,18 @@ const BASIC_FEATURES = [
   "No account, no subscription, no surprises",
 ];
 
+const KIT_SAVINGS = `$${(LEGAL_KIT_SAVINGS_CENTS / 100).toFixed(0)}`;
+
+const KIT_FEATURES = [
+  "All 6 letter templates — one payment, yours forever",
+  `Save ${KIT_SAVINGS} vs buying each letter individually`,
+  "Unlimited regenerations of every template",
+  "Instantly generated, ready-to-send PDFs",
+  "No watermark on your letters",
+  "100% money-back guarantee",
+  "No subscription — pay once, done",
+];
+
 const PRO_FEATURES = [
   "UNLIMITED letters — send as many as you need",
   "All 6 letter templates, current and future",
@@ -74,8 +88,8 @@ export default function PricingPage() {
       </section>
 
       {/* ─────────────── Pricing tiers ─────────────── */}
-      <section className="mx-auto w-full max-w-[960px] px-5 py-12 sm:py-16">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <section className="mx-auto w-full max-w-[1100px] px-5 py-12 sm:py-16">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Basic */}
           <div className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
             <div className="flex items-center justify-between">
@@ -120,6 +134,63 @@ export default function PricingPage() {
             >
               Create a letter — $29
             </Link>
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
+              <span aria-hidden>✓</span>
+              Backed by our 100% money-back guarantee
+            </p>
+          </div>
+
+          {/* Legal Kit — bundle */}
+          <div
+            id="legal-kit"
+            className="relative flex flex-col rounded-2xl border-2 border-slate-900 bg-white p-7 shadow-lg shadow-slate-300/40 scroll-mt-24"
+          >
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span className="rounded-full bg-slate-900 px-3.5 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
+                Best value
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold text-slate-900">Legal Kit</h2>
+              <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                Save {KIT_SAVINGS}
+              </span>
+            </div>
+            <p className="mt-3 flex items-baseline gap-1.5">
+              <span className="text-4xl font-extrabold tracking-tight text-slate-900">
+                ${(LEGAL_KIT.priceCents / 100).toFixed(0)}
+              </span>
+              <span className="text-sm font-medium text-slate-500">
+                one-time
+              </span>
+            </p>
+            <p className="mt-2 text-sm text-slate-600">
+              All 6 templates — save {KIT_SAVINGS} vs buying individually. Every
+              letter you&apos;ll need to chase payments, end contracts, and stop
+              violations.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {KIT_FEATURES.map((feature) => (
+                <li
+                  key={feature}
+                  className="flex items-start gap-2.5 text-sm text-slate-700"
+                >
+                  <span
+                    className="mt-0.5 font-bold text-green-600"
+                    aria-hidden
+                  >
+                    ✓
+                  </span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7">
+              <LegalKitBuyButton />
+            </div>
             <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs font-medium text-green-700">
               <span aria-hidden>✓</span>
               Backed by our 100% money-back guarantee

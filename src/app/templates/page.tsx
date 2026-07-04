@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TEMPLATE_LIST } from "@/lib/templates";
+import {
+  LEGAL_KIT,
+  LEGAL_KIT_SAVINGS_CENTS,
+  TEMPLATE_LIST,
+} from "@/lib/templates";
 
 export const metadata: Metadata = {
   title: "Legal Letter Templates for Freelancers | DemandFlowww",
@@ -232,6 +236,31 @@ export default function TemplatesPage() {
               </article>
             );
           })}
+        </div>
+
+        {/* ── Legal Kit bundle callout ── */}
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border-2 border-slate-900 bg-white p-6 shadow-sm sm:flex-row sm:p-7">
+          <div className="flex items-start gap-3 text-center sm:text-left">
+            <span className="hidden text-3xl sm:block" aria-hidden>
+              📦
+            </span>
+            <div>
+              <p className="text-base font-bold text-slate-900">
+                Need more than one? Get the Freelancer Legal Kit.
+              </p>
+              <p className="mt-1 text-sm text-slate-600">
+                All 6 templates for ${(LEGAL_KIT.priceCents / 100).toFixed(0)}{" "}
+                one-time — save ${(LEGAL_KIT_SAVINGS_CENTS / 100).toFixed(0)} vs
+                buying individually, with unlimited regenerations.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/pricing#legal-kit"
+            className="w-full shrink-0 rounded-lg bg-slate-900 px-6 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 sm:w-auto"
+          >
+            Get the Legal Kit — ${(LEGAL_KIT.priceCents / 100).toFixed(0)} →
+          </Link>
         </div>
       </section>
 
