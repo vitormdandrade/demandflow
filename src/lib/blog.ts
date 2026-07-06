@@ -190,6 +190,23 @@ export const BLOG_POSTS: BlogPost[] = [
       "demand letter success rate",
     ],
   },
+  {
+    slug: "final-demand-letter-examples",
+    title: "How to Write a Final Demand Letter (With Examples)",
+    description:
+      "Everything you need to write a final demand letter that gets attention — the structure, the exact language to use, three real-world examples, and the one mistake that makes recipients ignore you.",
+    excerpt:
+      "The final demand letter is your last written move before legal action. Here's the structure, language, and examples that make it impossible to ignore.",
+    category: "Guides",
+    readMins: 8,
+    date: "2026-07-06",
+    keywords: [
+      "final demand letter",
+      "how to write final demand letter",
+      "final demand letter template",
+      "last demand letter before legal action",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
