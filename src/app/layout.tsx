@@ -99,7 +99,7 @@ gtag('config', '${GA4_ID}');`}
 
         <Analytics />
 
-        {/* Structured data: Organization + SoftwareApplication */}
+        {/* Structured data: Organization + SoftwareApplication + FAQPage */}
         <Script id="ld-json-org-app" type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -127,6 +127,35 @@ gtag('config', '${GA4_ID}');`}
                   ratingValue: "4.9",
                   reviewCount: "1247",
                 },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "What is a demand letter?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "A demand letter is a formal written request for payment that states what you're owed, why you're owed it, and what happens if the client doesn't pay by a specific date. It creates a legal paper trail and signals resolve — often getting freelancers paid within a week without going to court.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "How much does it cost to send a demand letter?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "With DemandFlowww, it costs $29 for a professional, legally-formatted demand letter generated in 60 seconds. A lawyer typically charges $300+ for the same letter. No subscription, no account required — one-time payment via Stripe.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is a demand letter legally binding?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "A demand letter is not a court order, but it is a powerful legal document that shows intent, creates a paper trail, and often triggers payment without needing to go to court. It demonstrates to the client — and to a judge if needed — that you made a formal attempt to collect before escalating.",
+                    },
+                  },
+                ],
               },
             ],
           })}
