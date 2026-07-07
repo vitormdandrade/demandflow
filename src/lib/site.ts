@@ -39,6 +39,8 @@ export const BLOG_SLUGS: string[] = [
   "demand-letter-laws-california",
   "demand-letter-legally-binding",
   "demand-letter-unpaid-invoice-template",
+  "final-demand-letter-examples",
+  "late-payment-interest-by-state",
 ];
 
 export const STATIC_ROUTES: string[] = [

@@ -207,6 +207,23 @@ export const BLOG_POSTS: BlogPost[] = [
       "last demand letter before legal action",
     ],
   },
+  {
+    slug: "late-payment-interest-by-state",
+    title: "How Much Interest Can I Charge on a Late Invoice? (By State)",
+    description:
+      "A state-by-state guide to late payment interest rates for freelancers — what the law allows, how to calculate it, and how to include interest in a demand letter.",
+    excerpt:
+      "Most states let you charge interest on late invoices — but the rate, the grace period, and the rules vary. Here's what freelancers can legally add to an overdue bill.",
+    category: "Getting Paid",
+    readMins: 8,
+    date: "2026-07-06",
+    keywords: [
+      "late payment interest rate by state",
+      "charge interest on overdue invoice",
+      "late fee freelance invoice",
+      "legal interest rate late payment",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
