@@ -224,6 +224,24 @@ export const BLOG_POSTS: BlogPost[] = [
       "legal interest rate late payment",
     ],
   },
+  {
+    slug: "freelance-contract-clauses-prevent-non-payment",
+    title: "Freelance Contract Clauses That Prevent Non-Payment",
+    description:
+      "The 7 contract clauses every freelancer should include to prevent late and non-payment — from payment schedules and late fees to kill fees and interest on overdue invoices.",
+    excerpt:
+      "Most non-payment problems are preventable before the project starts. These seven contract clauses make it nearly impossible for a client to pay late — or not at all.",
+    category: "Getting Paid",
+    readMins: 9,
+    date: "2026-07-07",
+    keywords: [
+      "freelance contract clauses",
+      "prevent non-payment",
+      "freelance contract payment terms",
+      "late payment clause freelance",
+      "kill fee clause",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
