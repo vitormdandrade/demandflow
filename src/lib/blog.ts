@@ -259,6 +259,24 @@ export const BLOG_POSTS: BlogPost[] = [
       "freelance legal protection",
     ],
   },
+  {
+    slug: "late-rent-notice-landlord",
+    title: "Late Rent Notice: A Landlord's 3-Step Escalation Guide",
+    description:
+      "A complete guide for small landlords — from the first late rent notice to the formal demand letter to the eviction filing. What to send, when to send it, and how to document each step so you're ready for court.",
+    excerpt:
+      "Most landlords either keep texting (which doesn't work) or jump straight to eviction (which is expensive). Here's the three-step escalation that gets rent paid — with the paperwork to prove it.",
+    category: "Getting Paid",
+    readMins: 9,
+    date: "2026-07-08",
+    keywords: [
+      "late rent notice template",
+      "demand letter for unpaid rent",
+      "landlord escalation guide",
+      "how to collect unpaid rent",
+      "rent demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
