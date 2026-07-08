@@ -277,6 +277,24 @@ export const BLOG_POSTS: BlogPost[] = [
       "rent demand letter",
     ],
   },
+  {
+    slug: "payment-reminder-email-templates",
+    title: "Payment Reminder Email Templates That Actually Get Replies",
+    description:
+      "Five payment reminder email templates freelancers can copy and paste — from the friendly nudge to the firm final notice. Tested language that gets invoices paid without burning client relationships.",
+    excerpt:
+      "Most payment reminders either sound like a collections robot or an apologetic pushover. Here are five templates that thread the needle — firm, professional, and surprisingly effective.",
+    category: "Getting Paid",
+    readMins: 8,
+    date: "2026-07-08",
+    keywords: [
+      "payment reminder email template",
+      "overdue invoice email",
+      "how to ask client to pay",
+      "freelance payment reminder",
+      "late payment email template",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
