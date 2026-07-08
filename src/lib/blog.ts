@@ -242,6 +242,23 @@ export const BLOG_POSTS: BlogPost[] = [
       "kill fee clause",
     ],
   },
+  {
+    slug: "cease-and-desist-freelancer",
+    title: "Cease & Desist Letter: When Freelancers Actually Need One",
+    description:
+      "When a freelance client crosses a line — harassment, IP theft, non-compete violations — a cease and desist letter is your first legal move. What it is, when to send one, and a free template.",
+    excerpt:
+      "Most freelancers think cease & desist letters are only for big companies. Here are the five real situations where sending one protects your business — and your sanity.",
+    category: "Guides",
+    readMins: 8,
+    date: "2026-07-08",
+    keywords: [
+      "cease and desist letter freelancer",
+      "cease and desist template",
+      "stop harassment letter freelance",
+      "freelance legal protection",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
