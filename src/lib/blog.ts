@@ -295,6 +295,24 @@ export const BLOG_POSTS: BlogPost[] = [
       "late payment email template",
     ],
   },
+  {
+    slug: "demand-letter-laws-texas",
+    title: "Demand Letter Laws in Texas: What You Need to Know Before Sending One",
+    description:
+      "Texas-specific rules for demand letters — statutory notice requirements, Texas Deceptive Trade Practices Act implications, attorney fee recovery, and the exact language that makes a Texas demand letter carry legal weight.",
+    excerpt:
+      "Texas has specific rules that can make or break a demand letter — from DTPA notice requirements to mandatory pre-suit waiting periods. Here's what freelancers and small businesses in Texas need to know before hitting send.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-09",
+    keywords: [
+      "demand letter Texas",
+      "Texas demand letter laws",
+      "DTPA demand letter",
+      "Texas pre-suit notice",
+      "demand letter requirements Texas",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
