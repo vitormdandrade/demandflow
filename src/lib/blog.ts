@@ -331,6 +331,25 @@ export const BLOG_POSTS: BlogPost[] = [
       "Florida small claims limit",
     ],
   },
+  {
+    slug: "demand-letter-laws-new-york",
+    title: "Demand Letter Laws in New York: Requirements, Deadlines & What You Must Include",
+    description:
+      "New York-specific rules for demand letters — the $10,000 small claims limit (NYC), General Business Law § 349 deceptive practices, statutory interest at 9%, and the exact language freelancers need to get paid in New York.",
+    excerpt:
+      "New York has the highest small claims limit in the country ($10,000 in NYC), a 9% statutory interest rate, and a deceptive practices statute that applies to business disputes. Here's how to write a demand letter that uses all of them.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-09",
+    keywords: [
+      "demand letter New York",
+      "New York demand letter laws",
+      "NY demand letter requirements",
+      "NY small claims limit",
+      "New York statutory interest 9%",
+      "GBL 349 deceptive practices",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
