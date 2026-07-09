@@ -313,6 +313,24 @@ export const BLOG_POSTS: BlogPost[] = [
       "demand letter requirements Texas",
     ],
   },
+  {
+    slug: "demand-letter-laws-florida",
+    title: "Demand Letter Laws in Florida: Small Claims, Civil Theft & What You Must Include",
+    description:
+      "Florida-specific rules for demand letters — the $8,000 small claims limit, the civil theft statute (F.S. § 772.11) and its mandatory pre-suit notice, treble damages, and the exact language freelancers need to get paid in Florida.",
+    excerpt:
+      "Florida has a $8,000 small claims limit, a civil theft statute that can triple your damages, and a mandatory 30-day pre-suit notice requirement. Here's how to write a demand letter that satisfies all of them.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-09",
+    keywords: [
+      "demand letter Florida",
+      "Florida demand letter laws",
+      "Florida civil theft statute",
+      "F.S. 772.11 demand letter",
+      "Florida small claims limit",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
