@@ -350,6 +350,25 @@ export const BLOG_POSTS: BlogPost[] = [
       "GBL 349 deceptive practices",
     ],
   },
+  {
+    slug: "demand-letter-laws-illinois",
+    title: "Demand Letter Laws in Illinois: Small Claims, Consumer Fraud & What You Must Include",
+    description:
+      "Illinois-specific rules for demand letters — the $10,000 small claims limit (Cook County), the Consumer Fraud Act (815 ILCS 505), 5% statutory interest, and the exact language freelancers need to get paid in Illinois.",
+    excerpt:
+      "Illinois has a powerful Consumer Fraud Act that can turn a business dispute into a triple-damages claim, a $10,000 small claims cap in Cook County, and a 5% statutory interest rate. Here's how to write a demand letter that uses every available tool.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-09",
+    keywords: [
+      "demand letter Illinois",
+      "Illinois demand letter laws",
+      "Illinois Consumer Fraud Act",
+      "815 ILCS 505 demand letter",
+      "Illinois small claims limit",
+      "Illinois statutory interest 5%",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
