@@ -429,6 +429,27 @@ export const BLOG_POSTS: BlogPost[] = [
       "Ohio statutory interest 6%",
     ],
   },
+  {
+    slug: "demand-letter-laws-michigan",
+    title: "Demand Letter Laws in Michigan: $7,000 Small Claims, 6-Year Statute & Judgment Interest Under MCL 600.6013",
+    description:
+      "Michigan-specific rules for demand letters — the $7,000 small claims limit in district courts (MCL 600.8401), automatic judgment interest under MCL 600.6013, a 6-year statute of limitations on written contracts (MCL 600.5807(8)), and what Michigan freelancers need to know about the Michigan Consumer Protection Act (MCL 445.903).",
+    excerpt:
+      "Michigan gives freelancers a $7,000 small claims limit (recently increased), automatic interest on judgments that varies with the 5-year T-note rate, and a 6-year statute of limitations for written contracts. Here's how to write a Michigan demand letter that uses every legal tool the Great Lakes State provides — including the bounced-check treble damages statute.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-10",
+    keywords: [
+      "demand letter Michigan",
+      "Michigan demand letter laws",
+      "Michigan small claims limit",
+      "Michigan district court",
+      "MCL 600.6013 interest",
+      "MCL 600.5807 statute of limitations",
+      "Michigan Consumer Protection Act",
+      "Michigan bounced check treble damages",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
