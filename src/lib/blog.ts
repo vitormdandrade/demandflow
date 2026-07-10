@@ -369,6 +369,26 @@ export const BLOG_POSTS: BlogPost[] = [
       "Illinois statutory interest 5%",
     ],
   },
+  {
+    slug: "demand-letter-laws-pennsylvania",
+    title: "Demand Letter Laws in Pennsylvania: UTPCPL, Small Claims & Statutory Interest",
+    description:
+      "Pennsylvania-specific rules for demand letters — the $12,000 small claims limit, the UTPCPL (73 P.S. § 201-1) for treble damages, 6% statutory interest, and the exact language freelancers need to get paid in Pennsylvania.",
+    excerpt:
+      "Pennsylvania has a $12,000 small claims limit (one of the highest in the U.S.), a UTPCPL that can triple your damages, and a 6% statutory interest rate. Here's how to write a demand letter that uses every Keystone State advantage.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-09",
+    keywords: [
+      "demand letter Pennsylvania",
+      "Pennsylvania demand letter laws",
+      "Pennsylvania UTPCPL",
+      "73 P.S. 201-1 demand letter",
+      "Pennsylvania small claims limit",
+      "Pennsylvania statutory interest 6%",
+      "PA magisterial district court",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
