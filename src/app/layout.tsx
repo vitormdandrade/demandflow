@@ -110,6 +110,24 @@ gtag('config', '${GA4_ID}');`}
                 url: SITE_URL,
                 description:
                   "AI-powered demand letters that help freelancers get paid for unpaid invoices — no lawyer needed.",
+                foundingDate: "2025",
+                areaServed: {
+                  "@type": "Country",
+                  name: "US",
+                },
+              },
+              {
+                "@type": "WebSite",
+                name: SITE_NAME,
+                url: SITE_URL,
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate: `${SITE_URL}/?s={search_term_string}`,
+                  },
+                  "query-input": "required name=search_term_string",
+                },
               },
               {
                 "@type": "SoftwareApplication",
