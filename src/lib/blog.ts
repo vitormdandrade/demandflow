@@ -389,6 +389,26 @@ export const BLOG_POSTS: BlogPost[] = [
       "PA magisterial district court",
     ],
   },
+  {
+    slug: "demand-letter-laws-georgia",
+    title: "Demand Letter Laws in Georgia: Magistrate Court, 7% Interest & Contractual Attorney Fees",
+    description:
+      "Georgia-specific rules for demand letters — the $15,000 small claims limit in Magistrate Court, 7% statutory interest on liquidated demands (O.C.G.A. § 7-4-2), contractual attorney fee recovery (O.C.G.A. § 13-1-11), and the exact language freelancers need to get paid in Georgia.",
+    excerpt:
+      "Georgia has a $15,000 small claims limit (one of the highest in the nation), a 7% statutory interest rate, and a unique statute that lets you recover attorney fees if your contract includes the right language. Here's how freelancers in Georgia write a demand letter that uses every legal tool available.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-10",
+    keywords: [
+      "demand letter Georgia",
+      "Georgia demand letter laws",
+      "Georgia small claims limit",
+      "Georgia Magistrate Court",
+      "O.C.G.A. 7-4-2 interest",
+      "O.C.G.A. 13-1-11 attorney fees",
+      "Georgia statutory interest 7%",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
