@@ -409,6 +409,26 @@ export const BLOG_POSTS: BlogPost[] = [
       "Georgia statutory interest 7%",
     ],
   },
+  {
+    slug: "demand-letter-laws-ohio",
+    title: "Demand Letter Laws in Ohio: Small Claims, 6% Interest & 8-Year Statute of Limitations",
+    description:
+      "Ohio-specific rules for demand letters — the $6,000 small claims limit, 6% statutory interest on judgments (O.R.C. § 1343.03), an 8-year statute of limitations on written contracts (O.R.C. § 2305.06), and the exact language freelancers need to get paid in Ohio.",
+    excerpt:
+      "Ohio gives freelancers one of the longest statute of limitations in the country (8 years on written contracts), a $6,000 small claims cap in municipal courts, and 6% interest on judgments. Here's how to write an Ohio demand letter that uses every tool the Buckeye State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-10",
+    keywords: [
+      "demand letter Ohio",
+      "Ohio demand letter laws",
+      "Ohio small claims limit",
+      "Ohio municipal court",
+      "O.R.C. 1343.03 interest",
+      "O.R.C. 2305.06 statute of limitations",
+      "Ohio statutory interest 6%",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
