@@ -450,6 +450,28 @@ export const BLOG_POSTS: BlogPost[] = [
       "Michigan bounced check treble damages",
     ],
   },
+  {
+    slug: "demand-letter-laws-massachusetts",
+    title: "Demand Letter Laws in Massachusetts: $7,000 Small Claims, 12% Interest & Chapter 93A Treble Damages",
+    description:
+      "Massachusetts-specific rules for demand letters — the $7,000 small claims limit (M.G.L. c. 218, § 21), 12% statutory interest on contract claims (M.G.L. c. 231, § 6C), a 6-year statute of limitations for written contracts (M.G.L. c. 260, § 2), and the powerful Chapter 93A consumer protection statute that can triple your damages plus attorney fees.",
+    excerpt:
+      "Massachusetts has one of the highest statutory interest rates in the country (12%), a powerful consumer protection law that can triple your damages (Chapter 93A), and a $7,000 small claims limit. Here's how freelancers in Massachusetts write a demand letter that uses every legal tool the Bay State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-11",
+    keywords: [
+      "demand letter Massachusetts",
+      "Massachusetts demand letter laws",
+      "Massachusetts small claims limit",
+      "Massachusetts Chapter 93A",
+      "M.G.L. c. 231 6C interest",
+      "M.G.L. c. 260 statute of limitations",
+      "Massachusetts treble damages",
+      "Massachusetts 30-day demand letter",
+      "Boston freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
