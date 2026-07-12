@@ -472,6 +472,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Boston freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-new-jersey",
+    title: "Demand Letter Laws in New Jersey: $3,000–$20,000 Limits, Consumer Fraud Act & Prejudgment Interest",
+    description:
+      "New Jersey-specific rules for demand letters — the $3,000 small claims limit (Special Civil Part), the $20,000 Special Civil Part regular limit, 6-year statute of limitations (N.J.S.A. 2A:14-1), prejudgment interest under Court Rule 4:42-11(b), and the powerful New Jersey Consumer Fraud Act (N.J.S.A. 56:8-1) that can triple your damages plus attorney fees.",
+    excerpt:
+      "New Jersey gives freelancers two paths: a $3,000 small claims track or a $20,000 Special Civil Part track, a powerful Consumer Fraud Act that can triple damages, and prejudgment interest tied to the prime rate. Here's how freelancers in the Garden State write a demand letter that uses every legal tool available.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-12",
+    keywords: [
+      "demand letter New Jersey",
+      "New Jersey demand letter laws",
+      "NJ small claims limit",
+      "NJ Special Civil Part",
+      "N.J.S.A. 2A:14-1",
+      "New Jersey Consumer Fraud Act",
+      "N.J.S.A. 56:8-1",
+      "NJ Court Rule 4:42-11",
+      "New Jersey prejudgment interest",
+      "NJ treble damages",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
