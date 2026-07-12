@@ -495,6 +495,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "NJ treble damages",
     ],
   },
+  {
+    slug: "demand-letter-laws-washington",
+    title: "Demand Letter Laws in Washington: $10,000 Small Claims, 12% Interest & CPA Treble Damages",
+    description:
+      "Washington-specific rules for demand letters — the $10,000 small claims limit (RCW 12.40.010), 12% statutory interest on judgments (RCW 19.52.020, RCW 4.56.110), the Washington Consumer Protection Act (RCW 19.86) with treble damages up to $25,000, 6-year statute of limitations for written contracts (RCW 4.16.040), and what freelancers need to know about filing venue in Washington District Court.",
+    excerpt:
+      "Washington gives freelancers one of the highest statutory interest rates in the country (12%), a powerful Consumer Protection Act that can triple your damages without requiring a pre-suit notice, and a $10,000 small claims limit. Here's how freelancers in the Evergreen State write a demand letter that uses every legal tool Washington provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-12",
+    keywords: [
+      "demand letter Washington",
+      "Washington demand letter laws",
+      "WA small claims limit",
+      "Washington Consumer Protection Act",
+      "RCW 19.86",
+      "RCW 19.52.020 interest",
+      "RCW 4.56.110 prejudgment interest",
+      "RCW 4.16.040 statute of limitations",
+      "Washington treble damages",
+      "Seattle freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
