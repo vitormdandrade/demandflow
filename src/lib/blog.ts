@@ -541,6 +541,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Charlotte freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-virginia",
+    title: "Demand Letter Laws in Virginia: $5,000 Small Claims, VCPA Treble Damages & 6% Interest",
+    description:
+      "Virginia-specific rules for demand letters — the $5,000 small claims limit in General District Court (Va. Code § 16.1-77), 6% statutory interest on judgments (Va. Code § 6.2-302), a 5-year statute of limitations for written contracts (Va. Code § 8.01-246), and the Virginia Consumer Protection Act (Va. Code § 59.1-196) with treble damages and minimum $500 recovery — plus attorney fee recovery if your contract provides for it.",
+    excerpt:
+      "Virginia gives freelancers a $5,000 small claims track, a powerful Consumer Protection Act with treble damages, and a 5-year statute of limitations — longer than North Carolina but shorter than most. Here's how freelancers in the Old Dominion write a demand letter that uses every legal tool Virginia provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-13",
+    keywords: [
+      "demand letter Virginia",
+      "Virginia demand letter laws",
+      "VA small claims limit",
+      "Virginia Consumer Protection Act",
+      "Va. Code 59.1-196",
+      "Va. Code 6.2-302 interest",
+      "Va. Code 8.01-246 statute of limitations",
+      "Virginia treble damages",
+      "Virginia General District Court",
+      "Richmond freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
