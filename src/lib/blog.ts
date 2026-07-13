@@ -518,6 +518,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Seattle freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-north-carolina",
+    title: "Demand Letter Laws in North Carolina: $10,000 Small Claims, 8% Interest & Unfair Trade Practices Treble Damages",
+    description:
+      "North Carolina-specific rules for demand letters — the $10,000 small claims limit (N.C.G.S. § 7A-210), 8% statutory interest on judgments (N.C.G.S. § 24-1), a 3-year statute of limitations for written contracts (N.C.G.S. § 1-52), and the powerful Unfair and Deceptive Trade Practices Act (N.C.G.S. § 75-1.1) that can triple your damages plus attorney fees.",
+    excerpt:
+      "North Carolina has a $10,000 small claims limit, an 8% statutory interest rate, and an Unfair Trade Practices Act that can triple your damages — but only a 3-year statute of limitations. Here's how freelancers in NC write a demand letter that uses every legal tool available before the clock runs out.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-13",
+    keywords: [
+      "demand letter North Carolina",
+      "North Carolina demand letter laws",
+      "NC small claims limit",
+      "N.C.G.S. 7A-210",
+      "North Carolina Unfair Trade Practices Act",
+      "N.C.G.S. 75-1.1",
+      "N.C.G.S. 24-1 interest",
+      "NC treble damages",
+      "North Carolina statutory interest 8%",
+      "Charlotte freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
