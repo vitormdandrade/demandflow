@@ -564,6 +564,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Richmond freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-arizona",
+    title: "Demand Letter Laws in Arizona: $3,500 Small Claims, 6-Year Statute & ACFA Treble Damages",
+    description:
+      "Arizona-specific rules for demand letters — the $3,500 small claims limit in Justice Court (A.R.S. § 22-503), 6.5% judgment interest (A.R.S. § 44-1201), a 6-year statute of limitations for written contracts (A.R.S. § 12-548), and the powerful Arizona Consumer Fraud Act (A.R.S. § 44-1521) with treble damages plus mandatory attorney fees — plus what every Phoenix and Tucson freelancer needs to know about the ACFA demand-letter formula.",
+    excerpt:
+      "Arizona gives freelancers a powerful Consumer Fraud Act with treble damages plus mandatory attorney fees, a generous 6-year statute of limitations, and a $3,500 small claims cap. Here's how Arizona freelancers write a demand letter that makes non-paying clients do the math — and reach for the checkbook.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-14",
+    keywords: [
+      "demand letter Arizona",
+      "Arizona demand letter laws",
+      "AZ small claims limit",
+      "Arizona Consumer Fraud Act",
+      "A.R.S. 44-1521",
+      "A.R.S. 12-548 statute of limitations",
+      "A.R.S. 44-1533 treble damages",
+      "Arizona treble damages",
+      "Phoenix freelance demand letter",
+      "Scottsdale demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
