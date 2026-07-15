@@ -587,6 +587,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Scottsdale demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-tennessee",
+    title: "Demand Letter Laws in Tennessee: $25K Small Claims, 10% Interest & TCPA Treble Damages",
+    description:
+      "Tennessee-specific rules for demand letters — the $25,000 small claims limit in General Sessions Court (Tenn. Code Ann. § 16-15-501), one of the nation's highest judgment interest rates at 10% per year (Tenn. Code Ann. § 47-14-121), a 6-year statute of limitations for written contracts (Tenn. Code Ann. § 28-3-109), and the Tennessee Consumer Protection Act (Tenn. Code Ann. § 47-18-109) with treble damages — plus what every Nashville, Memphis, and Chattanooga freelancer needs to know before sending a demand letter in the Volunteer State.",
+    excerpt:
+      "Tennessee has the country's highest small claims limit at $25,000, a punishing 10% judgment interest rate, and a Consumer Protection Act with treble damages. Here's what Tennessee freelancers need to know before they send a demand letter.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-15",
+    keywords: [
+      "demand letter Tennessee",
+      "Tennessee demand letter laws",
+      "TN small claims limit",
+      "Tennessee Consumer Protection Act",
+      "Tenn. Code Ann. 47-18-109",
+      "Tenn. Code Ann. 28-3-109 statute of limitations",
+      "Tennessee treble damages",
+      "Nashville freelance demand letter",
+      "Memphis demand letter",
+      "Chattanooga demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
