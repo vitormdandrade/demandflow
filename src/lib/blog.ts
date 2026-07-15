@@ -610,6 +610,30 @@ export const BLOG_POSTS: BlogPost[] = [
       "Chattanooga demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-colorado",
+    title: "Demand Letter Laws in Colorado: $7,500 Small Claims, 8% Interest & CCPA Treble Damages",
+    description:
+      "Colorado-specific rules for demand letters — the $7,500 small claims limit (C.R.S. § 13-6-403), 8% statutory interest on judgments (C.R.S. § 5-12-102), a 3-6 year statute of limitations depending on contract type, and the powerful Colorado Consumer Protection Act (C.R.S. § 6-1-113) with treble damages plus mandatory attorney fees — plus what every Denver, Boulder, and Colorado Springs freelancer needs to know before sending a demand letter in the Centennial State.",
+    excerpt:
+      "Colorado gives freelancers a $7,500 small claims track, 8% interest, and a Consumer Protection Act with treble damages plus mandatory attorney fees. Here's how Colorado freelancers write a demand letter that leverages the CCPA, handles different statutes of limitations for written vs. oral contracts, and gets results in Denver, Boulder, and beyond.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-15",
+    keywords: [
+      "demand letter Colorado",
+      "Colorado demand letter laws",
+      "CO small claims limit",
+      "Colorado Consumer Protection Act",
+      "C.R.S. 6-1-113",
+      "C.R.S. 5-12-102 interest",
+      "C.R.S. 13-6-403",
+      "Colorado treble damages",
+      "Denver freelance demand letter",
+      "Boulder demand letter",
+      "Colorado Springs demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
