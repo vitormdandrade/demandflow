@@ -634,6 +634,28 @@ export const BLOG_POSTS: BlogPost[] = [
       "Colorado Springs demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-indiana",
+    title: "Demand Letter Laws in Indiana: $6,000 Small Claims, 8% Interest & IDCSA Treble Damages",
+    description:
+      "Indiana-specific rules for demand letters — the $6,000 small claims limit ($8,000 in Indianapolis), 8% statutory interest (IC 24-4.6-1-101), a 6-year statute of limitations for written contracts (IC 34-11-2-9), and the Indiana Deceptive Consumer Sales Act (IC 24-5-0.5-1) that can treble your damages plus attorney fees.",
+    excerpt:
+      "Indiana gives freelancers a $6,000 small claims limit ($8,000 in Indianapolis), 8% statutory interest, and a Deceptive Consumer Sales Act that can triple damages. Here's how to write an Indiana demand letter that uses every Hoosier State tool available.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-15",
+    keywords: [
+      "demand letter Indiana",
+      "Indiana demand letter laws",
+      "Indiana small claims limit",
+      "Indiana IDCSA",
+      "IC 24-5-0.5-1 treble damages",
+      "Indiana statutory interest 8%",
+      "Indiana 6-year statute of limitations",
+      "Indianapolis small claims limit",
+      "Indiana freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
