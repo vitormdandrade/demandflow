@@ -656,6 +656,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Indiana freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-oregon",
+    title: "Demand Letter Laws in Oregon: $10,000 Small Claims, 9% Interest & UTPA Treble Damages",
+    description:
+      "Oregon-specific rules for demand letters — the $10,000 small claims limit (ORS 46.405), 9% statutory interest on judgments (ORS 82.010), a 6-year statute of limitations for written contracts (ORS 12.080), and the Oregon Unlawful Trade Practices Act (ORS 646.608) with treble damages — plus what every Portland, Eugene, and Bend freelancer needs to know before sending a demand letter in the Beaver State.",
+    excerpt:
+      "Oregon gives freelancers a $10,000 small claims limit, 9% statutory interest — one of the highest rates on the West Coast — and an Unlawful Trade Practices Act that can triple damages. Here's how Oregon freelancers write a demand letter that leverages every tool the Beaver State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-16",
+    keywords: [
+      "demand letter Oregon",
+      "Oregon demand letter laws",
+      "OR small claims limit",
+      "Oregon Unlawful Trade Practices Act",
+      "ORS 646.608",
+      "ORS 82.010 interest",
+      "ORS 12.080 statute of limitations",
+      "Oregon treble damages",
+      "Portland freelance demand letter",
+      "Oregon 9% statutory interest",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
