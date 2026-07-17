@@ -725,6 +725,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Nevada statutory interest",
     ],
   },
+  {
+    slug: "demand-letter-laws-connecticut",
+    title: "Demand Letter Laws in Connecticut: $5,000 Small Claims, 6%–12% Interest & CUTPA Treble Damages",
+    description:
+      "Connecticut-specific rules for demand letters — the $5,000 small claims limit in the Superior Court Small Claims Session (C.G.S. § 51-15), 6%–12% statutory interest (C.G.S. § 37-3a), a 6-year statute of limitations for written contracts (C.G.S. § 52-576), and the Connecticut Unfair Trade Practices Act (CUTPA, C.G.S. § 42-110a) that can award treble damages plus attorney fees — plus what every Stamford, Hartford, and New Haven freelancer needs to know before sending a demand letter in the Constitution State.",
+    excerpt:
+      "Connecticut combines a $5,000 small claims limit with CUTPA — the state's powerful unfair trade practices law that can triple damages — and a freelance economy dense with hedge fund contractors, insurance consultants, and biotech freelancers. Here's how Connecticut freelancers write a demand letter that commands attention in Fairfield County and beyond.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-17",
+    keywords: [
+      "demand letter Connecticut",
+      "Connecticut demand letter laws",
+      "CT small claims limit",
+      "Connecticut Unfair Trade Practices Act",
+      "CUTPA",
+      "C.G.S. 42-110a",
+      "Connecticut treble damages",
+      "Stamford freelance demand letter",
+      "Hartford demand letter",
+      "Connecticut statutory interest",
+      "C.G.S. 52-576",
+      "C.G.S. 37-3a",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
