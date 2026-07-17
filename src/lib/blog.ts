@@ -679,6 +679,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "Oregon 9% statutory interest",
     ],
   },
+  {
+    slug: "demand-letter-laws-maryland",
+    title: "Demand Letter Laws in Maryland: $5,000 Small Claims, 6% Interest & MCPA Treble Damages",
+    description:
+      "Maryland-specific rules for demand letters — the $5,000 small claims limit (Md. Code, Cts. & Jud. Proc. § 4-405), 6% prejudgment interest (Md. Code, Cts. & Jud. Proc. § 11-106), a tight 3-year statute of limitations for written contracts (Md. Code, Cts. & Jud. Proc. § 5-101), and the Maryland Consumer Protection Act (Md. Code, Comm. Law § 13-301) with treble damages plus attorney fees — plus what every Baltimore, Annapolis, and DC-corridor freelancer needs to know before sending a demand letter in the Free State.",
+    excerpt:
+      "Maryland gives freelancers a $5,000 small claims track, 6% interest, and the MCPA's treble damages — but only 3 years to act, the tightest statute of limitations on the East Coast. Here's how Maryland freelancers write a demand letter that preserves every legal tool before the clock runs out.",
+    category: "Costs & Legal",
+    readMins: 8,
+    date: "2026-07-16",
+    keywords: [
+      "demand letter Maryland",
+      "Maryland demand letter laws",
+      "MD small claims limit",
+      "Maryland Consumer Protection Act",
+      "Md. Code Comm. Law 13-301",
+      "Md. Code Cts. Jud. Proc. 11-106",
+      "Maryland treble damages",
+      "Maryland 3-year statute of limitations",
+      "Baltimore freelance demand letter",
+      "MD prejudgment interest 6%",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
