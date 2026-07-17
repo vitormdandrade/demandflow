@@ -775,6 +775,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Birmingham freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-minnesota",
+    title: "Demand Letter Laws in Minnesota: $15,000 Small Claims, Consumer Fraud Act Treble Damages & 6% Interest",
+    description:
+      "Minnesota-specific rules for demand letters — the $15,000 small claims limit in Conciliation Court (Minn. Stat. § 491A.01), 6% statutory interest on judgments (Minn. Stat. § 549.09), a 6-year statute of limitations for written contracts (Minn. Stat. § 541.05), and the Minnesota Consumer Fraud Act (Minn. Stat. § 325F.69) that can award treble damages plus attorney fees for deceptive trade practices — a powerful combination for freelancers dealing with non-paying clients in the Twin Cities and beyond.",
+    excerpt:
+      "Minnesota gives freelancers one of the highest small claims limits in the country ($15,000), a robust Consumer Fraud Act with treble damages, and a 6% statutory interest rate — plus a freelance economy anchored by Fortune 500 HQs, healthcare innovation, and a booming tech scene. Here's how Minnesota freelancers write a demand letter that commands attention from Minneapolis to Rochester.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-17",
+    keywords: [
+      "demand letter Minnesota",
+      "Minnesota demand letter laws",
+      "Minnesota small claims limit",
+      "Minnesota Conciliation Court",
+      "Minn. Stat. 491A.01",
+      "Minnesota Consumer Fraud Act",
+      "Minn. Stat. 325F.69",
+      "Minnesota treble damages",
+      "Minn. Stat. 549.09",
+      "Minn. Stat. 541.05",
+      "Minnesota statutory interest 6%",
+      "Minneapolis freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
