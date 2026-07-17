@@ -702,6 +702,29 @@ export const BLOG_POSTS: BlogPost[] = [
       "MD prejudgment interest 6%",
     ],
   },
+  {
+    slug: "demand-letter-laws-nevada",
+    title: "Demand Letter Laws in Nevada: $10,000 Small Claims, Prime + 2% Interest & NRS 598 Deceptive Trade Practices",
+    description:
+      "Nevada-specific rules for demand letters — the $10,000 small claims limit in Justice Court (NRS 73.010), post-judgment interest at the prime rate plus 2% (NRS 17.130, NRS 99.040), a 6-year statute of limitations for written contracts (NRS 11.190), and the Nevada Deceptive Trade Practices Act (NRS 598.0903–598.0999) that can award treble damages plus attorney fees — plus what every Las Vegas, Reno, and Henderson freelancer needs to know before sending a demand letter in the Silver State.",
+    excerpt:
+      "Nevada combines one of the country's highest small claims limits ($10,000) with a powerful Deceptive Trade Practices Act that can triple damages — and Las Vegas alone has over 80,000 independent workers. Here's how Nevada freelancers write a demand letter that gets attention in a state built on high-stakes negotiations.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-17",
+    keywords: [
+      "demand letter Nevada",
+      "Nevada demand letter laws",
+      "NV small claims limit",
+      "Nevada Deceptive Trade Practices Act",
+      "NRS 598",
+      "NRS 73.010",
+      "Nevada treble damages",
+      "Las Vegas freelance demand letter",
+      "Reno demand letter",
+      "Nevada statutory interest",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
