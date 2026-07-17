@@ -750,6 +750,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "C.G.S. 37-3a",
     ],
   },
+  {
+    slug: "demand-letter-laws-alabama",
+    title: "Demand Letter Laws in Alabama: $6,000 Small Claims, ADTPA Treble Damages & 6% Interest",
+    description:
+      "Alabama-specific rules for demand letters — the $6,000 small claims limit in District Court (Ala. Code § 12-12-31), 6% statutory interest on judgments (Ala. Code § 8-8-1), a 6-year statute of limitations for written contracts (Ala. Code § 6-2-34), and the Alabama Deceptive Trade Practices Act (ADTPA, Ala. Code § 8-19-1) that can award treble damages plus attorney fees for deceptive business practices — a powerful tool for freelancers dealing with non-paying clients.",
+    excerpt:
+      "Alabama gives freelancers a $6,000 small claims track, a powerful Deceptive Trade Practices Act with treble damages, and a 6-year statute of limitations — one of the longest in the Southeast. Here's how Alabama freelancers write a demand letter that uses every legal tool the Yellowhammer State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-17",
+    keywords: [
+      "demand letter Alabama",
+      "Alabama demand letter laws",
+      "Alabama small claims limit",
+      "Alabama District Court",
+      "Ala. Code 12-12-31",
+      "Alabama Deceptive Trade Practices Act",
+      "ADTPA demand letter",
+      "Ala. Code 8-19-1",
+      "Alabama treble damages",
+      "Ala. Code 6-2-34",
+      "Alabama statutory interest 6%",
+      "Birmingham freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
