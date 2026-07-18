@@ -800,6 +800,32 @@ export const BLOG_POSTS: BlogPost[] = [
       "Minneapolis freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-mississippi",
+    title: "Demand Letter Laws in Mississippi: $3,500 Small Claims, 8% Interest & Open Account Statute",
+    description:
+      "Mississippi-specific rules for demand letters — the $3,500 small claims limit in Justice Court (Miss. Code Ann. § 9-11-9), 8% statutory interest on judgments (Miss. Code Ann. § 75-17-7), a 3-year statute of limitations for written contracts and open accounts (Miss. Code Ann. § 15-1-29), and the Mississippi Consumer Protection Act (Miss. Code Ann. § 75-24-1) as leverage — what freelancers in Jackson, Gulfport, and across the Magnolia State need to know to get paid.",
+    excerpt:
+      "Mississippi freelancers have a unique advantage — the 'open account' statute (Miss. Code Ann. § 15-1-29) that treats ongoing freelance relationships as open credit accounts, giving you stronger legal footing, plus an 8% statutory interest rate and the threat of the Mississippi Consumer Protection Act. Here's how to write a demand letter that gets results from Jackson to the Gulf Coast.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-17",
+    keywords: [
+      "demand letter Mississippi",
+      "Mississippi demand letter laws",
+      "Mississippi small claims limit",
+      "Mississippi Justice Court",
+      "Miss. Code Ann. 9-11-9",
+      "Mississippi open account statute",
+      "Miss. Code Ann. 15-1-29",
+      "Mississippi Consumer Protection Act",
+      "Miss. Code Ann. 75-24-1",
+      "Mississippi statutory interest 8%",
+      "Miss. Code Ann. 75-17-7",
+      "Jackson freelance demand letter",
+      "Gulfport freelance demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
