@@ -852,6 +852,30 @@ export const BLOG_POSTS: BlogPost[] = [
       "Springfield Missouri freelancer",
     ],
   },
+  {
+    slug: "demand-letter-laws-wisconsin",
+    title: "Demand Letter Laws in Wisconsin: $10K Small Claims, 12% Interest & DTPA Treble Damages",
+    description:
+      "Wisconsin-specific rules for demand letters — the $10,000 small claims limit (Wis. Stat. § 799.01), 12% statutory interest on liquidated contract claims after demand (Wis. Stat. § 138.04), a 6-year statute of limitations for written contracts (Wis. Stat. § 893.43), and the Wisconsin Deceptive Trade Practices Act (Wis. Stat. § 100.18) with treble damages exposure — plus what Madison, Milwaukee, and Green Bay freelancers need to know before demanding payment.",
+    excerpt:
+      "Wisconsin gives freelancers a $10,000 small claims limit, one of the highest statutory interest rates in the country at 12%, and one of the oldest and most plaintiff-friendly deceptive trade practices statutes in the U.S. Here's how Wisconsin freelancers write a demand letter that makes non-paying clients do the math — and reach for the checkbook.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-18",
+    keywords: [
+      "demand letter Wisconsin",
+      "Wisconsin demand letter laws",
+      "Wisconsin small claims limit",
+      "Wisconsin Deceptive Trade Practices Act",
+      "Wis. Stat. 100.18",
+      "Wis. Stat. 138.04 interest",
+      "Wis. Stat. 893.43 statute of limitations",
+      "Wisconsin treble damages",
+      "Madison freelance demand letter",
+      "Milwaukee demand letter",
+      "Wisconsin 12% statutory interest",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
