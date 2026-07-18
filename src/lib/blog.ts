@@ -826,6 +826,32 @@ export const BLOG_POSTS: BlogPost[] = [
       "Gulfport freelance demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-missouri",
+    title: "Demand Letter Laws in Missouri: $5K Small Claims, 9% Interest & MMPA Treble Damages",
+    description:
+      "Missouri-specific rules for demand letters — the $5,000 small claims limit in Associate Circuit Court (Mo. Rev. Stat. § 482.305), 9% prejudgment interest on qualifying demanded debts (Mo. Rev. Stat. § 408.020), a 10-year statute of limitations for qualifying written contracts (Mo. Rev. Stat. § 516.110), and the Missouri Merchandising Practices Act (Mo. Rev. Stat. § 407.020) with potential treble-damages exposure — plus what St. Louis, Kansas City, and Springfield freelancers should know before demanding payment.",
+    excerpt:
+      "Missouri gives freelancers a $5,000 small claims track, 9% prejudgment interest on qualifying demanded debts, a 10-year window for qualifying written-payment obligations, and MMPA leverage when a covered consumer transaction involves deception. Here's how to write a demand letter that uses those tools without overclaiming.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-18",
+    keywords: [
+      "demand letter Missouri",
+      "Missouri demand letter laws",
+      "Missouri small claims limit",
+      "Missouri Associate Circuit Court",
+      "Mo. Rev. Stat. 482.305",
+      "Missouri Merchandising Practices Act",
+      "Mo. Rev. Stat. 407.020",
+      "Missouri treble damages",
+      "Mo. Rev. Stat. 408.020 prejudgment interest",
+      "Mo. Rev. Stat. 516.110 statute of limitations",
+      "St. Louis freelance demand letter",
+      "Kansas City demand letter",
+      "Springfield Missouri freelancer",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
