@@ -876,6 +876,58 @@ export const BLOG_POSTS: BlogPost[] = [
       "Wisconsin 12% statutory interest",
     ],
   },
+  {
+    slug: "demand-letter-laws-wyoming",
+    title: "Demand Letter Laws in Wyoming: $6,000 Small Claims, 7% Interest & 10-Year Statute of Limitations",
+    description:
+      "Wyoming-specific rules for demand letters — the $6,000 small claims limit in Circuit Court (Wyo. Stat. § 1-21-201), 7% statutory interest on judgments (Wyo. Stat. § 40-14-106(e)), an exceptional 10-year statute of limitations for written contracts (Wyo. Stat. § 1-3-105), and the Wyoming Consumer Protection Act (Wyo. Stat. § 40-12-101) — plus what every Cheyenne, Jackson Hole, and Casper freelancer needs to know before sending a demand letter in the Cowboy State.",
+    excerpt:
+      "Wyoming gives freelancers one of the longest statute of limitations in the country (10 years on written contracts), a $6,000 small claims track, and a 7% statutory interest rate. Here's how Wyoming freelancers write a demand letter that uses every legal tool the Cowboy State provides — from Jackson Hole to Cheyenne.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-18",
+    keywords: [
+      "demand letter Wyoming",
+      "Wyoming demand letter laws",
+      "Wyoming small claims limit",
+      "Wyoming Circuit Court",
+      "Wyo. Stat. 1-21-201",
+      "Wyoming Consumer Protection Act",
+      "Wyo. Stat. 40-12-101",
+      "Wyo. Stat. 40-14-106 interest",
+      "Wyo. Stat. 1-3-105 statute of limitations",
+      "Wyoming statutory interest 7%",
+      "Cheyenne freelance demand letter",
+      "Jackson Hole demand letter",
+      "Casper freelancer",
+    ],
+  },
+  {
+    slug: "demand-letter-laws-kentucky",
+    title: "Demand Letter Laws in Kentucky: $2,500 Small Claims, 8% Interest & KCPA Treble Damages",
+    description:
+      "Kentucky-specific rules for demand letters — the $2,500 small claims limit in District Court (KRS 24A.230), 8% statutory interest on judgments (KRS 360.010), an exceptional 15-year statute of limitations for written contracts (KRS 413.090), and the Kentucky Consumer Protection Act (KRS 367.170) with treble damages — plus what every Louisville, Lexington, and Bowling Green freelancer needs to know before sending a demand letter in the Bluegrass State.",
+    excerpt:
+      "Kentucky gives freelancers one of the longest statutes of limitations in the country (15 years on written contracts), an 8% statutory interest rate, and a Consumer Protection Act with treble damages — but the small claims limit is only $2,500. Here's how Kentucky freelancers write a demand letter that uses every legal tool the Bluegrass State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-19",
+    keywords: [
+      "demand letter Kentucky",
+      "Kentucky demand letter laws",
+      "KY small claims limit",
+      "Kentucky District Court",
+      "KRS 24A.230",
+      "Kentucky Consumer Protection Act",
+      "KRS 367.170",
+      "KRS 360.010 interest",
+      "KRS 413.090 statute of limitations",
+      "Kentucky treble damages",
+      "Louisville freelance demand letter",
+      "Lexington demand letter",
+      "Bowling Green freelancer",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
