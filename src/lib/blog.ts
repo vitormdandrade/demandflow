@@ -928,6 +928,33 @@ export const BLOG_POSTS: BlogPost[] = [
       "Bowling Green freelancer",
     ],
   },
+  {
+    slug: "demand-letter-laws-louisiana",
+    title: "Demand Letter Laws in Louisiana: $5K Small Claims, Mise en Demeure & LUTPA Treble Damages",
+    description:
+      "Louisiana-specific rules for demand letters — the $5,000 small claims limit in City and Justice of the Peace Courts, the 10-year prescriptive period for written contracts (La. Civ. Code art. 3499), the Louisiana Unfair Trade Practices Act (La. R.S. 51:1401) with treble damages, the mise en demeure requirement under La. Civ. Code art. 1989, and attorney fee recovery on open accounts under La. R.S. 9:2781 — plus what every New Orleans, Baton Rouge, and Shreveport freelancer needs to know before sending a demand letter in Louisiana's unique civil law system.",
+    excerpt:
+      "Louisiana is the only state governed by the Napoleonic Code, not English common law — and that changes the rules for demand letters. Here's what Louisiana freelancers need to know about mise en demeure, the 10-year prescriptive period, and LUTPA treble damages before sending a demand letter.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-20",
+    keywords: [
+      "demand letter Louisiana",
+      "Louisiana demand letter laws",
+      "Louisiana small claims limit",
+      "Louisiana Unfair Trade Practices Act",
+      "La. R.S. 51:1401",
+      "mise en demeure Louisiana",
+      "La. Civ. Code art. 1989",
+      "La. Civ. Code art. 3499",
+      "La. R.S. 9:2781 open account",
+      "New Orleans freelance demand letter",
+      "Baton Rouge demand letter",
+      "Louisiana treble damages",
+      "Shreveport freelancer",
+      "Louisiana civil law demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
