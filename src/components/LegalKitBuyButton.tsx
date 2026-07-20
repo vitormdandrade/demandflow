@@ -85,6 +85,18 @@ export default function LegalKitBuyButton() {
           className="w-full rounded-lg border border-slate-300 bg-slate-50/50 px-3.5 py-2.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/30 disabled:opacity-60"
         />
       </div>
+      {/* Trust signals */}
+      <div className="flex items-center justify-center gap-3 text-xs text-slate-500 mb-1">
+        <span className="inline-flex items-center gap-1">
+          🔒 SSL Secure
+        </span>
+        <span className="inline-flex items-center gap-1">
+          💳 Stripe
+        </span>
+        <span className="inline-flex items-center gap-1">
+          ✅ Instant Access
+        </span>
+      </div>
       <button
         type="submit"
         disabled={loading}
@@ -92,6 +104,9 @@ export default function LegalKitBuyButton() {
       >
         {loading ? "Redirecting…" : "Get the Legal Kit — $79"}
       </button>
+      <p className="text-center text-xs text-slate-400 mt-2">
+        🔒 256-bit SSL encrypted · Instant PDF download · 30-day money-back guarantee
+      </p>
       {error && <p className="text-center text-sm text-red-600">{error}</p>}
     </form>
   );
