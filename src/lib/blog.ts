@@ -980,6 +980,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Brattleboro freelancer",
     ],
   },
+  {
+    slug: "demand-letter-laws-south-carolina",
+    title: "Demand Letter Laws in South Carolina: $7,500 Small Claims, 8.75% Interest & SCUTPA Treble Damages",
+    description:
+      "South Carolina-specific rules for demand letters — the $7,500 small claims limit in Magistrate's Court, 8.75% statutory interest (S.C. Code Ann. § 34-31-20), a 3-year statute of limitations for written contracts (S.C. Code Ann. § 15-3-530), and the South Carolina Unfair Trade Practices Act that can triple your damages plus attorney fees (S.C. Code Ann. § 39-5-140).",
+    excerpt:
+      "South Carolina has a $7,500 small claims limit, an 8.75% statutory interest rate, and a powerful Unfair Trade Practices Act that mandates treble damages. But the 3-year statute of limitations means Palmetto State freelancers must act fast.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-21",
+    keywords: [
+      "demand letter South Carolina",
+      "South Carolina demand letter laws",
+      "SC small claims limit",
+      "SC Magistrate's Court",
+      "S.C. Code Ann. 34-31-20",
+      "South Carolina Unfair Trade Practices Act",
+      "SCUTPA treble damages",
+      "S.C. Code Ann. 39-5-140",
+      "S.C. Code Ann. 15-3-530",
+      "Charleston freelance demand letter",
+      "Columbia freelancer",
+      "Greenville demand letter",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
