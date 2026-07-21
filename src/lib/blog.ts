@@ -955,6 +955,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Louisiana civil law demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-vermont",
+    title: "Demand Letter Laws in Vermont: $5,000 Small Claims, 12% Interest & VCPA Treble Damages",
+    description:
+      "Vermont-specific rules for demand letters — the $5,000 small claims limit in Superior Court (12 V.S.A. § 5531), 12% statutory interest on judgments (9 V.S.A. § 41a), a 6-year statute of limitations for written contracts (12 V.S.A. § 511), and the Vermont Consumer Protection Act (9 V.S.A. § 2451) with treble damages plus attorney fees — plus what every Burlington, Montpelier, and Brattleboro freelancer needs to know before sending a demand letter in the Green Mountain State.",
+    excerpt:
+      "Vermont gives freelancers one of the highest statutory interest rates in the country (12%), a Consumer Protection Act that can triple your damages, and a $5,000 small claims limit. Here's how Vermont freelancers write a demand letter that uses every legal tool the Green Mountain State provides — from Burlington to Brattleboro.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-21",
+    keywords: [
+      "demand letter Vermont",
+      "Vermont demand letter laws",
+      "Vermont small claims limit",
+      "Vermont Consumer Protection Act",
+      "9 V.S.A. 2451",
+      "12 V.S.A. 5531",
+      "Vermont treble damages",
+      "9 V.S.A. 41a interest",
+      "Vermont statutory interest 12%",
+      "Burlington freelance demand letter",
+      "Montpelier demand letter",
+      "Brattleboro freelancer",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
