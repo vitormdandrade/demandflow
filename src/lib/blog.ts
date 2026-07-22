@@ -1031,6 +1031,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Maine District Court small claims",
     ],
   },
+  {
+    slug: "demand-letter-laws-iowa",
+    title: "Demand Letter Laws in Iowa: $6,500 Small Claims, 5% Prejudgment Interest & the Consumer Fraud Act",
+    description:
+      "Iowa-specific rules for demand letters — the $6,500 small claims limit (Iowa Code § 631.1), 5% prejudgment interest on written contracts (Iowa Code § 535.2) plus post-judgment interest at the federal funds rate + 2% (Iowa Code § 535.3), a 10-year statute of limitations for written contracts (Iowa Code § 614.1(5)), and the Iowa Consumer Fraud Act (Iowa Code § 714H) with a private right of action for actual damages and potential attorney-fee recovery.",
+    excerpt:
+      "Iowa gives freelancers a 10-year runway to pursue unpaid invoices — one of the longest SOLs in the country — plus a Consumer Fraud Act that can shift attorney fees to the non-paying client. Here's how Iowa freelancers write a demand letter that uses the $6,500 small claims limit and statutory interest to get results without going to court.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-22",
+    keywords: [
+      "demand letter Iowa",
+      "Iowa demand letter laws",
+      "Iowa small claims limit",
+      "Iowa Consumer Fraud Act",
+      "Iowa Code 714H",
+      "Iowa Code 535.2 interest",
+      "Iowa Code 631.1 small claims",
+      "Iowa 10-year statute of limitations",
+      "Iowa Code 614.1",
+      "Des Moines freelance demand letter",
+      "Cedar Rapids freelancer",
+      "Iowa District Court small claims",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
