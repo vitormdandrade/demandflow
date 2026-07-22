@@ -1005,6 +1005,32 @@ export const BLOG_POSTS: BlogPost[] = [
       "Greenville demand letter",
     ],
   },
+  {
+    slug: "demand-letter-laws-maine",
+    title: "Demand Letter Laws in Maine: $6,000 Small Claims, UTPA 30-Day Notice & 6% Prejudgment Interest",
+    description:
+      "Maine-specific rules for demand letters — the $6,000 small claims limit (14 M.R.S.A. § 5252), 6% prejudgment interest plus post-judgment at 1-year T-bill + 6% (14 M.R.S.A. § 1602-B), a 6-year statute of limitations for written contracts (14 M.R.S.A. § 752), and the Maine Unfair Trade Practices Act (5 M.R.S.A. § 207) with mandatory 30-day pre-suit demand letter requirement, treble damages, and attorney fee-shifting under 5 M.R.S.A. § 213.",
+    excerpt:
+      "Maine has a unique requirement that can trip up freelancers: the UTPA demands a 30-day pre-suit demand letter before you can file a claim. But it also gives you treble damages, fee-shifting, and a post-judgment interest rate that jumps to 10%+. Here's how Maine freelancers write a demand letter that satisfies the mandatory notice and puts maximum pressure on non-paying clients.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-21",
+    keywords: [
+      "demand letter Maine",
+      "Maine demand letter laws",
+      "Maine small claims limit",
+      "Maine UTPA",
+      "5 M.R.S.A. 207",
+      "5 M.R.S.A. 213 pre-suit demand",
+      "Maine 30-day demand letter",
+      "14 M.R.S.A. 5252",
+      "14 M.R.S.A. 1602-B interest",
+      "Maine treble damages",
+      "Portland freelance demand letter",
+      "Bar Harbor freelancer",
+      "Maine District Court small claims",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
