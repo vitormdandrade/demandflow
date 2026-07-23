@@ -1056,6 +1056,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Iowa District Court small claims",
     ],
   },
+  {
+    slug: "demand-letter-laws-idaho",
+    title: "Demand Letter Laws in Idaho: $5,000 Small Claims, 12% Interest & Idaho Consumer Protection Act",
+    description:
+      "Idaho-specific rules for demand letters — the $5,000 small claims limit in Magistrate's Division (Idaho Code § 1-2301), 12% statutory interest on judgments (Idaho Code § 28-22-104), a 5-year statute of limitations for written contracts (Idaho Code § 5-216), and the Idaho Consumer Protection Act (Idaho Code § 48-601) with actual damages plus attorney fees — plus what every Boise, Coeur d'Alene, and Idaho Falls freelancer needs to know before sending a demand letter in the Gem State.",
+    excerpt:
+      "Idaho combines a $5,000 small claims limit with one of the nation's highest judgment interest rates at 12%, a 5-year statute of limitations, and a Consumer Protection Act that awards attorney fees to prevailing plaintiffs. Here's how Idaho freelancers write a demand letter that leverages every tool the Gem State provides — from Boise's growing tech corridor to Coeur d'Alene's freelance community.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-23",
+    keywords: [
+      "demand letter Idaho",
+      "Idaho demand letter laws",
+      "Idaho small claims limit",
+      "Idaho Code 1-2301",
+      "Idaho Consumer Protection Act",
+      "Idaho Code 48-601",
+      "Idaho statutory interest 12%",
+      "Idaho Code 28-22-104",
+      "Boise freelance demand letter",
+      "Coeur d'Alene freelancer",
+      "Idaho Falls demand letter",
+      "Idaho magistrate division",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
