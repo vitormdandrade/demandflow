@@ -1081,6 +1081,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Idaho magistrate division",
     ],
   },
+  {
+    slug: "demand-letter-laws-nebraska",
+    title: "Demand Letter Laws in Nebraska: $3,900 Small Claims, 6% Interest & NCPA Attorney Fees",
+    description:
+      "Nebraska-specific rules for demand letters — the $3,900 small claims limit in County Court (Neb. Rev. Stat. § 25-2802), 6% pre-judgment interest (Neb. Rev. Stat. § 45-103), post-judgment interest at 2% above federal funds rate (Neb. Rev. Stat. § 45-104), a 5-year statute of limitations for written contracts (Neb. Rev. Stat. § 25-205), and the Nebraska Consumer Protection Act (Neb. Rev. Stat. § 59-1601) with attorney fee recovery — plus what every Omaha, Lincoln, and Grand Island freelancer needs to know before sending a demand letter in the Cornhusker State.",
+    excerpt:
+      "Nebraska gives freelancers a $3,900 small claims limit with a $31 filing fee, 6% pre-judgment interest, a 5-year statute of limitations, and a Consumer Protection Act that can shift attorney fees to the non-paying client. Here's how Nebraska freelancers write a demand letter that uses every legal tool the Cornhusker State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-23",
+    keywords: [
+      "demand letter Nebraska",
+      "Nebraska demand letter laws",
+      "Nebraska small claims limit",
+      "Nebraska Consumer Protection Act",
+      "Neb. Rev. Stat. 59-1601",
+      "Neb. Rev. Stat. 25-2802",
+      "Nebraska 6% interest",
+      "Neb. Rev. Stat. 45-103",
+      "Nebraska attorney fee recovery",
+      "Omaha freelance demand letter",
+      "Lincoln freelancer",
+      "Nebraska County Court",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
