@@ -1106,6 +1106,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Nebraska County Court",
     ],
   },
+  {
+    slug: "demand-letter-laws-oklahoma",
+    title: "Demand Letter Laws in Oklahoma: $10,000 Small Claims, 6% Interest & OCPA Treble Damages",
+    description:
+      "Oklahoma-specific rules for demand letters — the $10,000 small claims limit (Okla. Stat. tit. 12, § 1751), 6% pre-judgment interest on liquidated demands (Okla. Stat. tit. 15, § 266), post-judgment interest at the U.S. Treasury rate plus 2% (Okla. Stat. tit. 12, § 727), a 5-year statute of limitations for written contracts (Okla. Stat. tit. 12, § 95), and the Oklahoma Consumer Protection Act (Okla. Stat. tit. 15, § 751) with treble damages plus attorney fees for deceptive trade practices — plus what every Oklahoma City, Tulsa, and Norman freelancer needs to know before sending a demand letter in the Sooner State.",
+    excerpt:
+      "Oklahoma gives freelancers a $10,000 small claims limit — one of the highest in the region — a Consumer Protection Act that can triple damages, and a 5-year statute of limitations. Here's how Oklahoma freelancers write a demand letter that uses every legal tool the Sooner State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-23",
+    keywords: [
+      "demand letter Oklahoma",
+      "Oklahoma demand letter laws",
+      "Oklahoma small claims limit",
+      "Oklahoma Consumer Protection Act",
+      "Okla. Stat. tit. 15 § 751",
+      "Okla. Stat. tit. 12 § 1751",
+      "Oklahoma treble damages",
+      "Oklahoma statutory interest 6%",
+      "Oklahoma City freelance demand letter",
+      "Tulsa freelancer",
+      "Oklahoma County Court",
+      "Okla. Stat. tit. 12 § 95",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
