@@ -1131,6 +1131,31 @@ export const BLOG_POSTS: BlogPost[] = [
       "Okla. Stat. tit. 12 § 95",
     ],
   },
+  {
+    slug: "demand-letter-laws-arkansas",
+    title: "Demand Letter Laws in Arkansas: $5,000 Small Claims, 6% Interest & ADTPA Attorney Fees",
+    description:
+      "Arkansas-specific rules for demand letters — the $5,000 small claims limit in District Court (Ark. Code Ann. § 16-17-704), 6% pre-judgment interest (Ark. Code Ann. § 16-65-114), 10% post-judgment interest, a 5-year statute of limitations for written contracts (Ark. Code Ann. § 16-56-111), and the Arkansas Deceptive Trade Practices Act (Ark. Code Ann. § 4-88-101) with a $200 statutory minimum damage floor and attorney fee recovery — plus what every Fayetteville, Little Rock, and Bentonville freelancer needs to know before sending a demand letter in the Natural State.",
+    excerpt:
+      "Arkansas gives freelancers a $5,000 small claims limit, a Deceptive Trade Practices Act with a $200 statutory minimum and attorney fees, and 10% post-judgment interest — one of the highest in the region. Here's how Arkansas freelancers use every legal tool the Natural State provides to get paid.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-24",
+    keywords: [
+      "demand letter Arkansas",
+      "Arkansas demand letter laws",
+      "Arkansas small claims limit",
+      "Arkansas Deceptive Trade Practices Act",
+      "Ark. Code Ann. § 4-88-101",
+      "Ark. Code Ann. § 16-17-704",
+      "Arkansas attorney fee recovery",
+      "Arkansas statutory interest 6%",
+      "Ark. Code Ann. § 16-56-111",
+      "Fayetteville freelance demand letter",
+      "Little Rock freelancer",
+      "Arkansas District Court",
+    ],
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {
