@@ -1132,6 +1132,33 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "demand-letter-laws-kansas",
+    title: "Demand Letter Laws in Kansas: $4,000 Small Claims, 10% Interest & KCPA Treble Damages",
+    description:
+      "Kansas-specific rules for demand letters — the $4,000 small claims limit (K.S.A. 61-2703), 10% pre-judgment and post-judgment interest on liquidated claims (K.S.A. 16-201, K.S.A. 16-204), a 5-year statute of limitations for written contracts (K.S.A. 60-511), and the Kansas Consumer Protection Act (K.S.A. 50-623 et seq.) with treble damages plus attorney fees — plus what every Wichita, Kansas City (KS), Topeka, and Lawrence freelancer needs to know before sending a demand letter in the Sunflower State.",
+    excerpt:
+      "Kansas gives freelancers a $4,000 small claims limit, 10% statutory interest — one of the highest rates in the Midwest — and a powerful Consumer Protection Act that can triple damages plus attorney fees. Here's how Kansas freelancers write a demand letter that uses every legal tool the Sunflower State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-07-24",
+    keywords: [
+      "demand letter Kansas",
+      "Kansas demand letter laws",
+      "Kansas small claims limit",
+      "Kansas Consumer Protection Act",
+      "K.S.A. 50-623",
+      "K.S.A. 61-2703",
+      "Kansas statutory interest 10%",
+      "K.S.A. 16-201",
+      "Kansas treble damages",
+      "Wichita freelance demand letter",
+      "Kansas City KS freelancer",
+      "Kansas District Court",
+      "Topeka demand letter",
+      "Lawrence freelancer",
+    ],
+  },
+  {
     slug: "demand-letter-laws-arkansas",
     title: "Demand Letter Laws in Arkansas: $5,000 Small Claims, 6% Interest & ADTPA Attorney Fees",
     description:
