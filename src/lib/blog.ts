@@ -1159,6 +1159,34 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "demand-letter-laws-utah",
+    title: "Demand Letter Laws in Utah: $20,000 Small Claims, 10% Interest & UCSPA Damages",
+    description:
+      "Utah-specific rules for demand letters — the $20,000 small claims limit in Justice Court (Utah Code § 78A-8-102), 10% pre-judgment interest on breach of contract (Utah Code § 15-1-1), annual post-judgment interest (Utah Code § 15-1-4), a 6-year statute of limitations for written contracts (Utah Code § 78B-2-309), and the Utah Consumer Sales Practices Act (Utah Code § 13-11-1 et seq.) with the greater of actual damages or $2,000 plus attorney fees — plus what every Salt Lake City, Provo, Lehi, Ogden, and Park City freelancer needs to know before sending a demand letter in the Beehive State.",
+    excerpt:
+      "Utah gives freelancers a $20,000 small claims limit — among the highest in the nation — plus 10% statutory interest and a Consumer Sales Practices Act with a $2,000 statutory damage floor and attorney fees. Here's how Utah freelancers write a demand letter that uses every legal tool the Beehive State provides.",
+    category: "Costs & Legal",
+    readMins: 9,
+    date: "2026-08-18",
+    keywords: [
+      "demand letter Utah",
+      "Utah demand letter laws",
+      "Utah small claims limit $20,000",
+      "Utah Consumer Sales Practices Act",
+      "Utah Code 13-11-19",
+      "Utah Code 78A-8-102",
+      "Utah statutory interest 10%",
+      "Utah Code 15-1-1",
+      "Utah statute of limitations 6 years",
+      "Utah Code 78B-2-309",
+      "Salt Lake City freelance demand letter",
+      "Provo freelancer",
+      "Silicon Slopes demand letter",
+      "Utah Justice Court",
+      "Ogden freelancer",
+    ],
+  },
+  {
     slug: "demand-letter-laws-arkansas",
     title: "Demand Letter Laws in Arkansas: $5,000 Small Claims, 6% Interest & ADTPA Attorney Fees",
     description:
