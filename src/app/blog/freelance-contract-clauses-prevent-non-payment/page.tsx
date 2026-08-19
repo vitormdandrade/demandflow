@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function ContractClausesPost() {
   return (
-    <ArticleLayout post={post}>
+    <ArticleLayout slug={post.slug}>
       <section>
         <p className="lead">
           Most freelancers focus on getting the signature — then cross their fingers on payment day. A strong freelance contract flips that dynamic. The right clauses don't just protect you legally; they create <em>behavioral guardrails</em> that make paying on time the path of least resistance for your client. Here are the seven contract clauses every freelancer should include to prevent non-payment before it starts.

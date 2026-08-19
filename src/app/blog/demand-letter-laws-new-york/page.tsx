@@ -27,12 +27,7 @@ export const metadata: Metadata = {
 
 export default function DemandLetterLawsNewYork() {
   return (
-    <ArticleLayout
-      title="Demand Letter Laws in New York: Requirements, Deadlines & What You Must Include"
-      category="Costs & Legal"
-      readMins={9}
-      date="2026-07-09"
-    >
+    <ArticleLayout slug="demand-letter-laws-new-york">
       <p className="lead">
         New York has its own distinct rules for demand letters — and getting them
         right can mean the difference between a quick settlement and a dismissed
